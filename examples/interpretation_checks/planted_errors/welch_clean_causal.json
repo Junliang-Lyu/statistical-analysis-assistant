@@ -1,0 +1,67 @@
+{
+  "id": "welch_clean_causal",
+  "question": "Compare mean outcome between treatment and control.",
+  "plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "x": null,
+    "y": null,
+    "design": "independent",
+    "study_type": "observational",
+    "filter": null,
+    "reason": "Prespecified evaluation plan",
+    "clarification": null
+  },
+  "result": {
+    "method": "welch_t_test",
+    "n": 50,
+    "n_groups": [
+      25,
+      25
+    ],
+    "contrast": "treatment minus control",
+    "effect": 1.253202036170138,
+    "statistic": 5.788718926593826,
+    "p": 5.796668336306442e-07,
+    "df": 46.509888447698344,
+    "ci_low": 0.8175583600290748,
+    "ci_high": 1.688845712311201,
+    "dropped": 0,
+    "confidence_level": 0.95,
+    "warnings": [
+      "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "draft": {
+    "summary": "mean difference in the reported contrast: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions. This analysis causes improvement.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "expected_valid": false,
+  "note": "Unqualified causal assertion despite observational design.",
+  "source": "Authored test double / planted mutation; not a real model output.",
+  "rendered_text": {
+    "summary": "mean difference in the reported contrast: 1.2532; p=5.7967e-07; confidence interval [0.81756, 1.6888]; n=50. Evidence of a difference or association under the stated assumptions. This analysis causes improvement.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "code_accepted": false,
+  "code_feedback": [
+    "Unqualified causal wording."
+  ],
+  "detector_matches_label": true
+}

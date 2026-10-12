@@ -1,0 +1,18 @@
+{
+  "id": "chi_square_sparse",
+  "category": "stop",
+  "question": "Test chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "stop",
+  "note": "Expected frequencies violate approximation policy.",
+  "expected_method": "chi_square"
+}

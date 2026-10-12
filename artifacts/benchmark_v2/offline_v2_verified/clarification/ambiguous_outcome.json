@@ -1,0 +1,78 @@
+{
+  "id": "ambiguous_outcome",
+  "category": "clarification",
+  "question": "Compare groups; I have not decided whether before or after is the outcome.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "interrupt",
+  "expected_plan": {
+    "goal": "difference",
+    "group": "group",
+    "reason": "Unspecified outcome",
+    "clarification": "Choose before or after."
+  },
+  "checks": {
+    "goal": true,
+    "clarification": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "No arbitrary outcome choice.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "interrupted",
+    "plan": {
+      "goal": "difference",
+      "outcome": null,
+      "group": "group",
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Unspecified outcome",
+      "clarification": "Choose before or after."
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "Choose before or after.",
+    "plan": {
+      "goal": "difference",
+      "outcome": null,
+      "group": "group",
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Unspecified outcome",
+      "clarification": "Choose before or after."
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

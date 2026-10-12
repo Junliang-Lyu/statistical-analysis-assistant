@@ -1,0 +1,19 @@
+{
+  "id": "ambiguous_last_year",
+  "category": "clarification",
+  "question": "Repeat that correlation only for last year.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "interrupt",
+  "note": "Date boundaries not supplied; must ask.",
+  "warmup": true,
+  "expected_method": "pearson"
+}

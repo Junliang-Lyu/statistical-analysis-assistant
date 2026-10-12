@@ -1,0 +1,192 @@
+{
+  "id": "chi_square_2x3",
+  "category": "boundary",
+  "question": "Test chi-square independence of category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Non-square table, degrees of freedom two.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Chi-square independence test for two categorical variables; both columns are string labels with low cardinality, and confirmed metadata indicates independent observational design.",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 60,
+        "usable": 60,
+        "dropped": 0,
+        "contingency": {
+          "row_labels": [
+            "A0",
+            "A1"
+          ],
+          "column_labels": [
+            "B0",
+            "B1",
+            "B2"
+          ],
+          "observed": [
+            [
+              12,
+              10,
+              8
+            ],
+            [
+              8,
+              10,
+              12
+            ]
+          ],
+          "expected": [
+            [
+              10.0,
+              10.0,
+              10.0
+            ],
+            [
+              10.0,
+              10.0,
+              10.0
+            ]
+          ]
+        },
+        "min_expected": 10.0,
+        "fraction_expected_below_five": 0.0
+      }
+    },
+    "result": {
+      "method": "chi_square",
+      "n": 60,
+      "effect_name": "Cramer's V",
+      "effect": 0.16329931618554522,
+      "statistic": 1.6,
+      "p": 0.4493289641172217,
+      "df": 2,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence_level": null,
+      "interval_note": "Effect interval not computed.",
+      "contrast": "Categorical association",
+      "correction": false,
+      "contingency": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "column_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "observed": [
+          [
+            12,
+            10,
+            8
+          ],
+          [
+            8,
+            10,
+            12
+          ]
+        ],
+        "expected": [
+          [
+            10.0,
+            10.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0,
+            10.0
+          ]
+        ]
+      },
+      "dropped": 0,
+      "warnings": [
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of 60 complete cases. The analysis reports Cramer's V as the effect size, which is an unsigned measure of categorical association strength. The observed association was 0.1633, with a test p-value of 0.44933. Because the p-value is not below the five percent threshold, the result is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. No effect confidence interval was computed for this method, so no interval endpoints are reported. The contingency table had two rows and three columns, and no cases were dropped from the analysis. The test used Pearson chi-square without Yates correction. This analysis does not establish causality.",
+      "causal_claim": false,
+      "strength": "inconclusive",
+      "limitations": [
+        "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+        "Cramer's V is an unsigned association measure and does not indicate the direction of any relationship.",
+        "No confidence interval for the effect was computed, so the precision of the association estimate is uncertain.",
+        "The result is inconclusive rather than evidence of no association.",
+        "This analysis does not establish causality.",
+        "The findings are based on complete cases only, and no information is available about excluded or missing data.",
+        "No practical or clinical importance can be claimed without additional context."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of {n} complete cases. The analysis reports Cramer's V as the effect size, which is an unsigned measure of categorical association strength. The observed association was {effect}, with a test p-value of {p}. Because the p-value is not below the five percent threshold, the result is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. No effect confidence interval was computed for this method, so no interval endpoints are reported. The contingency table had two rows and three columns, and no cases were dropped from the analysis. The test used Pearson chi-square without Yates correction. This analysis does not establish causality.",
+    "causal_claim": false,
+    "strength": "inconclusive",
+    "limitations": [
+      "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+      "Cramer's V is an unsigned association measure and does not indicate the direction of any relationship.",
+      "No confidence interval for the effect was computed, so the precision of the association estimate is uncertain.",
+      "The result is inconclusive rather than evidence of no association.",
+      "This analysis does not establish causality.",
+      "The findings are based on complete cases only, and no information is available about excluded or missing data.",
+      "No practical or clinical importance can be claimed without additional context."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

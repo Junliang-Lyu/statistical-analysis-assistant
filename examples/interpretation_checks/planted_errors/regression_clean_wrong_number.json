@@ -1,0 +1,71 @@
+{
+  "id": "regression_clean_wrong_number",
+  "question": "Fit a simple linear regression with x as predictor and y as outcome. Report the slope.",
+  "plan": {
+    "goal": "regression",
+    "outcome": null,
+    "group": null,
+    "x": "x",
+    "y": "y",
+    "design": "independent",
+    "study_type": "observational",
+    "filter": null,
+    "reason": "Prespecified evaluation plan",
+    "clarification": null
+  },
+  "result": {
+    "method": "linear_regression",
+    "n": 60,
+    "effect_name": "Slope",
+    "effect": 1.4750285494295665,
+    "intercept": 3.110280675144431,
+    "r_squared": 0.9009028873324267,
+    "statistic": 22.962675350253736,
+    "p": 8.433183004011742e-31,
+    "df": 58,
+    "ci_low": 1.3464463876400465,
+    "ci_high": 1.6036107112190865,
+    "confidence_level": 0.95,
+    "slope_stderr": 0.06423591880870569,
+    "contrast": "y per unit of x",
+    "dropped": 0,
+    "warnings": [
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "draft": {
+    "summary": "Slope of outcome y on predictor x: {effect}; p=0.123; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "expected_valid": false,
+  "note": "Inserted unsupported numerical literal and removed p placeholder.",
+  "source": "Authored test double / planted mutation; not a real model output.",
+  "rendered_text": {
+    "summary": "Slope of outcome y on predictor x: 1.475; p=0.123; confidence interval [1.3464, 1.6036]; n=60. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "code_accepted": false,
+  "code_feedback": [
+    "Required effect, p, interval and sample-size placeholders are missing.",
+    "Replace these numerical literals with approved placeholders or words: 0.123"
+  ],
+  "detector_matches_label": true
+}

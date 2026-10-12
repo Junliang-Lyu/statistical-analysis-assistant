@@ -1,0 +1,68 @@
+{
+  "id": "chi_square_numeric_codes",
+  "category": "stop",
+  "question": "Test chi-square independence; these numeric columns are category codes.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Ask for text-label preprocessing or stop; do not silently recode.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "stopped",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user requests a chi-square test of independence between two categorical variables. The columns category_a and category_b are numeric codes representing categories, which the user explicitly identifies as category codes. The confirmed metadata indicates an independent observational design, which is appropriate for chi-square independence.",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [
+        "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+      ],
+      "warnings": [],
+      "details": {
+        "rows": 80,
+        "usable": 80,
+        "dropped": 0
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

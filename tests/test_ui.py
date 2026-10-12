@@ -30,3 +30,12 @@ def test_csv_upload_and_paired_boundary():
     assert r['columns']==['x','y'] and len(r['preview'])==6
     bad=w.handle({'action':'analyze','mode':'offline','case':'paired','question':'Compare mean outcome between groups'})
     assert bad['status']=='stopped' and bad['result'] is None
+
+
+@pytest.mark.parametrize('case,question,method,n',[
+    ('chi_square','Chi-square category_a category_b','chi_square',80),
+    ('regression','Regress y on x','linear_regression',60)])
+def test_ui_new_methods(case,question,method,n):
+    w=Workspace();r=w.handle({'action':'analyze','mode':'offline','case':case,'question':question,
+        'metadata':{'design':'independent','study_type':'observational'}})
+    assert r['status']=='completed' and r['result']['method']==method and r['result']['n']==n

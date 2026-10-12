@@ -1,0 +1,27 @@
+{
+  "id": "pearson_nonlinear",
+  "category": "boundary",
+  "question": "Assess the relationship between x and y using Pearson linear correlation.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present.",
+  "numeric_reference": {
+    "n": 40,
+    "dropped": 0,
+    "effect": -1.3148746927150712e-16,
+    "statistic": -1.3148746927150712e-16,
+    "p": 0.9999999999999989,
+    "ci_low": -0.31150934897669913,
+    "ci_high": 0.3115093489766989
+  },
+  "expected_method": "pearson"
+}

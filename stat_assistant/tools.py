@@ -41,7 +41,7 @@ def prepared(df, p):
     cols = [p['outcome'], p['group']] if p['goal'] == 'difference' else [p['x'], p['y']]
     if any(c not in frame for c in cols) or len(set(cols)) != 2:
         raise ValueError('Select two distinct existing columns.')
-    numeric = [p['outcome']] if p['goal'] == 'difference' else cols
+    numeric = [p['outcome']] if p['goal'] == 'difference' else ([] if p['goal']=='categorical' else cols)
     if any(not pd.api.types.is_numeric_dtype(frame[c]) or pd.api.types.is_bool_dtype(frame[c]) for c in numeric):
         raise ValueError('Analysis variables must be numeric; categorical codes need user judgement.')
     clean = frame[cols].dropna()
@@ -65,9 +65,12 @@ def distribution(values):
 
 
 def diagnose(df, p):
+    if p['goal'] in ('categorical','regression'):
+        from .additional_tools import diagnose_additional
+        return diagnose_additional(df,p)
     errors, notices, details = [], [], {}
     if p['goal'] not in ('difference', 'correlation'):
-        return {'errors': ['Only two-group mean comparison and Pearson correlation are supported.'], 'warnings': [], 'details': {}}
+        return {'errors': ['Unsupported analysis: use independent Welch, Pearson, categorical chi-square or simple one-predictor regression.'], 'warnings': [], 'details': {}}
     if p['design'] != 'independent':
         errors.append('Independent observations must be confirmed; paired/clustered designs are not supported.')
     try:
@@ -109,6 +112,9 @@ def compute(df, p):
     checks = diagnose(df, p)
     if checks['errors']:
         raise ValueError('; '.join(checks['errors']))
+    if p['goal'] in ('categorical','regression'):
+        from .additional_tools import compute_additional
+        return compute_additional(df,p,checks)
     frame, clean = prepared(df, p)
     if p['goal'] == 'difference':
         labels = sorted(clean[p['group']].unique(), key=str)

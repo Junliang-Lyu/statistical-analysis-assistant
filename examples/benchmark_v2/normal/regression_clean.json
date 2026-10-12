@@ -1,0 +1,30 @@
+{
+  "id": "regression_clean",
+  "category": "normal",
+  "question": "Fit a simple linear regression with x as predictor and y as outcome. Report the slope.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "",
+  "numeric_reference": {
+    "n": 60,
+    "dropped": 0,
+    "effect": 1.475028549429566,
+    "intercept": 3.110280675144432,
+    "r_squared": 0.9009028873324268,
+    "statistic": 22.962675350253743,
+    "p": 8.433183004011776e-31,
+    "df": 58,
+    "ci_low": 1.346446387640046,
+    "ci_high": 1.603610711219086
+  },
+  "expected_method": "linear_regression"
+}

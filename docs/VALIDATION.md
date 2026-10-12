@@ -1,5 +1,11 @@
 # MVP verification record
 
+## 2026-10-12 four-method update
+
+Current application supports Welch, Pearson, categorical chi-square and one-predictor OLS. Seventy automated tests passed, including numerical matrix/formula references and all thirty-one gold-plan benchmark cases. The current offline notebook executed six code cells and regenerated the graph PNG. Browser verification covered English-only sample selection, user confirmation, chi-square output without an invented interval, and OLS slope/intercept/R-squared cards. No new dependencies were installed.
+
+The first separate live four-method benchmark achieved 28/31 strict mechanical checks; seventeen computed results matched numeric references and all seventeen passed partial interpretation checks. Three safe route/goal deviations remain documented, not silently relabelled. Controlled interpretation mutations yielded nine of twelve known errors detected, four of four valid templates accepted, and three semantic blind spots. These are authored tests, not actual model error rates or independent human labels. See BENCHMARK_V2.md and the separate v2 artifacts. The historical submission folder remains an executed two-method snapshot; it has not been represented as a new four-method live submission.
+
 Local scope: actual LangGraph, SciPy, in-memory checkpoints, separate planner/interpreter adapters and explicitly labelled offline doubles. No deployment or GitHub publishing.
 
 Verified with pytest: Welch statistic, p and interval against SciPy; Pearson result and interval; complete-case missing count; nonfinite and constant data refusal; invalid date rejection; human pause/resume; planner not called again on resume; follow-up recomputation (20 -> 10); new dataset resets prior plan; thread isolation; paired design refusal; one invalid-plan revision; one invalid-interpretation rewrite then numeric-only output.

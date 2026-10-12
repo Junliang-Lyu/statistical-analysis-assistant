@@ -1,0 +1,143 @@
+{
+  "id": "regression_influential",
+  "category": "boundary",
+  "question": "Fit simple regression of y on x.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true,
+    "warning": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Influential-point warning; no automatic deletion.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests simple regression of y on x, with x as predictor and y as outcome. Confirmed metadata indicates independent observational design, which is compatible with simple OLS with intercept.",
+      "clarification": null
+    },
+    "method": "linear_regression",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 60,
+        "usable": 60,
+        "dropped": 0,
+        "residuals": {
+          "n": 60,
+          "constant": false,
+          "skew": 7.10506934488931,
+          "outliers": 1,
+          "extreme": 1,
+          "shapiro_p": 1.7180616334934702e-15
+        },
+        "max_leverage": 0.06502732240458828,
+        "max_cooks_distance": 2.006439339825254,
+        "influential_count": 1,
+        "breusch_pagan_lm": 3.1485050150425065,
+        "breusch_pagan_p": 0.07599656016743103,
+        "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+      }
+    },
+    "result": {
+      "method": "linear_regression",
+      "n": 60,
+      "effect_name": "Slope",
+      "effect": 2.99151201763258,
+      "intercept": 4.678170362593333,
+      "r_squared": 0.1720217316023331,
+      "statistic": 3.4713322669651117,
+      "p": 0.0009847216015012425,
+      "df": 58,
+      "ci_low": 1.266479249461123,
+      "ci_high": 4.716544785804037,
+      "confidence_level": 0.95,
+      "slope_stderr": 0.8617763404849674,
+      "contrast": "y per unit of x",
+      "dropped": 0,
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "A simple linear regression was performed with x as the predictor and y as the outcome, using ordinary least squares with an intercept on 60 complete observations. The estimated slope is 2.9915, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from 1.2665 to 4.7165. The associated p-value is 0.00098472, so the slope is reported as evidence of a linear association. The model explains a modest share of the variation in y, and the intercept is not the focus of this interpretation. This is an observational analysis, so the slope describes association in the fitted linear mean model rather than a causal effect. The confidence interval was computed under the usual regression assumptions, and the reported interval reflects sampling uncertainty only.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "The analysis relies on a linear mean model with an intercept, independence of observations, and constant error variance; these conditions were not established by the diagnostics.",
+        "Residual normality diagnostic warnings were noted, so ordinary slope inference should be interpreted with judgement.",
+        "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so results may be sensitive to those points.",
+        "The confidence interval refers to the slope interval, and no interval was invented where endpoints were unavailable.",
+        "This analysis does not establish causality.",
+        "No practical or clinical importance is claimed because no context or decision threshold was provided.",
+        "The analysis is limited to complete cases, and any dropped observations could affect the estimates."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 1,
+    "calls": 3,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "rewrite",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A simple linear regression was performed with x as the predictor and y as the outcome, using ordinary least squares with an intercept on {n} complete observations. The estimated slope is {effect}, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value is {p}, so the slope is reported as evidence of a linear association. The model explains a modest share of the variation in y, and the intercept is not the focus of this interpretation. This is an observational analysis, so the slope describes association in the fitted linear mean model rather than a causal effect. The confidence interval was computed under the usual regression assumptions, and the reported interval reflects sampling uncertainty only.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "The analysis relies on a linear mean model with an intercept, independence of observations, and constant error variance; these conditions were not established by the diagnostics.",
+      "Residual normality diagnostic warnings were noted, so ordinary slope inference should be interpreted with judgement.",
+      "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so results may be sensitive to those points.",
+      "The confidence interval refers to the slope interval, and no interval was invented where endpoints were unavailable.",
+      "This analysis does not establish causality.",
+      "No practical or clinical importance is claimed because no context or decision threshold was provided.",
+      "The analysis is limited to complete cases, and any dropped observations could affect the estimates."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

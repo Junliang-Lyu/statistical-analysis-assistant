@@ -1,5 +1,7 @@
 # Test cases and expected behavior
 
+Current four-method catalog: see BENCHMARK_V2.md and examples/benchmark_v2. The examples and twenty-six-test count below describe the historical two-method version. The UI now additionally offers chi-square, simple regression and sparse chi-square refusal; it is English-only. Current automated count: seventy.
+
 All included CSVs are synthetic. No student or patient records are included.
 
 ## Browser walkthrough (real DeepSeek)

@@ -1,0 +1,188 @@
+[
+  {
+    "id": "welch_clean",
+    "category": "normal",
+    "expected_behavior": "result",
+    "note": ""
+  },
+  {
+    "id": "pearson_clean",
+    "category": "normal",
+    "expected_behavior": "result",
+    "note": ""
+  },
+  {
+    "id": "chi_square_2x2",
+    "category": "normal",
+    "expected_behavior": "result",
+    "note": ""
+  },
+  {
+    "id": "regression_clean",
+    "category": "normal",
+    "expected_behavior": "result",
+    "note": ""
+  },
+  {
+    "id": "welch_unequal_variance",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Welch does not require equal variances."
+  },
+  {
+    "id": "welch_missing",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Complete-case deletion; report one omitted row."
+  },
+  {
+    "id": "pearson_missing",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Complete-case deletion; report one omitted row."
+  },
+  {
+    "id": "chi_square_missing",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Complete-case deletion; report one omitted row."
+  },
+  {
+    "id": "regression_missing",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Complete-case deletion; report one omitted row."
+  },
+  {
+    "id": "chi_square_2x3",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Non-square table, degrees of freedom two."
+  },
+  {
+    "id": "pearson_nonlinear",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present."
+  },
+  {
+    "id": "regression_influential",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Influential-point warning; no automatic deletion."
+  },
+  {
+    "id": "regression_heteroscedastic",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Report residual diagnostics. Ordinary slope inference may be unreliable; no automatic robust estimator."
+  },
+  {
+    "id": "regression_negative_slope",
+    "category": "boundary",
+    "expected_behavior": "result",
+    "note": "Negative slope; not a causal effect."
+  },
+  {
+    "id": "unknown_design",
+    "category": "clarification",
+    "expected_behavior": "result",
+    "note": "Must pause; synthetic evaluator confirms independent observations."
+  },
+  {
+    "id": "ambiguous_outcome",
+    "category": "clarification",
+    "expected_behavior": "interrupt",
+    "note": "No arbitrary outcome choice."
+  },
+  {
+    "id": "ambiguous_last_year",
+    "category": "clarification",
+    "expected_behavior": "interrupt",
+    "note": "Date boundaries not supplied; must ask."
+  },
+  {
+    "id": "regression_direction",
+    "category": "clarification",
+    "expected_behavior": "interrupt",
+    "note": "Must ask which variable is predictor/outcome."
+  },
+  {
+    "id": "paired_design",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": "No silent change to independent design."
+  },
+  {
+    "id": "chi_square_sparse",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": "Expected frequencies violate approximation policy."
+  },
+  {
+    "id": "chi_square_one_category",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "chi_square_numeric_codes",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": "Ask for text-label preprocessing or stop; do not silently recode."
+  },
+  {
+    "id": "pearson_constant",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "pearson_too_few",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "regression_constant",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "regression_too_few",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "regression_perfect",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": "Near-perfect fit: conservative residual-inference policy."
+  },
+  {
+    "id": "welch_extreme_small_group",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": "Severe small-sample/extreme-value policy; no method switch."
+  },
+  {
+    "id": "unsupported_multivariable",
+    "category": "stop",
+    "expected_behavior": "stop",
+    "note": ""
+  },
+  {
+    "id": "correlation_2025",
+    "category": "followup",
+    "expected_behavior": "result",
+    "note": "Same session; retain roles but recompute from filtered data."
+  },
+  {
+    "id": "regression_2025",
+    "category": "followup",
+    "expected_behavior": "result",
+    "note": "Same session; retain roles but recompute from filtered data."
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "id": "chi_square_sparse",
+  "category": "stop",
+  "question": "Test chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Expected frequencies violate approximation policy.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "stopped",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [
+        "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+      ],
+      "warnings": [
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 4,
+        "usable": 4,
+        "dropped": 0,
+        "contingency": {
+          "row_labels": [
+            "A0",
+            "A1"
+          ],
+          "column_labels": [
+            "B0",
+            "B1"
+          ],
+          "observed": [
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "expected": [
+            [
+              1.0,
+              1.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ]
+        },
+        "min_expected": 1.0,
+        "fraction_expected_below_five": 1.0
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

@@ -1,0 +1,88 @@
+{
+  "id": "paired_design",
+  "category": "stop",
+  "question": "Compare mean outcome between groups.",
+  "metadata": {
+    "design": "paired"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "No silent change to independent design.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "stopped",
+    "plan": {
+      "goal": "difference",
+      "outcome": "outcome",
+      "group": "group",
+      "x": null,
+      "y": null,
+      "design": "paired",
+      "study_type": "unknown",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "welch_t_test",
+    "diagnostics": {
+      "errors": [
+        "Independent observations must be confirmed; paired/clustered designs are not supported."
+      ],
+      "warnings": [
+        "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 50,
+        "usable": 50,
+        "dropped": 0,
+        "groups": {
+          "control": {
+            "n": 25,
+            "constant": false,
+            "skew": -0.3980798074324173,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.5649965950069511
+          },
+          "treatment": {
+            "n": 25,
+            "constant": false,
+            "skew": 0.4979031096419082,
+            "outliers": 1,
+            "extreme": 0,
+            "shapiro_p": 0.16838955838960734
+          }
+        }
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Independent observations must be confirmed; paired/clustered designs are not supported."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

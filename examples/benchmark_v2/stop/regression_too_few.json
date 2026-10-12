@@ -1,0 +1,18 @@
+{
+  "id": "regression_too_few",
+  "category": "stop",
+  "question": "Regress y on x.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "stop",
+  "note": "",
+  "expected_method": "linear_regression"
+}

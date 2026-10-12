@@ -1,0 +1,19 @@
+{
+  "id": "chi_square_numeric_codes",
+  "category": "stop",
+  "question": "Test chi-square independence; these numeric columns are category codes.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "stop",
+  "note": "Ask for text-label preprocessing or stop; do not silently recode.",
+  "allow_interrupt": true,
+  "expected_method": "chi_square"
+}

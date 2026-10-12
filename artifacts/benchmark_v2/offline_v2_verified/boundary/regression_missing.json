@@ -1,0 +1,137 @@
+{
+  "id": "regression_missing",
+  "category": "boundary",
+  "question": "Regress y on x with one predictor.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Complete-case deletion; report one omitted row.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "completed",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "linear_regression",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 60,
+        "usable": 59,
+        "dropped": 1,
+        "residuals": {
+          "n": 59,
+          "constant": false,
+          "skew": 0.09450413043012428,
+          "outliers": 0,
+          "extreme": 0,
+          "shapiro_p": 0.9796382470065456
+        },
+        "max_leverage": 0.06610169491548588,
+        "max_cooks_distance": 0.1852816268434052,
+        "influential_count": 5,
+        "breusch_pagan_lm": 1.8145744069774226,
+        "breusch_pagan_p": 0.1779604595923324,
+        "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+      }
+    },
+    "result": {
+      "method": "linear_regression",
+      "n": 59,
+      "effect_name": "Slope",
+      "effect": 1.4901576066290867,
+      "intercept": 3.094638768551063,
+      "r_squared": 0.8998842292839396,
+      "statistic": 22.63494797868948,
+      "p": 3.618349078977401e-30,
+      "df": 57,
+      "ci_low": 1.3583265487895064,
+      "ci_high": 1.621988664468667,
+      "confidence_level": 0.95,
+      "slope_stderr": 0.06583437293657805,
+      "contrast": "y per unit of x",
+      "dropped": 1,
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "Slope of outcome y on predictor x: 1.4902; p=3.6183e-30; confidence interval [1.3583, 1.622]; n=59. Evidence of a difference or association under the stated assumptions.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "This analysis does not establish causality.",
+        "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+        "Complete-case deletion was used; missingness may bias results.",
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Complete-case deletion was used; missingness may bias results.",
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

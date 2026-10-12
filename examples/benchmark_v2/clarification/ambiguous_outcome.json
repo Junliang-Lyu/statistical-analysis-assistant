@@ -1,0 +1,18 @@
+{
+  "id": "ambiguous_outcome",
+  "category": "clarification",
+  "question": "Compare groups; I have not decided whether before or after is the outcome.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "difference",
+    "group": "group",
+    "reason": "Unspecified outcome",
+    "clarification": "Choose before or after."
+  },
+  "expected_behavior": "interrupt",
+  "note": "No arbitrary outcome choice.",
+  "expected_method": "welch_t_test"
+}

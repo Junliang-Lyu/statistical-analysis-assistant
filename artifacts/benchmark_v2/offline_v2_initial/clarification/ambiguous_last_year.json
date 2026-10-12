@@ -1,0 +1,78 @@
+{
+  "id": "ambiguous_last_year",
+  "category": "clarification",
+  "question": "Repeat that correlation only for last year.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "interrupt",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "clarification": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Date boundaries not supplied; must ask.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "interrupted",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": "Provide exact date boundaries."
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "Provide exact date boundaries.",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": "Provide exact date boundaries."
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

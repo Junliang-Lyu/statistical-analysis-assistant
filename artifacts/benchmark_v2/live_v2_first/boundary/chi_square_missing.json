@@ -1,0 +1,180 @@
+{
+  "id": "chi_square_missing",
+  "category": "boundary",
+  "question": "Compute chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Complete-case deletion; report one omitted row.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Chi-square independence between two explicitly categorical text columns; roles mapped to x=category_a and y=category_b.",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 80,
+        "usable": 79,
+        "dropped": 1,
+        "contingency": {
+          "row_labels": [
+            "A0",
+            "A1"
+          ],
+          "column_labels": [
+            "B0",
+            "B1"
+          ],
+          "observed": [
+            [
+              29,
+              10
+            ],
+            [
+              10,
+              30
+            ]
+          ],
+          "expected": [
+            [
+              19.253164556962027,
+              19.746835443037973
+            ],
+            [
+              19.746835443037973,
+              20.253164556962027
+            ]
+          ]
+        },
+        "min_expected": 19.253164556962027,
+        "fraction_expected_below_five": 0.0
+      }
+    },
+    "result": {
+      "method": "chi_square",
+      "n": 79,
+      "effect_name": "Cramer's V",
+      "effect": 0.49358974358974345,
+      "statistic": 19.246835963182107,
+      "p": 1.1486057946986134e-05,
+      "df": 1,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence_level": null,
+      "interval_note": "Effect interval not computed.",
+      "contrast": "Categorical association",
+      "correction": false,
+      "contingency": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "column_labels": [
+          "B0",
+          "B1"
+        ],
+        "observed": [
+          [
+            29,
+            10
+          ],
+          [
+            10,
+            30
+          ]
+        ],
+        "expected": [
+          [
+            19.253164556962027,
+            19.746835443037973
+          ],
+          [
+            19.746835443037973,
+            20.253164556962027
+          ]
+        ]
+      },
+      "dropped": 1,
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b using complete cases. The analysis included 79 observations, with one case excluded due to missing data. The association was measured with Cramer's V, which is an unsigned measure of categorical association strength. The observed Cramer's V was 0.49359, and the chi-square test yielded a p-value of 1.1486e-05. Because the p-value is below the five percent threshold, the result is classified as evidence of an association between the two categorical variables. The effect confidence interval was not computed, so the precision of the association estimate is unknown. The contingency table showed observed counts that differed from expected counts under independence, consistent with the detected association. This analysis does not establish causality.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "The chi-square test assumes independent observations and adequate expected cell counts; violations of these assumptions can affect the validity of the test.",
+        "Complete-case deletion was used, and missingness may bias results if the excluded cases differ systematically from the analyzed cases.",
+        "Cramer's V is an unsigned measure of association strength and does not indicate the direction of the relationship.",
+        "The effect confidence interval was not computed, so uncertainty around the association estimate is not quantified.",
+        "This analysis does not establish causality."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b using complete cases. The analysis included {n} observations, with one case excluded due to missing data. The association was measured with Cramer's V, which is an unsigned measure of categorical association strength. The observed Cramer's V was {effect}, and the chi-square test yielded a p-value of {p}. Because the p-value is below the five percent threshold, the result is classified as evidence of an association between the two categorical variables. The effect confidence interval was not computed, so the precision of the association estimate is unknown. The contingency table showed observed counts that differed from expected counts under independence, consistent with the detected association. This analysis does not establish causality.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "The chi-square test assumes independent observations and adequate expected cell counts; violations of these assumptions can affect the validity of the test.",
+      "Complete-case deletion was used, and missingness may bias results if the excluded cases differ systematically from the analyzed cases.",
+      "Cramer's V is an unsigned measure of association strength and does not indicate the direction of the relationship.",
+      "The effect confidence interval was not computed, so uncertainty around the association estimate is not quantified.",
+      "This analysis does not establish causality."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

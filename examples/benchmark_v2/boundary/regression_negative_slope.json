@@ -1,0 +1,30 @@
+{
+  "id": "regression_negative_slope",
+  "category": "boundary",
+  "question": "Regress outcome y on predictor x.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Negative slope; not a causal effect.",
+  "numeric_reference": {
+    "n": 60,
+    "dropped": 0,
+    "effect": -2.0610823984891833,
+    "intercept": 4.946083817148451,
+    "r_squared": 0.9569199257792376,
+    "statistic": -35.89331532878267,
+    "p": 2.640024551284249e-41,
+    "df": 58,
+    "ci_low": -2.1760259370151833,
+    "ci_high": -1.9461388599631833
+  },
+  "expected_method": "linear_regression"
+}

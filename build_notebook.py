@@ -16,7 +16,7 @@ from IPython.display import Image, display
 from langgraph.types import Command
 from stat_assistant.agents import OfflineAgents, DeepSeekAgents, load_local_env
 from stat_assistant.workflow import build_graph
-from demo import fixtures, public_result
+from demo import fixtures, extra_fixtures, public_result
 
 LIVE = False
 load_local_env(Path('.env'))
@@ -59,6 +59,15 @@ try:
     display(Image(png))
 except Exception as exc:
     print('PNG rendering unavailable:', type(exc).__name__, '- use graph.mmd or rerun with network access.')''')]
+cells[0].source += '\n\nCurrent tools: Welch two-group comparison, Pearson correlation, categorical chi-square independence, and one-predictor OLS regression with intercept. Categorical effect intervals are explicitly unavailable. Benchmark inputs are separated by scenario in examples/benchmark_v2.'
+cells[-2:-2] = [nb.v4.new_markdown_cell('''## Categorical association and simple regression
+Chi-square checks expected cell counts and reports unsigned Cramer's V; no effect interval is invented. Regression reports slope, intercept, R-squared and slope interval, with residual/influence/heteroscedasticity warnings. Designs below are predefined for these synthetic examples.'''),nb.v4.new_code_cell('''extra = extra_fixtures()
+for name, question in [('chi_square', 'Test chi-square independence between category_a and category_b.'), ('regression', 'Regress y on x with one predictor.')]:
+    state = graph.invoke({'data':extra[name].to_dict(orient='records'), 'question':question,
+                          'metadata':{'design':'independent','study_type':'observational'}},
+                         {'configurable':{'thread_id':'notebook-'+name}})
+    print(name, state['status'])
+    display(public_result(state))''')]
 n=nb.v4.new_notebook(cells=cells)
 n.metadata['kernelspec']={'display_name':'Python 3 (project .venv)','language':'python','name':'python3'}
 nb.write(n,root/'demo.ipynb')

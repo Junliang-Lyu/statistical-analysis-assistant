@@ -1,5 +1,7 @@
 # MVP evaluation — 2026-10-11
 
+Update 2026-10-12: the current application now supports all four methods (Welch, Pearson, chi-square, simple OLS). See BENCHMARK_V2.md for the separate 31-case evaluation and interpretation challenge set. Sections below describe the retained two-method baseline, not current scope. The submission folder retains its historical live notebook snapshot.
+
 ## What is implemented
 
 Actual LangGraph orchestration with a DeepSeek Planner and Interpreter; deterministic CSV profiling, method selection, assumption diagnostics and SciPy computation. Supported analyses are independent two-group Welch tests and Pearson correlation. Human clarification, one plan revision, one interpretation rewrite and in-process follow-up memory are implemented. Other designs stop explicitly.

@@ -1,0 +1,33 @@
+{
+  "id": "correlation_2025",
+  "category": "followup",
+  "question": "Repeat that same analysis only for calendar year 2025.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational",
+    "filter": {
+      "column": "date",
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    }
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Same session; retain roles but recompute from filtered data.",
+  "warmup": true,
+  "numeric_reference": {
+    "n": 10,
+    "dropped": 0,
+    "effect": 0.975485137140679,
+    "statistic": 0.975485137140679,
+    "p": 1.5341301345470877e-06,
+    "ci_low": 0.8964511574072845,
+    "ci_high": 0.9943751018921909
+  },
+  "expected_method": "pearson"
+}

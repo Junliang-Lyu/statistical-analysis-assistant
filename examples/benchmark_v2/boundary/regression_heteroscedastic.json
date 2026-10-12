@@ -1,0 +1,30 @@
+{
+  "id": "regression_heteroscedastic",
+  "category": "boundary",
+  "question": "Fit simple regression with predictor x and outcome y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Report residual diagnostics. Ordinary slope inference may be unreliable; no automatic robust estimator.",
+  "numeric_reference": {
+    "n": 60,
+    "dropped": 0,
+    "effect": 0.6091581900613612,
+    "intercept": 1.5328023674866371,
+    "r_squared": 0.03801921554977561,
+    "statistic": 1.5140226563569452,
+    "p": 0.13545086185193816,
+    "df": 58,
+    "ci_low": -0.1962211710309849,
+    "ci_high": 1.4145375511537073
+  },
+  "expected_method": "linear_regression"
+}

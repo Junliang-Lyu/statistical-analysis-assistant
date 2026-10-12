@@ -1,0 +1,62 @@
+{
+  "id": "unsupported_multivariable",
+  "category": "stop",
+  "question": "Fit a multiple regression using x and date together to predict y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "unsupported",
+    "reason": "Multiple regression is unsupported."
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "stopped",
+    "plan": {
+      "goal": "unsupported",
+      "outcome": null,
+      "group": null,
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Multiple regression is unsupported.",
+      "clarification": null
+    },
+    "method": null,
+    "diagnostics": {
+      "errors": [
+        "Unsupported analysis: use independent Welch, Pearson, categorical chi-square or simple one-predictor regression."
+      ],
+      "warnings": [],
+      "details": {}
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Unsupported analysis: use independent Welch, Pearson, categorical chi-square or simple one-predictor regression."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

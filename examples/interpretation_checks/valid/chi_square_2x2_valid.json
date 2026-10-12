@@ -1,0 +1,92 @@
+{
+  "id": "chi_square_2x2_valid",
+  "question": "Use chi-square independence to test association between category_a and category_b, both categorical labels.",
+  "plan": {
+    "goal": "categorical",
+    "outcome": null,
+    "group": null,
+    "x": "category_a",
+    "y": "category_b",
+    "design": "independent",
+    "study_type": "observational",
+    "filter": null,
+    "reason": "Prespecified evaluation plan",
+    "clarification": null
+  },
+  "result": {
+    "method": "chi_square",
+    "n": 80,
+    "effect_name": "Cramer's V",
+    "effect": 0.5,
+    "statistic": 20.0,
+    "p": 7.744216431044088e-06,
+    "df": 1,
+    "ci_low": null,
+    "ci_high": null,
+    "confidence_level": null,
+    "interval_note": "Effect interval not computed.",
+    "contrast": "Categorical association",
+    "correction": false,
+    "contingency": {
+      "row_labels": [
+        "A0",
+        "A1"
+      ],
+      "column_labels": [
+        "B0",
+        "B1"
+      ],
+      "observed": [
+        [
+          30,
+          10
+        ],
+        [
+          10,
+          30
+        ]
+      ],
+      "expected": [
+        [
+          20.0,
+          20.0
+        ],
+        [
+          20.0,
+          20.0
+        ]
+      ]
+    },
+    "dropped": 0,
+    "warnings": [
+      "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "draft": {
+    "summary": "Cramer's V: {effect}; p={p}; n={n}. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "expected_valid": true,
+  "note": "Correct controlled template with tool placeholders.",
+  "source": "Authored test double / planted mutation; not a real model output.",
+  "rendered_text": {
+    "summary": "Cramer's V: 0.5; p=7.7442e-06; n=80. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "code_accepted": true,
+  "code_feedback": [],
+  "detector_matches_label": true
+}

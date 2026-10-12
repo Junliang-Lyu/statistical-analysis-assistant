@@ -1,0 +1,148 @@
+{
+  "id": "regression_2025",
+  "category": "followup",
+  "question": "Repeat that same analysis only for calendar year 2025.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational",
+    "filter": {
+      "column": "date",
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    }
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true,
+    "warmup": true,
+    "memory_roles": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Same session; retain roles but recompute from filtered data.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "completed",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": {
+        "column": "date",
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "linear_regression",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 30,
+        "usable": 30,
+        "dropped": 0,
+        "residuals": {
+          "n": 30,
+          "constant": false,
+          "skew": 0.41590166852889493,
+          "outliers": 1,
+          "extreme": 0,
+          "shapiro_p": 0.6849807747364375
+        },
+        "max_leverage": 0.12688172043346374,
+        "max_cooks_distance": 0.354196053125532,
+        "influential_count": 2,
+        "breusch_pagan_lm": 4.442066023222077,
+        "breusch_pagan_p": 0.0350637908876167,
+        "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+      }
+    },
+    "result": {
+      "method": "linear_regression",
+      "n": 30,
+      "effect_name": "Slope",
+      "effect": 1.4420555639581867,
+      "intercept": 3.1786074011156957,
+      "r_squared": 0.6835195097300795,
+      "statistic": 7.7764431587455425,
+      "p": 1.800892600085994e-08,
+      "df": 28,
+      "ci_low": 1.062201065471242,
+      "ci_high": 1.8219100624451314,
+      "confidence_level": 0.95,
+      "slope_stderr": 0.18543896412801814,
+      "contrast": "y per unit of x",
+      "dropped": 0,
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "Slope of outcome y on predictor x: 1.4421; p=1.8009e-08; confidence interval [1.0622, 1.8219]; n=30. Evidence of a difference or association under the stated assumptions.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "This analysis does not establish causality.",
+        "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

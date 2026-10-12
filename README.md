@@ -1,8 +1,8 @@
 # Agentic Statistical Analysis Assistant
 
-Local course MVP: CSV + natural-language question → DeepSeek Planner → deterministic method/checks → SciPy → DeepSeek Interpreter → bounded review. Implemented with an actual LangGraph StateGraph. Supports independent two-group Welch comparisons and Pearson correlation; other methods/designs are outside scope.
+Local course MVP: CSV + natural-language question → DeepSeek Planner → deterministic method/checks → SciPy → DeepSeek Interpreter → bounded review. Implemented with an actual LangGraph StateGraph. Supports independent Welch comparisons, Pearson correlation, categorical chi-square independence and simple OLS with one predictor and intercept.
 
-**Quick start (Python 3.12):** create a virtual environment, install `requirements-lock.txt`, then run `python ui_server.py --port 8766` and open http://127.0.0.1:8766/ . The English-first UI includes Chinese assistance. Default offline mode uses fixed test doubles; select DeepSeek for real model calls. Configure `DEEPSEEK_API_KEY` in a local `.env` using the blank `.env.example`, never in committed files.
+**Quick start (Python 3.12):** create a virtual environment, install `requirements-lock.txt`, then run `python ui_server.py --port 8766` and open http://127.0.0.1:8766/ . The UI is English-only. Default offline mode uses fixed test doubles; select DeepSeek for real model calls. Configure `DEEPSEEK_API_KEY` in a local `.env` using the blank `.env.example`, never in committed files.
 
 **Examples and tests:** [test case guide](docs/TEST_CASES.md), [student live walkthrough](docs/STUDENT_DEMO.md), [evaluation and limitations](docs/EVALUATION.md). Run `python -m pytest -q` for automated tests. [Submission notebook](submission/LangGraph_Submission.ipynb) contains saved live outputs and the [actual graph image](submission/graph.png); supporting modules/data are included for rerunning.
 
@@ -10,7 +10,7 @@ Model outputs are not guaranteed statistically or semantically correct. Code sup
 
 本地课程 MVP：CSV + 自然语言问题 → Planner → 方法规则 → 数据诊断 → SciPy → Interpreter → 解释检查。暂停询问用户，计划最多修订一次，解释最多重写一次。不能合理分析时明确停止。
 
-当前范围：两组独立样本 Welch t-test、两个数值变量 Pearson correlation。配对、聚类、重复测量、卡方、回归、自动 Mann–Whitney/Spearman 切换均不支持。所有输出保守地限制为关联或组间差异，不作因果结论。LLM 不生成可执行 Python。
+当前范围：独立两组 Welch t-test、Pearson correlation、分类变量 chi-square independence、单预测变量 OLS regression。配对、聚类、重复测量、多元/逻辑回归和自动替代检验均不支持。所有输出保守地限制为关联或组间差异，不作因果结论。LLM 不生成可执行 Python。
 
 ## 本地运行
 
@@ -22,9 +22,9 @@ Model outputs are not guaranteed statistically or semantically correct. Code sup
 .\.venv\Scripts\python.exe ui_server.py --port 8766
 ```
 
-浏览器打开 http://127.0.0.1:8766 。英文主界面带中文辅助，内置两组比较、相关分析及配对设计停止案例。选择案例 → Run analysis → 确认独立/配对等设计 → Confirm & continue。相关分析完成后可点击明确的 2025 日期窗口按钮，观察 n 从 20 变成 10。也可上传 CSV 并输入问题。
+浏览器打开 http://127.0.0.1:8766 。全英文界面，内置两组比较、相关分析及配对设计停止案例。选择案例 → Run analysis → 确认独立/配对等设计 → Confirm & continue。相关分析完成后可点击明确的 2025 日期窗口按钮，观察 n 从 20 变成 10。也可上传 CSV 并输入问题。
 
-默认 Offline demonstration 使用固定替身；选择 DeepSeek 才调用真实模型。离线替身只支持固定演示逻辑，不适合检验任意自然语言。模型解释保持英文，中文切换辅助说明和操作。上传内容不写入文件，服务仅监听本机；重启清除所有会话。计算结果及审查失败均可查看，未通过审查的解释会隐藏。
+默认 Offline demonstration 使用固定替身；选择 DeepSeek 才调用真实模型。离线替身只支持固定演示逻辑，不适合检验任意自然语言。界面与模型解释均使用英文。上传内容不写入文件，服务仅监听本机；重启清除所有会话。计算结果及审查失败均可查看，未通过审查的解释会隐藏。
 
 Python 3.12 推荐。在此目录：
 
@@ -70,7 +70,7 @@ Welch 输出第二个排序组减第一个排序组的原始均值差及区间�
 
 ## 老师要求映射
 
-plan 输出与方法理由在 notebook 中展示；diagnostics 展示实际检查；revisions/rewrites 各上限一；追问实例复用计划而重新计算；tests 覆盖边界和解释拒绝。测试用例不是真实 LLM benchmark；后续需要真实调用、人工标注及实际错误案例。PPT/writeup、GitHub、个人网站 lab/writing 发布尚未制作。
+plan 输出与方法理由在 notebook 中展示；diagnostics 展示实际检查；revisions/rewrites 各上限一；追问实例复用计划而重新计算；tests 覆盖边界和解释拒绝。测试用例不是真实 LLM benchmark；已有真实调用与实际错误记录；独立人工语义审核仍未完成。PPT/writeup 与个人网站 lab/writing 尚未制作；GitHub 已建立。
 
 
 ## 真实案例评估
@@ -82,3 +82,15 @@ plan 输出与方法理由在 notebook 中展示；diagnostics 展示实际检�
 ```
 
 原始评估在 `artifacts/benchmark_live.json` / `benchmark_report.md`，定向复测在 `benchmark_recheck_live.json` / `benchmark_recheck_report.md`。请保留基线与复测的区别，不把三例复测通过写成全套重新通过。解释语义仍需要组员独立审核。
+
+## Four-method cases and current evaluation
+
+See [benchmark v2 guide](docs/BENCHMARK_V2.md). Thirty-one synthetic cases are separated into [normal](examples/benchmark_v2/normal), [boundary](examples/benchmark_v2/boundary), [clarification](examples/benchmark_v2/clarification), [stop](examples/benchmark_v2/stop), and [followup](examples/benchmark_v2/followup). Each CSV has a labelled JSON with its question, metadata, expected behavior and numerical reference where applicable.
+
+Run `python benchmark_suite.py --mode offline --output my_offline_run` for gold-plan mechanics or `--mode live --output my_live_run` for DeepSeek. Choose a fresh output name; historical results are preserved. [Initial live v2 report](artifacts/benchmark_v2/live_v2_first/REPORT.md): strict mechanical checks 28/31; all 17 computed results matched reference numbers and passed partial explanation checks. Three safe route/goal deviations are documented. This is not a semantic reliability percentage.
+
+[Interpretation challenge set](examples/interpretation_checks/REPORT.md): controlled valid templates plus deliberately planted mistakes. Code caught nine of twelve planted errors and accepted four valid templates; misses demonstrate limitations. Run `python interpretation_benchmark.py`. No AI Reviewer or required human approval node has been added.
+
+Chi-square uses named categorical labels, Pearson statistic without Yates correction, and an explicit expected-count approximation policy. It reports Cramer's V without an effect interval. Simple OLS reports slope, intercept, R-squared, slope interval and residual diagnostics. Heteroscedasticity/influence warnings do not trigger silent estimator changes. [SciPy chi-square](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html) and [linregress](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html) describe the underlying calculations.
+
+`submission/` remains the historical executed two-method package; `demo.ipynb` is the current four-method teaching notebook with explicitly offline default.

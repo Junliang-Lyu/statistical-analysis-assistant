@@ -1,0 +1,30 @@
+{
+  "id": "regression_missing",
+  "category": "boundary",
+  "question": "Regress y on x with one predictor.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Complete-case deletion; report one omitted row.",
+  "numeric_reference": {
+    "n": 59,
+    "dropped": 1,
+    "effect": 1.4901576066234725,
+    "intercept": 3.0946387685541197,
+    "r_squared": 0.8998842292816426,
+    "statistic": 22.634947978400906,
+    "p": 3.618349081347974e-30,
+    "df": 57,
+    "ci_low": 1.3583265487827083,
+    "ci_high": 1.6219886644642367
+  },
+  "expected_method": "linear_regression"
+}

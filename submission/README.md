@@ -1,5 +1,7 @@
 # LangGraph visualization submission
 
+Historical executed two-method snapshot (2026-10-11). Its supporting modules intentionally match its saved live outputs. The current four-method project is in the repository root and demo.ipynb; see docs/BENCHMARK_V2.md. Do not describe this historical notebook as a freshly executed four-method submission.
+
 Open `LangGraph_Submission.ipynb` to inspect saved real-model outputs and the diagram. Submit this notebook, `graph.png`, and `GRAPH_EXPLANATION.md`; retain the supporting files in the ZIP so the notebook can be rerun.
 
 ## Rerun

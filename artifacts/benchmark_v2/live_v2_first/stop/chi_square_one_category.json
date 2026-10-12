@@ -1,0 +1,78 @@
+{
+  "id": "chi_square_one_category",
+  "category": "stop",
+  "question": "Test chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": false
+  },
+  "mechanical_pass": false,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "interrupted",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Chi-square independence between two categorical variables is supported; roles mapped to category_a and category_b.",
+      "clarification": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable."
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable.",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Chi-square independence between two categorical variables is supported; roles mapped to category_a and category_b.",
+      "clarification": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable."
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

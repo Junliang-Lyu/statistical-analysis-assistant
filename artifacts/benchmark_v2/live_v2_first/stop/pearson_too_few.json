@@ -1,0 +1,89 @@
+{
+  "id": "pearson_too_few",
+  "category": "stop",
+  "question": "Compute Pearson correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "stopped",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests Pearson correlation between columns x and y, both numeric. Roles are unambiguous.",
+      "clarification": null
+    },
+    "method": "pearson",
+    "diagnostics": {
+      "errors": [
+        "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      ],
+      "warnings": [
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 3,
+        "usable": 3,
+        "dropped": 0,
+        "variables": {
+          "x": {
+            "n": 3,
+            "constant": false,
+            "skew": 0.0,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 1.0
+          },
+          "y": {
+            "n": 3,
+            "constant": false,
+            "skew": -0.9352195295828235,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.6368868450289701
+          }
+        }
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

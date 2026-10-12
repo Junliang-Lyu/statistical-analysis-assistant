@@ -1,0 +1,27 @@
+{
+  "id": "pearson_missing",
+  "category": "boundary",
+  "question": "Compute Pearson correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Complete-case deletion; report one omitted row.",
+  "numeric_reference": {
+    "n": 19,
+    "dropped": 1,
+    "effect": 0.9917433463254334,
+    "statistic": 0.9917433463254334,
+    "p": 1.3178625612910172e-16,
+    "ci_low": 0.9781510328252149,
+    "ci_high": 0.9968931181204671
+  },
+  "expected_method": "pearson"
+}

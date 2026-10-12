@@ -1,0 +1,31 @@
+{
+  "id": "regression_influential",
+  "category": "boundary",
+  "question": "Fit simple regression of y on x.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Influential-point warning; no automatic deletion.",
+  "warning_contains": "influential",
+  "numeric_reference": {
+    "n": 60,
+    "dropped": 0,
+    "effect": 2.99151201762061,
+    "intercept": 4.678170362596189,
+    "r_squared": 0.1720217316017384,
+    "statistic": 3.4713322669578632,
+    "p": 0.0009847216015232147,
+    "df": 58,
+    "ci_low": 1.2664792494524535,
+    "ci_high": 4.716544785788766
+  },
+  "expected_method": "linear_regression"
+}

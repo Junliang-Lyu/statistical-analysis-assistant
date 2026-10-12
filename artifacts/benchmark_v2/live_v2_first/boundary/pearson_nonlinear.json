@@ -1,0 +1,131 @@
+{
+  "id": "pearson_nonlinear",
+  "category": "boundary",
+  "question": "Assess the relationship between x and y using Pearson linear correlation.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user explicitly requests a Pearson linear correlation between two numeric columns, x and y, which is a supported method. Both columns are float64 with no missing values, and the confirmed metadata indicates an independent observational design.",
+      "clarification": null
+    },
+    "method": "pearson",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 40,
+        "usable": 40,
+        "dropped": 0,
+        "variables": {
+          "x": {
+            "n": 40,
+            "constant": false,
+            "skew": 5.562780709034924e-17,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.12413856850214966
+          },
+          "y": {
+            "n": 40,
+            "constant": false,
+            "skew": 0.6584308366966101,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.001206791156779943
+          }
+        }
+      }
+    },
+    "result": {
+      "method": "pearson",
+      "n": 40,
+      "effect": 1.851987637058097e-18,
+      "statistic": 1.851987637058097e-18,
+      "p": 1.0,
+      "ci_low": -0.311509348976699,
+      "ci_high": 0.311509348976699,
+      "dropped": 0,
+      "confidence_level": 0.95,
+      "warnings": [
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ]
+    },
+    "interpretation": {
+      "summary": "A Pearson linear correlation was computed between x and y using 40 complete observations. The estimated correlation was 1.852e-18, with a ninety-five percent confidence interval from -0.31151 to 0.31151, and a p-value of 1. Because the p-value is not below the five percent threshold, the result is inconclusive: the data do not provide evidence of a linear association between x and y. This does not mean there is no association; it means the evidence is insufficient to support one. The interval spans values on both sides of zero, so both positive and negative linear associations remain compatible with these data.",
+      "causal_claim": false,
+      "strength": "inconclusive",
+      "limitations": [
+        "Pearson correlation measures linear association only; nonlinear relationships would not be captured.",
+        "The confidence interval reflects sampling uncertainty and does not cover other sources of error.",
+        "The analysis assumes independent observations and default inference assumptions that were not verified by the diagnostics.",
+        "This analysis does not establish causality.",
+        "No practical or clinical importance can be judged without additional context.",
+        "The result is inconclusive rather than evidence of no association."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A Pearson linear correlation was computed between x and y using {n} complete observations. The estimated correlation was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, and a p-value of {p}. Because the p-value is not below the five percent threshold, the result is inconclusive: the data do not provide evidence of a linear association between x and y. This does not mean there is no association; it means the evidence is insufficient to support one. The interval spans values on both sides of zero, so both positive and negative linear associations remain compatible with these data.",
+    "causal_claim": false,
+    "strength": "inconclusive",
+    "limitations": [
+      "Pearson correlation measures linear association only; nonlinear relationships would not be captured.",
+      "The confidence interval reflects sampling uncertainty and does not cover other sources of error.",
+      "The analysis assumes independent observations and default inference assumptions that were not verified by the diagnostics.",
+      "This analysis does not establish causality.",
+      "No practical or clinical importance can be judged without additional context.",
+      "The result is inconclusive rather than evidence of no association."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

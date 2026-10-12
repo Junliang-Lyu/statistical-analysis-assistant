@@ -1,0 +1,16 @@
+{
+  "id": "unsupported_multivariable",
+  "category": "stop",
+  "question": "Fit a multiple regression using x and date together to predict y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "unsupported",
+    "reason": "Multiple regression is unsupported."
+  },
+  "expected_behavior": "stop",
+  "note": "",
+  "expected_method": null
+}

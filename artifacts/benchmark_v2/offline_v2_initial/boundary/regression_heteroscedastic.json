@@ -1,0 +1,141 @@
+{
+  "id": "regression_heteroscedastic",
+  "category": "boundary",
+  "question": "Fit simple regression with predictor x and outcome y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Report residual diagnostics. Ordinary slope inference may be unreliable; no automatic robust estimator.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "completed",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "linear_regression",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 60,
+        "usable": 60,
+        "dropped": 0,
+        "residuals": {
+          "n": 60,
+          "constant": false,
+          "skew": 0.3743346136500078,
+          "outliers": 13,
+          "extreme": 10,
+          "shapiro_p": 6.720419534135524e-10
+        },
+        "max_leverage": 0.06502732240458828,
+        "max_cooks_distance": 0.5618455370370627,
+        "influential_count": 5,
+        "breusch_pagan_lm": 10.938211230898693,
+        "breusch_pagan_p": 0.000942010721047156,
+        "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+      }
+    },
+    "result": {
+      "method": "linear_regression",
+      "n": 60,
+      "effect_name": "Slope",
+      "effect": 0.6091581900585343,
+      "intercept": 1.5328023674883333,
+      "r_squared": 0.038019215549223245,
+      "statistic": 1.514022656345513,
+      "p": 0.13545086185483296,
+      "df": 58,
+      "ci_low": -0.19622117103615555,
+      "ci_high": 1.414537551153224,
+      "confidence_level": 0.95,
+      "slope_stderr": 0.40234417068030925,
+      "contrast": "y per unit of x",
+      "dropped": 0,
+      "warnings": [
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "Slope of outcome y on predictor x: 0.60916; p=0.13545; confidence interval [-0.19622, 1.4145]; n=60. Evidence is inconclusive; this does not establish equivalence.",
+      "causal_claim": false,
+      "strength": "inconclusive",
+      "limitations": [
+        "This analysis does not establish causality.",
+        "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+        "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+        "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+        "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+        "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence is inconclusive; this does not establish equivalence.",
+    "causal_claim": false,
+    "strength": "inconclusive",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+      "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+      "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+      "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

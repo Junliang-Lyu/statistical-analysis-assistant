@@ -1,0 +1,28 @@
+{
+  "id": "welch_unequal_variance",
+  "category": "boundary",
+  "question": "Compare mean outcome between groups.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Welch does not require equal variances.",
+  "numeric_reference": {
+    "n": 50,
+    "effect": 3.6888261333262986,
+    "statistic": 8.232343144304977,
+    "p": 2.3883567404772e-09,
+    "df": 31.468699373521545,
+    "ci_low": 2.775493038835574,
+    "ci_high": 4.602159227817023,
+    "dropped": 0
+  },
+  "expected_method": "welch_t_test"
+}

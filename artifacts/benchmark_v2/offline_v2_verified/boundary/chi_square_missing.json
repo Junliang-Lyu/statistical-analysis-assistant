@@ -1,0 +1,178 @@
+{
+  "id": "chi_square_missing",
+  "category": "boundary",
+  "question": "Compute chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Complete-case deletion; report one omitted row.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "completed",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ],
+      "details": {
+        "rows": 80,
+        "usable": 79,
+        "dropped": 1,
+        "contingency": {
+          "row_labels": [
+            "A0",
+            "A1"
+          ],
+          "column_labels": [
+            "B0",
+            "B1"
+          ],
+          "observed": [
+            [
+              29,
+              10
+            ],
+            [
+              10,
+              30
+            ]
+          ],
+          "expected": [
+            [
+              19.253164556962027,
+              19.746835443037973
+            ],
+            [
+              19.746835443037973,
+              20.253164556962027
+            ]
+          ]
+        },
+        "min_expected": 19.253164556962027,
+        "fraction_expected_below_five": 0.0
+      }
+    },
+    "result": {
+      "method": "chi_square",
+      "n": 79,
+      "effect_name": "Cramer's V",
+      "effect": 0.49358974358974345,
+      "statistic": 19.246835963182107,
+      "p": 1.1486057946986134e-05,
+      "df": 1,
+      "ci_low": null,
+      "ci_high": null,
+      "confidence_level": null,
+      "interval_note": "Effect interval not computed.",
+      "contrast": "Categorical association",
+      "correction": false,
+      "contingency": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "column_labels": [
+          "B0",
+          "B1"
+        ],
+        "observed": [
+          [
+            29,
+            10
+          ],
+          [
+            10,
+            30
+          ]
+        ],
+        "expected": [
+          [
+            19.253164556962027,
+            19.746835443037973
+          ],
+          [
+            19.746835443037973,
+            20.253164556962027
+          ]
+        ]
+      },
+      "dropped": 1,
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "interpretation": {
+      "summary": "Cramer's V: 0.49359; p=1.1486e-05; n=79. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "This analysis does not establish causality.",
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+        "This analysis does not establish causality, including when randomization is user-reported."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "Cramer's V: {effect}; p={p}; n={n}. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Complete-case deletion was used; missingness may bias results.",
+      "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+      "This analysis does not establish causality, including when randomization is user-reported."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pearson_clean",
+  "category": "normal",
+  "question": "Measure Pearson linear correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "",
+  "numeric_reference": {
+    "n": 20,
+    "dropped": 0,
+    "effect": 0.9929163062333216,
+    "statistic": 0.9929163062333216,
+    "p": 4.157109757767507e-18,
+    "ci_low": 0.9817728824045426,
+    "ci_high": 0.997256460890303
+  },
+  "expected_method": "pearson"
+}

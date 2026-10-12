@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 from langgraph.types import Command
-from demo import fixtures, public_result
+from demo import fixtures, extra_fixtures, public_result
 from stat_assistant.agents import DeepSeekAgents, OfflineAgents, load_local_env
 from stat_assistant.workflow import build_graph
 
@@ -36,9 +36,10 @@ class Workspace:
                 if payload.get('case'):
                     trial, corr = fixtures()
                     case = payload['case']
-                    if case not in ('trial', 'correlation', 'paired'):
+                    examples={'trial':trial,'correlation':corr,'paired':trial,**extra_fixtures()}
+                    if case not in examples:
                         raise ValueError('Unknown example.')
-                    data = corr if case == 'correlation' else trial
+                    data = examples[case]
                 else:
                     csv = payload.get('csv', '')
                     if not isinstance(csv, str) or not csv.strip():

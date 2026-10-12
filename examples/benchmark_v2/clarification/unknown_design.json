@@ -1,0 +1,30 @@
+{
+  "id": "unknown_design",
+  "category": "clarification",
+  "question": "Compare mean outcome between groups.",
+  "metadata": {},
+  "plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Must pause; synthetic evaluator confirms independent observations.",
+  "answer": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "must_interrupt": true,
+  "numeric_reference": {
+    "n": 50,
+    "effect": 1.253202036170138,
+    "statistic": 5.788718926593826,
+    "p": 5.796668336306442e-07,
+    "df": 46.509888447698344,
+    "ci_low": 0.8175583600290748,
+    "ci_high": 1.688845712311201,
+    "dropped": 0
+  },
+  "expected_method": "welch_t_test"
+}

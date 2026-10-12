@@ -1,0 +1,4380 @@
+{
+  "mode": "live",
+  "cases": [
+    {
+      "id": "welch_clean",
+      "category": "normal",
+      "question": "Compare mean outcome between treatment and control.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User asks to compare mean outcome between two groups; confirmed metadata specifies independent design and observational study type. Group column has two labels (control, treatment) and outcome is numeric.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2532020361599998,
+          "statistic": 5.7887189264785395,
+          "p": 5.796668338649815e-07,
+          "df": 46.509888447610834,
+          "ci_low": 0.8175583600137628,
+          "ci_high": 1.6888457123062368,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Welch independent-samples t-test compared mean outcome between the control and treatment groups, with the contrast expressed as treatment minus control. The estimated mean difference was 1.2532, with a ninety-five percent confidence interval from 0.81756 to 1.6888, based on 50 observations. The test statistic was large relative to its reference distribution and the p-value was 5.7967e-07, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in mean outcome. Because the study is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, and independence of observations was user-confirmed rather than verified from the data. No observations were dropped, so the analysis is based on the full set of 50 cases.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The Welch test assumes independent observations within and across groups; this was user-confirmed and not verified from the data.",
+            "The Welch test does not assume equal variances, but it does assume approximately normal distributions or sufficiently large samples for the sampling distribution of the mean difference to be well approximated.",
+            "The confidence interval reflects sampling uncertainty only and does not account for measurement error, selection effects, or unmeasured confounding.",
+            "This analysis does not establish causality.",
+            "The result describes a difference in mean outcome between groups and should not be interpreted as a causal effect of group membership.",
+            "No practical or clinical importance can be claimed without additional context such as the scale of the outcome and a meaningful difference threshold.",
+            "The analysis is based on complete cases only; if any observations had missing values they would have been excluded, though none were dropped here."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Welch independent-samples t-test compared mean outcome between the control and treatment groups, with the contrast expressed as treatment minus control. The estimated mean difference was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, based on {n} observations. The test statistic was large relative to its reference distribution and the p-value was {p}, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in mean outcome. Because the study is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, and independence of observations was user-confirmed rather than verified from the data. No observations were dropped, so the analysis is based on the full set of {n} cases.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The Welch test assumes independent observations within and across groups; this was user-confirmed and not verified from the data.",
+          "The Welch test does not assume equal variances, but it does assume approximately normal distributions or sufficiently large samples for the sampling distribution of the mean difference to be well approximated.",
+          "The confidence interval reflects sampling uncertainty only and does not account for measurement error, selection effects, or unmeasured confounding.",
+          "This analysis does not establish causality.",
+          "The result describes a difference in mean outcome between groups and should not be interpreted as a causal effect of group membership.",
+          "No practical or clinical importance can be claimed without additional context such as the scale of the outcome and a meaningful difference threshold.",
+          "The analysis is based on complete cases only; if any observations had missing values they would have been excluded, though none were dropped here."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_clean",
+      "category": "normal",
+      "question": "Measure Pearson linear correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests Pearson correlation between numeric columns x and y; both are float64 with no missing values, so roles map directly.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 20,
+            "usable": 20,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5513717430400781
+              },
+              "y": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.006884347164452994,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.3222096145138782
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 20,
+          "effect": 0.9929163062331869,
+          "statistic": 0.9929163062331869,
+          "p": 4.157109758476191e-18,
+          "ci_low": 0.981772882404198,
+          "ci_high": 0.9972564608902507,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Pearson correlation was computed between x and y using 20 complete observations. The estimated linear association was 0.99292, with a p-value of 4.1571e-18 and a ninety-five percent confidence interval from 0.98177 to 0.99726. Because the p-value is below the five percent threshold, the result is classified as evidence of a positive linear association in this sample. The confidence interval excludes zero, which is consistent with that conclusion. This reflects only the strength and direction of linear covariation between the two numeric variables; it does not indicate that changes in x produce changes in y, nor does it describe any nonlinear relationship. No observations were dropped, so the analysis is based on the full set of available pairs.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "Pearson correlation captures linear association only; nonlinear relationships would not be detected.",
+            "The analysis assumes independent observations and approximately normal bivariate behavior for the default inference; these assumptions were not verified by the diagnostics.",
+            "The confidence interval and p-value depend on the stated confidence level and on the sample size, so uncertainty remains even though the interval excludes zero.",
+            "This analysis does not establish causality.",
+            "No adjustment was made for confounding or other variables, so the association may reflect shared influences.",
+            "The result applies to the observed sample and should not be generalized without context about how the data were collected."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Pearson correlation was computed between x and y using {n} complete observations. The estimated linear association was {effect}, with a p-value of {p} and a ninety-five percent confidence interval from {ci_low} to {ci_high}. Because the p-value is below the five percent threshold, the result is classified as evidence of a positive linear association in this sample. The confidence interval excludes zero, which is consistent with that conclusion. This reflects only the strength and direction of linear covariation between the two numeric variables; it does not indicate that changes in x produce changes in y, nor does it describe any nonlinear relationship. No observations were dropped, so the analysis is based on the full set of available pairs.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "Pearson correlation captures linear association only; nonlinear relationships would not be detected.",
+          "The analysis assumes independent observations and approximately normal bivariate behavior for the default inference; these assumptions were not verified by the diagnostics.",
+          "The confidence interval and p-value depend on the stated confidence level and on the sample size, so uncertainty remains even though the interval excludes zero.",
+          "This analysis does not establish causality.",
+          "No adjustment was made for confounding or other variables, so the association may reflect shared influences.",
+          "The result applies to the observed sample and should not be generalized without context about how the data were collected."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_2x2",
+      "category": "normal",
+      "question": "Use chi-square independence to test association between category_a and category_b, both categorical labels.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence test for association between two categorical label variables, category_a and category_b, with confirmed independent observational design.",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "expected": [
+                [
+                  20.0,
+                  20.0
+                ],
+                [
+                  20.0,
+                  20.0
+                ]
+              ]
+            },
+            "min_expected": 20.0,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 80,
+          "effect_name": "Cramer's V",
+          "effect": 0.5,
+          "statistic": 20.0,
+          "p": 7.744216431044088e-06,
+          "df": 1,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1"
+            ],
+            "observed": [
+              [
+                30,
+                10
+              ],
+              [
+                10,
+                30
+              ]
+            ],
+            "expected": [
+              [
+                20.0,
+                20.0
+              ],
+              [
+                20.0,
+                20.0
+              ]
+            ]
+          },
+          "dropped": 0,
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of 80 observations. The analysis reports Cramer's V as the effect size, which is 0.5, indicating the strength of the unsigned categorical association. The test yielded a p-value of 7.7442e-06. Because this p-value is below the conventional five percent threshold, the strength of evidence is classified as evidence of an association between the two categorical variables. Cramer's V is an unsigned measure, so it does not convey the direction of the relationship; the contingency table shows how observations are distributed across the categories. No confidence interval for the effect was computed, so the uncertainty around the effect estimate is not quantified by an interval. The analysis used Pearson chi-square without Yates correction, and no observations were dropped. This analysis does not establish causality.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+            "Cramer's V is an unsigned association measure, so it does not indicate the direction of the relationship between the categories.",
+            "No confidence interval for the effect was computed, so the precision of the effect estimate is not quantified.",
+            "The analysis is based on complete cases only, and any missing data handling could influence the results.",
+            "This analysis does not establish causality."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of {n} observations. The analysis reports Cramer's V as the effect size, which is {effect}, indicating the strength of the unsigned categorical association. The test yielded a p-value of {p}. Because this p-value is below the conventional five percent threshold, the strength of evidence is classified as evidence of an association between the two categorical variables. Cramer's V is an unsigned measure, so it does not convey the direction of the relationship; the contingency table shows how observations are distributed across the categories. No confidence interval for the effect was computed, so the uncertainty around the effect estimate is not quantified by an interval. The analysis used Pearson chi-square without Yates correction, and no observations were dropped. This analysis does not establish causality.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+          "Cramer's V is an unsigned association measure, so it does not indicate the direction of the relationship between the categories.",
+          "No confidence interval for the effect was computed, so the precision of the effect estimate is not quantified.",
+          "The analysis is based on complete cases only, and any missing data handling could influence the results.",
+          "This analysis does not establish causality."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_clean",
+      "category": "normal",
+      "question": "Fit a simple linear regression with x as predictor and y as outcome. Report the slope.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple linear regression with x as predictor and y as outcome; both are numeric float columns. Confirmed metadata indicates independent observational design, which is compatible with simple OLS with intercept.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.07983699295148747,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.9926849567039351
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.18678499543531865,
+            "influential_count": 5,
+            "breusch_pagan_lm": 1.6844640542845768,
+            "breusch_pagan_p": 0.19433233918946297,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 1.4750285494348285,
+          "intercept": 3.1102806751416665,
+          "r_squared": 0.9009028873345896,
+          "statistic": 22.962675350531885,
+          "p": 8.43318299866451e-31,
+          "df": 58,
+          "ci_low": 1.3464463876464074,
+          "ci_high": 1.6036107112232496,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.06423591880815675,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple linear regression was fit with x as the predictor and y as the outcome, using an intercept, on 60 complete observations. The estimated slope is 1.475, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from 1.3464 to 1.6036. The associated p-value is 8.4332e-31, so the slope is reported as evidence of a linear association in this sample. The model's coefficient of determination indicates the fitted line accounts for a substantial share of the variation in y. The analysis was observational, so the slope describes association only and does not establish that changes in x cause changes in y. No observations were dropped, and the reported interval reflects uncertainty in the slope estimate under the fitted model.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these were not established by diagnostics.",
+            "Potential influential observations were flagged by a Cook distance threshold and were not removed automatically, so results may be sensitive to them.",
+            "The confidence interval reflects sampling uncertainty only and does not cover model misspecification or measurement error.",
+            "The analysis is observational, so no causal interpretation of the slope is warranted.",
+            "No practical or clinical importance is claimed because no context or decision threshold was provided."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple linear regression was fit with x as the predictor and y as the outcome, using an intercept, on {n} complete observations. The estimated slope is {effect}, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value is {p}, so the slope is reported as evidence of a linear association in this sample. The model's coefficient of determination indicates the fitted line accounts for a substantial share of the variation in y. The analysis was observational, so the slope describes association only and does not establish that changes in x cause changes in y. No observations were dropped, and the reported interval reflects uncertainty in the slope estimate under the fitted model.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these were not established by diagnostics.",
+          "Potential influential observations were flagged by a Cook distance threshold and were not removed automatically, so results may be sensitive to them.",
+          "The confidence interval reflects sampling uncertainty only and does not cover model misspecification or measurement error.",
+          "The analysis is observational, so no causal interpretation of the slope is warranted.",
+          "No practical or clinical importance is claimed because no context or decision threshold was provided."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_unequal_variance",
+      "category": "boundary",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Welch does not require equal variances.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The question asks to compare the mean of a numeric outcome between two groups, which maps to an independent two-group mean difference. The group column has two labels (control, treatment) and the outcome is numeric. Confirmed metadata specifies an independent, observational design.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.49790310962480366,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955839126796
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 3.688826133312,
+          "statistic": 8.232343144246911,
+          "p": 2.388356740739323e-09,
+          "df": 31.46869937370178,
+          "ci_low": 2.775493038818582,
+          "ci_high": 4.6021592278054175,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Welch independent two-group t-test compared the mean outcome between the two group labels, with the contrast expressed as treatment minus control. The estimated mean difference was 3.6888, with a ninety-five percent confidence interval from 2.7755 to 4.6022, based on 50 observations. The test statistic was large relative to its reference distribution and the p-value was 2.3884e-09, which is below the five percent threshold, so the evidence is classified as evidence of a difference in means. The interval lies entirely above zero, indicating that the treatment group mean is estimated to be higher than the control group mean. Because the design is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, but it does assume independent observations, which was user-confirmed rather than verified from the data file. No observations were dropped, so the analysis used the full set of complete cases.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "The Welch test assumes independent observations, which was confirmed by the user rather than verified from the data.",
+            "The confidence interval and p-value reflect sampling uncertainty and do not account for possible confounding or selection effects.",
+            "The result applies only to the observed outcome and group definitions and may not generalize to other settings.",
+            "No adjustment was made for multiple comparisons or for covariates."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Welch independent two-group t-test compared the mean outcome between the two group labels, with the contrast expressed as treatment minus control. The estimated mean difference was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, based on {n} observations. The test statistic was large relative to its reference distribution and the p-value was {p}, which is below the five percent threshold, so the evidence is classified as evidence of a difference in means. The interval lies entirely above zero, indicating that the treatment group mean is estimated to be higher than the control group mean. Because the design is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, but it does assume independent observations, which was user-confirmed rather than verified from the data file. No observations were dropped, so the analysis used the full set of complete cases.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "The Welch test assumes independent observations, which was confirmed by the user rather than verified from the data.",
+          "The confidence interval and p-value reflect sampling uncertainty and do not account for possible confounding or selection effects.",
+          "The result applies only to the observed outcome and group definitions and may not generalize to other settings.",
+          "No adjustment was made for multiple comparisons or for covariates."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_missing",
+      "category": "boundary",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The question asks to compare the mean of a numeric outcome between two groups, which maps to an independent two-group mean difference. The group column has two labels (control, treatment) and the outcome is numeric. Confirmed metadata specifies an independent, observational design.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 49,
+            "dropped": 1,
+            "groups": {
+              "control": {
+                "n": 24,
+                "constant": false,
+                "skew": -0.343667806810772,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5366741919248623
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 49,
+          "n_groups": [
+            25,
+            24
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2673731639676664,
+          "statistic": 5.722355750531992,
+          "p": 8.327953080223787e-07,
+          "df": 44.50282383404053,
+          "ci_low": 0.821156950517342,
+          "ci_high": 1.7135893774179909,
+          "dropped": 1,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Welch independent two-group t-test compared the mean outcome between the treatment and control groups, with the contrast expressed as treatment minus control. The estimated mean difference was 1.2674, with a ninety-five percent confidence interval from 0.82116 to 1.7136, based on 49 observations. The associated p-value was 8.328e-07, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in means. The interval lies entirely above zero, indicating the treatment group mean is higher than the control group mean in this sample. Because the design is observational, this result describes an association or group difference only and does not establish that the group assignment produced the difference. One observation was excluded through complete-case deletion, and missingness may bias the results. Welch's method does not require equal variances, but independence of observations is assumed and was user-confirmed rather than verified from the data.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "The Welch test assumes independent observations, which was user-confirmed rather than verified from the data.",
+            "Complete-case deletion was used, and missingness may bias the results.",
+            "The confidence interval and p-value carry uncertainty from sampling variability and do not describe every possible population.",
+            "No practical or clinical importance can be claimed without additional context.",
+            "The observational design permits only association or group-difference statements, not causal conclusions."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Welch independent two-group t-test compared the mean outcome between the treatment and control groups, with the contrast expressed as treatment minus control. The estimated mean difference was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, based on {n} observations. The associated p-value was {p}, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in means. The interval lies entirely above zero, indicating the treatment group mean is higher than the control group mean in this sample. Because the design is observational, this result describes an association or group difference only and does not establish that the group assignment produced the difference. One observation was excluded through complete-case deletion, and missingness may bias the results. Welch's method does not require equal variances, but independence of observations is assumed and was user-confirmed rather than verified from the data.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "The Welch test assumes independent observations, which was user-confirmed rather than verified from the data.",
+          "Complete-case deletion was used, and missingness may bias the results.",
+          "The confidence interval and p-value carry uncertainty from sampling variability and do not describe every possible population.",
+          "No practical or clinical importance can be claimed without additional context.",
+          "The observational design permits only association or group-difference statements, not causal conclusions."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_missing",
+      "category": "boundary",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests Pearson correlation between columns x and y, both numeric float64. Confirmed metadata indicates independent observational design. No date filter requested.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 20,
+            "usable": 19,
+            "dropped": 1,
+            "variables": {
+              "x": {
+                "n": 19,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5896505755975007
+              },
+              "y": {
+                "n": 19,
+                "constant": false,
+                "skew": 0.02192091391138963,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.22104420234587724
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 19,
+          "effect": 0.9917433463252728,
+          "statistic": 0.9917433463252728,
+          "p": 1.3178625615078065e-16,
+          "ci_low": 0.978151032824793,
+          "ci_high": 0.9968931181204066,
+          "dropped": 1,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Pearson correlation was computed to assess the linear association between x and y using 19 complete observations. The estimated correlation was 0.99174, with a ninety-five percent confidence interval from 0.97815 to 0.99689, and the associated p-value was 1.3179e-16. Because the p-value is below the five percent threshold, the result is classified as evidence of a linear association. The positive direction indicates that higher values of x tend to accompany higher values of y, but this reflects association only and not a causal relationship. One observation was excluded through complete-case deletion, so the analysis reflects only records with non-missing values on both variables.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "Pearson correlation captures linear association only; nonlinear relationships may be missed.",
+            "The confidence interval and p-value rely on assumptions such as approximate normality and independent observations that were not fully verified.",
+            "Complete-case deletion was used, and missingness may bias the results.",
+            "The estimate is subject to sampling uncertainty, as reflected in the interval.",
+            "This analysis does not establish causality."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Pearson correlation was computed to assess the linear association between x and y using {n} complete observations. The estimated correlation was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, and the associated p-value was {p}. Because the p-value is below the five percent threshold, the result is classified as evidence of a linear association. The positive direction indicates that higher values of x tend to accompany higher values of y, but this reflects association only and not a causal relationship. One observation was excluded through complete-case deletion, so the analysis reflects only records with non-missing values on both variables.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "Pearson correlation captures linear association only; nonlinear relationships may be missed.",
+          "The confidence interval and p-value rely on assumptions such as approximate normality and independent observations that were not fully verified.",
+          "Complete-case deletion was used, and missingness may bias the results.",
+          "The estimate is subject to sampling uncertainty, as reflected in the interval.",
+          "This analysis does not establish causality."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_missing",
+      "category": "boundary",
+      "question": "Compute chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence between two explicitly categorical text columns; roles mapped to x=category_a and y=category_b.",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 80,
+            "usable": 79,
+            "dropped": 1,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  29,
+                  10
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "expected": [
+                [
+                  19.253164556962027,
+                  19.746835443037973
+                ],
+                [
+                  19.746835443037973,
+                  20.253164556962027
+                ]
+              ]
+            },
+            "min_expected": 19.253164556962027,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 79,
+          "effect_name": "Cramer's V",
+          "effect": 0.49358974358974345,
+          "statistic": 19.246835963182107,
+          "p": 1.1486057946986134e-05,
+          "df": 1,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1"
+            ],
+            "observed": [
+              [
+                29,
+                10
+              ],
+              [
+                10,
+                30
+              ]
+            ],
+            "expected": [
+              [
+                19.253164556962027,
+                19.746835443037973
+              ],
+              [
+                19.746835443037973,
+                20.253164556962027
+              ]
+            ]
+          },
+          "dropped": 1,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b using complete cases. The analysis included 79 observations, with one case excluded due to missing data. The association was measured with Cramer's V, which is an unsigned measure of categorical association strength. The observed Cramer's V was 0.49359, and the chi-square test yielded a p-value of 1.1486e-05. Because the p-value is below the five percent threshold, the result is classified as evidence of an association between the two categorical variables. The effect confidence interval was not computed, so the precision of the association estimate is unknown. The contingency table showed observed counts that differed from expected counts under independence, consistent with the detected association. This analysis does not establish causality.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The chi-square test assumes independent observations and adequate expected cell counts; violations of these assumptions can affect the validity of the test.",
+            "Complete-case deletion was used, and missingness may bias results if the excluded cases differ systematically from the analyzed cases.",
+            "Cramer's V is an unsigned measure of association strength and does not indicate the direction of the relationship.",
+            "The effect confidence interval was not computed, so uncertainty around the association estimate is not quantified.",
+            "This analysis does not establish causality."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b using complete cases. The analysis included {n} observations, with one case excluded due to missing data. The association was measured with Cramer's V, which is an unsigned measure of categorical association strength. The observed Cramer's V was {effect}, and the chi-square test yielded a p-value of {p}. Because the p-value is below the five percent threshold, the result is classified as evidence of an association between the two categorical variables. The effect confidence interval was not computed, so the precision of the association estimate is unknown. The contingency table showed observed counts that differed from expected counts under independence, consistent with the detected association. This analysis does not establish causality.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The chi-square test assumes independent observations and adequate expected cell counts; violations of these assumptions can affect the validity of the test.",
+          "Complete-case deletion was used, and missingness may bias results if the excluded cases differ systematically from the analyzed cases.",
+          "Cramer's V is an unsigned measure of association strength and does not indicate the direction of the relationship.",
+          "The effect confidence interval was not computed, so uncertainty around the association estimate is not quantified.",
+          "This analysis does not establish causality."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_missing",
+      "category": "boundary",
+      "question": "Regress y on x with one predictor.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression of y on x with one predictor; roles are unambiguous (x predictor, y outcome). Confirmed metadata indicates independent observational design, which is compatible with simple OLS.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 59,
+            "dropped": 1,
+            "residuals": {
+              "n": 59,
+              "constant": false,
+              "skew": 0.09450413043012428,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.9796382470065456
+            },
+            "max_leverage": 0.06610169491548588,
+            "max_cooks_distance": 0.1852816268434052,
+            "influential_count": 5,
+            "breusch_pagan_lm": 1.8145744069774226,
+            "breusch_pagan_p": 0.1779604595923324,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 59,
+          "effect_name": "Slope",
+          "effect": 1.4901576066290867,
+          "intercept": 3.094638768551063,
+          "r_squared": 0.8998842292839396,
+          "statistic": 22.63494797868948,
+          "p": 3.618349078977401e-30,
+          "df": 57,
+          "ci_low": 1.3583265487895064,
+          "ci_high": 1.621988664468667,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.06583437293657805,
+          "contrast": "y per unit of x",
+          "dropped": 1,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using 59 complete cases. The estimated slope is 1.4902, meaning that y is estimated to change by 1.4902 units on average for each one-unit increase in x, with a ninety-five percent confidence interval from 1.3583 to 1.622. The associated p-value is 3.6183e-30, which is below the five percent threshold, so the evidence for a nonzero linear association is classified as evidence. The model's coefficient of determination indicates that a substantial share of the variability in y is accounted for by the linear relationship with x. The intercept was also estimated but is not the focus of this summary. One case was excluded through complete-case deletion, and warnings noted potential influential observations that were not removed automatically. The analysis describes the fitted linear relationship only; it does not establish that changes in x cause changes in y.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by diagnostics.",
+            "Complete-case deletion was used, so missingness may bias the results and the analyzed sample may not represent the full target population.",
+            "Potential influential observations were flagged but not removed automatically, so individual points may disproportionately affect the slope estimate.",
+            "The confidence interval reflects sampling uncertainty only and does not account for measurement error, model misspecification, or selection effects.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance can be claimed without additional context and a defined decision threshold.",
+            "The results apply only to the observed range of x and should not be extrapolated beyond it."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using {n} complete cases. The estimated slope is {effect}, meaning that y is estimated to change by {effect} units on average for each one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value is {p}, which is below the five percent threshold, so the evidence for a nonzero linear association is classified as evidence. The model's coefficient of determination indicates that a substantial share of the variability in y is accounted for by the linear relationship with x. The intercept was also estimated but is not the focus of this summary. One case was excluded through complete-case deletion, and warnings noted potential influential observations that were not removed automatically. The analysis describes the fitted linear relationship only; it does not establish that changes in x cause changes in y.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by diagnostics.",
+          "Complete-case deletion was used, so missingness may bias the results and the analyzed sample may not represent the full target population.",
+          "Potential influential observations were flagged but not removed automatically, so individual points may disproportionately affect the slope estimate.",
+          "The confidence interval reflects sampling uncertainty only and does not account for measurement error, model misspecification, or selection effects.",
+          "This analysis does not establish causality.",
+          "No practical or clinical importance can be claimed without additional context and a defined decision threshold.",
+          "The results apply only to the observed range of x and should not be extrapolated beyond it."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_2x3",
+      "category": "boundary",
+      "question": "Test chi-square independence of category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Non-square table, degrees of freedom two.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence test for two categorical variables; both columns are string labels with low cardinality, and confirmed metadata indicates independent observational design.",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1",
+                "B2"
+              ],
+              "observed": [
+                [
+                  12,
+                  10,
+                  8
+                ],
+                [
+                  8,
+                  10,
+                  12
+                ]
+              ],
+              "expected": [
+                [
+                  10.0,
+                  10.0,
+                  10.0
+                ],
+                [
+                  10.0,
+                  10.0,
+                  10.0
+                ]
+              ]
+            },
+            "min_expected": 10.0,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 60,
+          "effect_name": "Cramer's V",
+          "effect": 0.16329931618554522,
+          "statistic": 1.6,
+          "p": 0.4493289641172217,
+          "df": 2,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "observed": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ],
+            "expected": [
+              [
+                10.0,
+                10.0,
+                10.0
+              ],
+              [
+                10.0,
+                10.0,
+                10.0
+              ]
+            ]
+          },
+          "dropped": 0,
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of 60 complete cases. The analysis reports Cramer's V as the effect size, which is an unsigned measure of categorical association strength. The observed association was 0.1633, with a test p-value of 0.44933. Because the p-value is not below the five percent threshold, the result is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. No effect confidence interval was computed for this method, so no interval endpoints are reported. The contingency table had two rows and three columns, and no cases were dropped from the analysis. The test used Pearson chi-square without Yates correction. This analysis does not establish causality.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+            "Cramer's V is an unsigned association measure and does not indicate the direction of any relationship.",
+            "No confidence interval for the effect was computed, so the precision of the association estimate is uncertain.",
+            "The result is inconclusive rather than evidence of no association.",
+            "This analysis does not establish causality.",
+            "The findings are based on complete cases only, and no information is available about excluded or missing data.",
+            "No practical or clinical importance can be claimed without additional context."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A chi-square test of independence was performed to assess the association between category_a and category_b in an independent observational sample of {n} complete cases. The analysis reports Cramer's V as the effect size, which is an unsigned measure of categorical association strength. The observed association was {effect}, with a test p-value of {p}. Because the p-value is not below the five percent threshold, the result is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. No effect confidence interval was computed for this method, so no interval endpoints are reported. The contingency table had two rows and three columns, and no cases were dropped from the analysis. The test used Pearson chi-square without Yates correction. This analysis does not establish causality.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "The chi-square test assumes independent observations and adequately sized expected cell counts; violations of these assumptions can affect the validity of the test.",
+          "Cramer's V is an unsigned association measure and does not indicate the direction of any relationship.",
+          "No confidence interval for the effect was computed, so the precision of the association estimate is uncertain.",
+          "The result is inconclusive rather than evidence of no association.",
+          "This analysis does not establish causality.",
+          "The findings are based on complete cases only, and no information is available about excluded or missing data.",
+          "No practical or clinical importance can be claimed without additional context."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_nonlinear",
+      "category": "boundary",
+      "question": "Assess the relationship between x and y using Pearson linear correlation.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user explicitly requests a Pearson linear correlation between two numeric columns, x and y, which is a supported method. Both columns are float64 with no missing values, and the confirmed metadata indicates an independent observational design.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 40,
+            "usable": 40,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 40,
+                "constant": false,
+                "skew": 5.562780709034924e-17,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.12413856850214966
+              },
+              "y": {
+                "n": 40,
+                "constant": false,
+                "skew": 0.6584308366966101,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.001206791156779943
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 40,
+          "effect": 1.851987637058097e-18,
+          "statistic": 1.851987637058097e-18,
+          "p": 1.0,
+          "ci_low": -0.311509348976699,
+          "ci_high": 0.311509348976699,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Pearson linear correlation was computed between x and y using 40 complete observations. The estimated correlation was 1.852e-18, with a ninety-five percent confidence interval from -0.31151 to 0.31151, and a p-value of 1. Because the p-value is not below the five percent threshold, the result is inconclusive: the data do not provide evidence of a linear association between x and y. This does not mean there is no association; it means the evidence is insufficient to support one. The interval spans values on both sides of zero, so both positive and negative linear associations remain compatible with these data.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "Pearson correlation measures linear association only; nonlinear relationships would not be captured.",
+            "The confidence interval reflects sampling uncertainty and does not cover other sources of error.",
+            "The analysis assumes independent observations and default inference assumptions that were not verified by the diagnostics.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance can be judged without additional context.",
+            "The result is inconclusive rather than evidence of no association."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Pearson linear correlation was computed between x and y using {n} complete observations. The estimated correlation was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, and a p-value of {p}. Because the p-value is not below the five percent threshold, the result is inconclusive: the data do not provide evidence of a linear association between x and y. This does not mean there is no association; it means the evidence is insufficient to support one. The interval spans values on both sides of zero, so both positive and negative linear associations remain compatible with these data.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "Pearson correlation measures linear association only; nonlinear relationships would not be captured.",
+          "The confidence interval reflects sampling uncertainty and does not cover other sources of error.",
+          "The analysis assumes independent observations and default inference assumptions that were not verified by the diagnostics.",
+          "This analysis does not establish causality.",
+          "No practical or clinical importance can be judged without additional context.",
+          "The result is inconclusive rather than evidence of no association."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_influential",
+      "category": "boundary",
+      "question": "Fit simple regression of y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warning": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Influential-point warning; no automatic deletion.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple regression of y on x, with x as predictor and y as outcome. Confirmed metadata indicates independent observational design, which is compatible with simple OLS with intercept.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 7.10506934488931,
+              "outliers": 1,
+              "extreme": 1,
+              "shapiro_p": 1.7180616334934702e-15
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 2.006439339825254,
+            "influential_count": 1,
+            "breusch_pagan_lm": 3.1485050150425065,
+            "breusch_pagan_p": 0.07599656016743103,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 2.99151201763258,
+          "intercept": 4.678170362593333,
+          "r_squared": 0.1720217316023331,
+          "statistic": 3.4713322669651117,
+          "p": 0.0009847216015012425,
+          "df": 58,
+          "ci_low": 1.266479249461123,
+          "ci_high": 4.716544785804037,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.8617763404849674,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple linear regression was performed with x as the predictor and y as the outcome, using ordinary least squares with an intercept on 60 complete observations. The estimated slope is 2.9915, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from 1.2665 to 4.7165. The associated p-value is 0.00098472, so the slope is reported as evidence of a linear association. The model explains a modest share of the variation in y, and the intercept is not the focus of this interpretation. This is an observational analysis, so the slope describes association in the fitted linear mean model rather than a causal effect. The confidence interval was computed under the usual regression assumptions, and the reported interval reflects sampling uncertainty only.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The analysis relies on a linear mean model with an intercept, independence of observations, and constant error variance; these conditions were not established by the diagnostics.",
+            "Residual normality diagnostic warnings were noted, so ordinary slope inference should be interpreted with judgement.",
+            "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so results may be sensitive to those points.",
+            "The confidence interval refers to the slope interval, and no interval was invented where endpoints were unavailable.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance is claimed because no context or decision threshold was provided.",
+            "The analysis is limited to complete cases, and any dropped observations could affect the estimates."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 1,
+        "calls": 3,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "rewrite",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple linear regression was performed with x as the predictor and y as the outcome, using ordinary least squares with an intercept on {n} complete observations. The estimated slope is {effect}, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value is {p}, so the slope is reported as evidence of a linear association. The model explains a modest share of the variation in y, and the intercept is not the focus of this interpretation. This is an observational analysis, so the slope describes association in the fitted linear mean model rather than a causal effect. The confidence interval was computed under the usual regression assumptions, and the reported interval reflects sampling uncertainty only.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The analysis relies on a linear mean model with an intercept, independence of observations, and constant error variance; these conditions were not established by the diagnostics.",
+          "Residual normality diagnostic warnings were noted, so ordinary slope inference should be interpreted with judgement.",
+          "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so results may be sensitive to those points.",
+          "The confidence interval refers to the slope interval, and no interval was invented where endpoints were unavailable.",
+          "This analysis does not establish causality.",
+          "No practical or clinical importance is claimed because no context or decision threshold was provided.",
+          "The analysis is limited to complete cases, and any dropped observations could affect the estimates."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_heteroscedastic",
+      "category": "boundary",
+      "question": "Fit simple regression with predictor x and outcome y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Report residual diagnostics. Ordinary slope inference may be unreliable; no automatic robust estimator.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression with predictor x and outcome y; both columns are numeric and roles are explicit. Confirmed metadata indicates independent observational design.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.3743346136500078,
+              "outliers": 13,
+              "extreme": 10,
+              "shapiro_p": 6.720419534135524e-10
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.5618455370370627,
+            "influential_count": 5,
+            "breusch_pagan_lm": 10.938211230898693,
+            "breusch_pagan_p": 0.000942010721047156,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 0.6091581900585343,
+          "intercept": 1.5328023674883333,
+          "r_squared": 0.038019215549223245,
+          "statistic": 1.514022656345513,
+          "p": 0.13545086185483296,
+          "df": 58,
+          "ci_low": -0.19622117103615555,
+          "ci_high": 1.414537551153224,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.40234417068030925,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using 60 complete observations. The estimated slope is 0.60916, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from -0.19622 to 1.4145. The associated p-value is 0.13545. Because this p-value is not below the five percent threshold, the evidence for a linear association between x and y is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. The interval includes the possibility of no linear relationship as well as positive and negative slopes, so the direction of any underlying linear association is not resolved. The model also includes an intercept, and the proportion of variance in y explained by the linear fit is modest. Several diagnostic warnings were carried forward: potential influential observations were flagged but none were removed, heteroscedasticity was indicated so the ordinary slope p-value and interval may be unreliable, and residual normality was flagged so ordinary slope inference requires judgement. No observations were dropped, so no complete-case deletion occurred.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics.",
+            "Heteroscedasticity was flagged, so the reported slope p-value and confidence interval may be unreliable.",
+            "Residual normality was flagged, so ordinary slope inference requires judgement.",
+            "Potential influential observations were flagged and were not removed automatically, so results may be sensitive to them.",
+            "The confidence interval reflects sampling uncertainty only and does not capture model misspecification or measurement error.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance can be claimed without additional context.",
+            "The inconclusive result is not evidence that no linear association exists."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using {n} complete observations. The estimated slope is {effect}, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value is {p}. Because this p-value is not below the five percent threshold, the evidence for a linear association between x and y is inconclusive; this does not mean there is no association, only that the data do not provide sufficient evidence of one. The interval includes the possibility of no linear relationship as well as positive and negative slopes, so the direction of any underlying linear association is not resolved. The model also includes an intercept, and the proportion of variance in y explained by the linear fit is modest. Several diagnostic warnings were carried forward: potential influential observations were flagged but none were removed, heteroscedasticity was indicated so the ordinary slope p-value and interval may be unreliable, and residual normality was flagged so ordinary slope inference requires judgement. No observations were dropped, so no complete-case deletion occurred.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics.",
+          "Heteroscedasticity was flagged, so the reported slope p-value and confidence interval may be unreliable.",
+          "Residual normality was flagged, so ordinary slope inference requires judgement.",
+          "Potential influential observations were flagged and were not removed automatically, so results may be sensitive to them.",
+          "The confidence interval reflects sampling uncertainty only and does not capture model misspecification or measurement error.",
+          "This analysis does not establish causality.",
+          "No practical or clinical importance can be claimed without additional context.",
+          "The inconclusive result is not evidence that no linear association exists."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_negative_slope",
+      "category": "boundary",
+      "question": "Regress outcome y on predictor x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Negative slope; not a causal effect.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression of outcome y on predictor x, with both columns present as numeric variables. Confirmed metadata indicates independent observational design, which is compatible with simple linear regression.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.018772803883692495,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.4929329334438918
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.09854785507646914,
+            "influential_count": 2,
+            "breusch_pagan_lm": 0.2135022222611758,
+            "breusch_pagan_p": 0.64403613772067,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": -2.061082398494773,
+          "intercept": 4.946083817145,
+          "r_squared": 0.956919925779196,
+          "statistic": -35.893315328764594,
+          "p": 2.6400245513580276e-41,
+          "df": 58,
+          "ci_low": -2.1760259370211426,
+          "ci_high": -1.9461388599684035,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.05742245818243041,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using complete cases only. The estimated slope of y on x is -2.0611, meaning that for each one-unit increase in x, the fitted value of y changes by -2.0611 units on average. The associated p-value is 2.64e-41, and the ninety-five percent confidence interval for the slope runs from -2.176 to -1.9461, based on 60 observations. Because the p-value is below the five percent threshold, the slope is reported as evidence of a linear association between x and y in these data. The interval lies entirely below zero, which is consistent with a negative direction of association. The model also reports an intercept and an r-squared value describing the share of variation in y accounted for by the linear fit; these are descriptive summaries of the fitted line and are not causal quantities. The analysis is observational, so the slope describes association only and does not establish that changes in x produce changes in y. No confidence interval was computed for the effect size beyond the slope interval reported here, and no interval endpoints were invented where none were supplied.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics reported.",
+            "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so the slope may be sensitive to individual points.",
+            "The analysis used complete cases only, so any rows with missing values on the modeled variables were excluded and results may differ under other missing-data handling.",
+            "The reported interval reflects sampling uncertainty for the slope under the fitted model and does not cover model misspecification, measurement error, or unmeasured confounding.",
+            "The p-value and interval address statistical compatibility with a zero slope, not the practical or clinical importance of the magnitude, which cannot be judged without context.",
+            "The result is an association in the observed data and should not be interpreted as a causal effect of x on y."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, using complete cases only. The estimated slope of y on x is {effect}, meaning that for each one-unit increase in x, the fitted value of y changes by {effect} units on average. The associated p-value is {p}, and the ninety-five percent confidence interval for the slope runs from {ci_low} to {ci_high}, based on {n} observations. Because the p-value is below the five percent threshold, the slope is reported as evidence of a linear association between x and y in these data. The interval lies entirely below zero, which is consistent with a negative direction of association. The model also reports an intercept and an r-squared value describing the share of variation in y accounted for by the linear fit; these are descriptive summaries of the fitted line and are not causal quantities. The analysis is observational, so the slope describes association only and does not establish that changes in x produce changes in y. No confidence interval was computed for the effect size beyond the slope interval reported here, and no interval endpoints were invented where none were supplied.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics reported.",
+          "Potential influential observations were flagged using a Cook distance threshold, and none were removed automatically, so the slope may be sensitive to individual points.",
+          "The analysis used complete cases only, so any rows with missing values on the modeled variables were excluded and results may differ under other missing-data handling.",
+          "The reported interval reflects sampling uncertainty for the slope under the fitted model and does not cover model misspecification, measurement error, or unmeasured confounding.",
+          "The p-value and interval address statistical compatibility with a zero slope, not the practical or clinical importance of the magnitude, which cannot be judged without context.",
+          "The result is an association in the observed data and should not be interpreted as a causal effect of x on y."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "unknown_design",
+      "category": "clarification",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {},
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Must pause; synthetic evaluator confirms independent observations.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "After user clarification: goal=difference; design=independent; study_type=observational; variable roles: outcome=outcome, group=group, x=None, y=None. Current user confirmations supersede the earlier missing-information assessment; method rules still require checks.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2532020361599998,
+          "statistic": 5.7887189264785395,
+          "p": 5.796668338649815e-07,
+          "df": 46.509888447610834,
+          "ci_low": 0.8175583600137628,
+          "ci_high": 1.6888457123062368,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Welch independent-samples t-test compared outcome between two independent groups (treatment and control), with 50 complete observations split evenly across the groups. The estimated mean difference, computed as treatment minus control, was 1.2532. The associated p-value was 5.7967e-07, and the ninety-five percent confidence interval for the mean difference ran from 0.81756 to 1.6888. Because the p-value is below the five percent threshold, the result is classified as evidence of a group difference in the outcome. The interval lies entirely above zero, which is consistent with a positive mean difference under the treatment-minus-control contrast, though the interval also conveys the uncertainty in the size of that difference. No observations were dropped, so the analysis used all available complete cases. The Welch procedure does not assume equal variances across groups, which is appropriate here; however, independence of observations is a user-confirmed condition rather than something verified from the data file. This was an observational study, so the finding describes an association or group difference only and should not be read as demonstrating that the group assignment produced the change in outcome.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The Welch test assumes independent observations within and across groups; independence was user-confirmed and not verified from the data.",
+            "The Welch test assumes approximately normal distributions or sufficiently large groups; this was not audited here.",
+            "The confidence interval reflects sampling uncertainty only and does not account for measurement error or selection effects.",
+            "This analysis does not establish causality.",
+            "Because the study is observational, group differences may reflect confounding or other systematic differences between groups.",
+            "No practical or clinical importance can be claimed without additional context on the outcome scale and a meaningful difference threshold.",
+            "The result applies to the analyzed sample and complete cases; generalization beyond that population is not warranted."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "ask_user",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Welch independent-samples t-test compared outcome between two independent groups (treatment and control), with {n} complete observations split evenly across the groups. The estimated mean difference, computed as treatment minus control, was {effect}. The associated p-value was {p}, and the ninety-five percent confidence interval for the mean difference ran from {ci_low} to {ci_high}. Because the p-value is below the five percent threshold, the result is classified as evidence of a group difference in the outcome. The interval lies entirely above zero, which is consistent with a positive mean difference under the treatment-minus-control contrast, though the interval also conveys the uncertainty in the size of that difference. No observations were dropped, so the analysis used all available complete cases. The Welch procedure does not assume equal variances across groups, which is appropriate here; however, independence of observations is a user-confirmed condition rather than something verified from the data file. This was an observational study, so the finding describes an association or group difference only and should not be read as demonstrating that the group assignment produced the change in outcome.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "The Welch test assumes independent observations within and across groups; independence was user-confirmed and not verified from the data.",
+          "The Welch test assumes approximately normal distributions or sufficiently large groups; this was not audited here.",
+          "The confidence interval reflects sampling uncertainty only and does not account for measurement error or selection effects.",
+          "This analysis does not establish causality.",
+          "Because the study is observational, group differences may reflect confounding or other systematic differences between groups.",
+          "No practical or clinical importance can be claimed without additional context on the outcome scale and a meaningful difference threshold.",
+          "The result applies to the analyzed sample and complete cases; generalization beyond that population is not warranted."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "ambiguous_outcome",
+      "category": "clarification",
+      "question": "Compare groups; I have not decided whether before or after is the outcome.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "difference",
+        "group": "group",
+        "reason": "Unspecified outcome",
+        "clarification": "Choose before or after."
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "No arbitrary outcome choice.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user wants to compare two independent groups on a numeric outcome, but has not specified whether 'before' or 'after' is the outcome variable. The group column is clearly identified with two labels (control, treatment).",
+          "clarification": "Which column should be the outcome for the group comparison: 'before' or 'after'?"
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Which column should be the outcome for the group comparison: 'before' or 'after'?",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user wants to compare two independent groups on a numeric outcome, but has not specified whether 'before' or 'after' is the outcome variable. The group column is clearly identified with two labels (control, treatment).",
+          "clarification": "Which column should be the outcome for the group comparison: 'before' or 'after'?"
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "ambiguous_last_year",
+      "category": "clarification",
+      "question": "Repeat that correlation only for last year.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Date boundaries not supplied; must ask.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user asks to repeat the prior Pearson correlation between x and y, restricted to the last year. The prior plan's variable roles (x, y) are reused because the question refers to the prior analysis. The date column exists with values 2024-01-01 and 2025-01-01, but 'last year' is ambiguous relative to the data and current date, so an explicit date window cannot be set without guessing.",
+          "clarification": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column."
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column.",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user asks to repeat the prior Pearson correlation between x and y, restricted to the last year. The prior plan's variable roles (x, y) are reused because the question refers to the prior analysis. The date column exists with values 2024-01-01 and 2025-01-01, but 'last year' is ambiguous relative to the data and current date, so an explicit date window cannot be set without guessing.",
+          "clarification": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column."
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "regression_direction",
+      "category": "clarification",
+      "question": "Run a simple regression between x and y; I have not chosen which is the outcome.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "regression",
+        "reason": "Direction unspecified",
+        "clarification": "Which is the outcome?"
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Must ask which variable is predictor/outcome.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user requests a simple OLS regression between x and y but has not specified which variable is the outcome, so the predictor/outcome roles are ambiguous and must be clarified before proceeding.",
+          "clarification": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?"
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user requests a simple OLS regression between x and y but has not specified which variable is the outcome, so the predictor/outcome roles are ambiguous and must be clarified before proceeding.",
+          "clarification": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?"
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "paired_design",
+      "category": "stop",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "paired"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": false,
+        "stopped": true
+      },
+      "mechanical_pass": false,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "No silent change to independent design.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "unsupported",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "paired",
+          "study_type": "unknown",
+          "filter": null,
+          "reason": "The confirmed metadata specifies a paired design, but the requested comparison is an independent two-group mean difference. Paired mean comparisons are not supported.",
+          "clarification": null
+        },
+        "method": null,
+        "diagnostics": {
+          "errors": [
+            "Only two-group mean comparison and Pearson correlation are supported."
+          ],
+          "warnings": [],
+          "details": {}
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Only two-group mean comparison and Pearson correlation are supported."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_sparse",
+      "category": "stop",
+      "question": "Test chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Expected frequencies violate approximation policy.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence test between two explicitly categorical variables, category_a and category_b, with confirmed independent observational design.",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [
+            "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+          ],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 4,
+            "usable": 4,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "expected": [
+                [
+                  1.0,
+                  1.0
+                ],
+                [
+                  1.0,
+                  1.0
+                ]
+              ]
+            },
+            "min_expected": 1.0,
+            "fraction_expected_below_five": 1.0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_one_category",
+      "category": "stop",
+      "question": "Test chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": false
+      },
+      "mechanical_pass": false,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence between two categorical variables is supported; roles mapped to category_a and category_b.",
+          "clarification": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable."
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable.",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Chi-square independence between two categorical variables is supported; roles mapped to category_a and category_b.",
+          "clarification": "category_a has only one unique label ('one'), so the chi-square test is not estimable. Please confirm the intended categorical columns or provide data with at least two categories in each variable."
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "chi_square_numeric_codes",
+      "category": "stop",
+      "question": "Test chi-square independence; these numeric columns are category codes.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Ask for text-label preprocessing or stop; do not silently recode.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The user requests a chi-square test of independence between two categorical variables. The columns category_a and category_b are numeric codes representing categories, which the user explicitly identifies as category codes. The confirmed metadata indicates an independent observational design, which is appropriate for chi-square independence.",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [
+            "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_constant",
+      "category": "stop",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": false
+      },
+      "mechanical_pass": false,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests Pearson correlation between columns x and y. However, column x has only 1 unique value, so correlation is undefined (zero variance).",
+          "clarification": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair."
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair.",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests Pearson correlation between columns x and y. However, column x has only 1 unique value, so correlation is undefined (zero variance).",
+          "clarification": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair."
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "pearson_too_few",
+      "category": "stop",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests Pearson correlation between columns x and y, both numeric. Roles are unambiguous.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [
+            "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+          ],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 3,
+            "usable": 3,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 3,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 1.0
+              },
+              "y": {
+                "n": 3,
+                "constant": false,
+                "skew": -0.9352195295828235,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.6368868450289701
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_constant",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression of y on x, with x as predictor and y as outcome. Metadata confirms independent observational design. Note: x has only 1 unique value, so the regression slope is not estimable, but the requested method is supported.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_too_few",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression of y on x, with x as predictor and y as outcome. Both columns are numeric float64. Confirmed metadata indicates independent observational design.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 4,
+            "usable": 4,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_perfect",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Near-perfect fit: conservative residual-inference policy.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User explicitly requests simple OLS regression of y on x, with x as predictor and y as outcome; both columns are numeric and roles are unambiguous.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Near-perfect fit: residual inference is unstable under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Near-perfect fit: residual inference is unstable under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_extreme_small_group",
+      "category": "stop",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Severe small-sample/extreme-value policy; no method switch.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The question asks to compare the mean of a numeric outcome between two groups. The profile shows a two-level categorical group column and a numeric outcome column, and confirmed metadata specifies an independent observational design, so an independent two-group mean difference is supported.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [
+            "Group control: conservative MVP policy stops small samples with severe skew/extreme outliers; no automatic method switch."
+          ],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Non-normality diagnostic: not an automatic reason to change the estimand or test.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": 4.986044676564002,
+                "outliers": 1,
+                "extreme": 1,
+                "shapiro_p": 2.1541308636592063e-10
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Group control: conservative MVP policy stops small samples with severe skew/extreme outliers; no automatic method switch."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "unsupported_multivariable",
+      "category": "stop",
+      "question": "Fit a multiple regression using x and date together to predict y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "unsupported",
+        "reason": "Multiple regression is unsupported."
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "unsupported",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "The request is for multiple regression with two predictors (x and date), which is not supported; only simple OLS with a single predictor and intercept is available.",
+          "clarification": null
+        },
+        "method": null,
+        "diagnostics": {
+          "errors": [
+            "Only two-group mean comparison and Pearson correlation are supported."
+          ],
+          "warnings": [],
+          "details": {}
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Only two-group mean comparison and Pearson correlation are supported."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "correlation_2025",
+      "category": "followup",
+      "question": "Repeat that same analysis only for calendar year 2025.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational",
+        "filter": {
+          "column": "date",
+          "start": "2025-01-01",
+          "end": "2025-12-31"
+        }
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warmup": true,
+        "memory_roles": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Same session; retain roles but recompute from filtered data.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": {
+            "column": "date",
+            "start": "2025-01-01",
+            "end": "2025-12-31"
+          },
+          "reason": "The user asks to repeat the prior analysis (Pearson correlation between x and y) restricted to calendar year 2025. Prior variable roles are reused because the question refers to the prior analysis. The confirmed metadata provides an explicit date filter on the 'date' column for 2025-01-01 through 2025-12-31.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 10,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.8923673075239196
+              },
+              "y": {
+                "n": 10,
+                "constant": false,
+                "skew": -0.3041818019059342,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.60223354961363
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 10,
+          "effect": 0.9754851371396016,
+          "statistic": 0.9754851371396016,
+          "p": 1.5341301348147687e-06,
+          "ci_low": 0.8964511574029159,
+          "ci_high": 0.9943751018919413,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Pearson correlation was computed between x and y for the specified calendar-year window, using complete cases only. The analysis included 10 observations. The estimated Pearson correlation was 0.97549, with a ninety-five percent confidence interval from 0.89645 to 0.99438, and a p-value of 1.5341e-06. Because the p-value is below the five percent threshold, the result is classified as evidence of a positive linear association between x and y. This means that higher values of x tend to co-occur with higher values of y in this sample. The confidence interval indicates the range of plausible values for the correlation under the stated assumptions. The analysis is observational, so the association should not be interpreted as a causal relationship. The reported warnings note that Pearson correlation measures linear association only, and that design, linearity, and default inference assumptions are not guaranteed by these diagnostics.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Pearson correlation captures linear association only; non-linear relationships would not be detected.",
+            "The inference assumes independent observations, approximate normality, and no influential outliers, which were not verified here.",
+            "The confidence interval and p-value depend on the stated assumptions and may be sensitive to violations.",
+            "The analysis used complete cases only, so results may differ if missing data are not missing completely at random.",
+            "The study design is observational, so confounding and selection effects cannot be ruled out.",
+            "No practical or clinical importance can be claimed without additional context and thresholds."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 1,
+        "calls": 3,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "rewrite",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A Pearson correlation was computed between x and y for the specified calendar-year window, using complete cases only. The analysis included {n} observations. The estimated Pearson correlation was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, and a p-value of {p}. Because the p-value is below the five percent threshold, the result is classified as evidence of a positive linear association between x and y. This means that higher values of x tend to co-occur with higher values of y in this sample. The confidence interval indicates the range of plausible values for the correlation under the stated assumptions. The analysis is observational, so the association should not be interpreted as a causal relationship. The reported warnings note that Pearson correlation measures linear association only, and that design, linearity, and default inference assumptions are not guaranteed by these diagnostics.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Pearson correlation captures linear association only; non-linear relationships would not be detected.",
+          "The inference assumes independent observations, approximate normality, and no influential outliers, which were not verified here.",
+          "The confidence interval and p-value depend on the stated assumptions and may be sensitive to violations.",
+          "The analysis used complete cases only, so results may differ if missing data are not missing completely at random.",
+          "The study design is observational, so confounding and selection effects cannot be ruled out.",
+          "No practical or clinical importance can be claimed without additional context and thresholds."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_2025",
+      "category": "followup",
+      "question": "Repeat that same analysis only for calendar year 2025.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational",
+        "filter": {
+          "column": "date",
+          "start": "2025-01-01",
+          "end": "2025-12-31"
+        }
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warmup": true,
+        "memory_roles": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Same session; retain roles but recompute from filtered data.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": "y",
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": {
+            "column": "date",
+            "start": "2025-01-01",
+            "end": "2025-12-31"
+          },
+          "reason": "The user asks to repeat the prior analysis for calendar year 2025. The prior plan was a simple OLS regression of y on x with x as predictor and y as outcome, under confirmed independent observational design. The confirmed metadata supplies an explicit date filter on the 'date' column for 2025-01-01 through 2025-12-31, so the same regression is retained with that filter applied.",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 30,
+            "usable": 30,
+            "dropped": 0,
+            "residuals": {
+              "n": 30,
+              "constant": false,
+              "skew": 0.41590166852889493,
+              "outliers": 1,
+              "extreme": 0,
+              "shapiro_p": 0.6849807747364375
+            },
+            "max_leverage": 0.12688172043346374,
+            "max_cooks_distance": 0.354196053125532,
+            "influential_count": 2,
+            "breusch_pagan_lm": 4.442066023222077,
+            "breusch_pagan_p": 0.0350637908876167,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 30,
+          "effect_name": "Slope",
+          "effect": 1.4420555639581867,
+          "intercept": 3.1786074011156957,
+          "r_squared": 0.6835195097300795,
+          "statistic": 7.7764431587455425,
+          "p": 1.800892600085994e-08,
+          "df": 28,
+          "ci_low": 1.062201065471242,
+          "ci_high": 1.8219100624451314,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.18543896412801814,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, restricted to the calendar-year date filter, using complete cases only. The estimated slope of y on x was 1.4421, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from 1.0622 to 1.8219. The associated p-value was 1.8009e-08, based on 30 observations. The slope direction is positive, indicating that higher x values correspond to higher y values on average within this sample. Because the p-value is below the five percent threshold, the evidence for a nonzero linear association is classified as evidence. This is an associational estimate from an observational design and does not imply that changes in x cause changes in y. The confidence interval describes estimation uncertainty under the model assumptions; it does not describe prediction intervals for individual observations. Warnings carried forward include a potential influential observations diagnostic, a heteroscedasticity diagnostic warning that the ordinary slope p-value and interval may be unreliable, and the fact that the linear mean model, independence, and constant error variance are not established by diagnostics. No observations were dropped beyond complete-case handling, and no automatic estimator change was applied.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics.",
+            "A heteroscedasticity diagnostic warning was present, so the ordinary slope p-value and confidence interval may be unreliable.",
+            "A potential influential observations diagnostic was flagged; no observations were removed automatically, so results may be sensitive to those points.",
+            "The confidence interval reflects estimation uncertainty under the model and does not cover prediction of individual outcomes.",
+            "The analysis used complete cases only, so results may differ if missing data are not missing completely at random.",
+            "The estimate is associational and should not be interpreted as a causal effect of x on y.",
+            "No practical or clinical importance can be judged without additional context and units."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 1,
+        "calls": 3,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "rewrite",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "A simple ordinary least squares linear regression was performed with x as the predictor and y as the outcome, restricted to the calendar-year date filter, using complete cases only. The estimated slope of y on x was {effect}, meaning y is estimated to change by that amount per one-unit increase in x, with a ninety-five percent confidence interval from {ci_low} to {ci_high}. The associated p-value was {p}, based on {n} observations. The slope direction is positive, indicating that higher x values correspond to higher y values on average within this sample. Because the p-value is below the five percent threshold, the evidence for a nonzero linear association is classified as evidence. This is an associational estimate from an observational design and does not imply that changes in x cause changes in y. The confidence interval describes estimation uncertainty under the model assumptions; it does not describe prediction intervals for individual observations. Warnings carried forward include a potential influential observations diagnostic, a heteroscedasticity diagnostic warning that the ordinary slope p-value and interval may be unreliable, and the fact that the linear mean model, independence, and constant error variance are not established by diagnostics. No observations were dropped beyond complete-case handling, and no automatic estimator change was applied.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "The linear regression assumes a linear mean relationship, independent observations, and constant error variance; these assumptions were not established by the diagnostics.",
+          "A heteroscedasticity diagnostic warning was present, so the ordinary slope p-value and confidence interval may be unreliable.",
+          "A potential influential observations diagnostic was flagged; no observations were removed automatically, so results may be sensitive to those points.",
+          "The confidence interval reflects estimation uncertainty under the model and does not cover prediction of individual outcomes.",
+          "The analysis used complete cases only, so results may differ if missing data are not missing completely at random.",
+          "The estimate is associational and should not be interpreted as a causal effect of x on y.",
+          "No practical or clinical importance can be judged without additional context and units."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    }
+  ],
+  "usage": [
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 908,
+        "completion_tokens": 74,
+        "total_tokens": 982,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 908
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 880,
+        "completion_tokens": 359,
+        "total_tokens": 1239,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 880
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 946,
+        "completion_tokens": 69,
+        "total_tokens": 1015,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 818
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 838,
+        "completion_tokens": 290,
+        "total_tokens": 1128,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 582
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 927,
+        "completion_tokens": 69,
+        "total_tokens": 996,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 799
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 923,
+        "completion_tokens": 297,
+        "total_tokens": 1220,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 667
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 955,
+        "completion_tokens": 84,
+        "total_tokens": 1039,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 827
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 953,
+        "completion_tokens": 293,
+        "total_tokens": 1246,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 697
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 906,
+        "completion_tokens": 96,
+        "total_tokens": 1002,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 778
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 893,
+        "completion_tokens": 297,
+        "total_tokens": 1190,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 637
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 906,
+        "completion_tokens": 96,
+        "total_tokens": 1002,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 650
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 908,
+        "completion_tokens": 302,
+        "total_tokens": 1210,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 524
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 945,
+        "completion_tokens": 67,
+        "total_tokens": 1012,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 817
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 855,
+        "completion_tokens": 230,
+        "total_tokens": 1085,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 599
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 920,
+        "completion_tokens": 63,
+        "total_tokens": 983,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 792
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 961,
+        "completion_tokens": 276,
+        "total_tokens": 1237,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 705
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 946,
+        "completion_tokens": 91,
+        "total_tokens": 1037,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 818
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 966,
+        "completion_tokens": 355,
+        "total_tokens": 1321,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 710
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 924,
+        "completion_tokens": 67,
+        "total_tokens": 991,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 796
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 949,
+        "completion_tokens": 308,
+        "total_tokens": 1257,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 693
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 908,
+        "completion_tokens": 86,
+        "total_tokens": 994,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 780
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 851,
+        "completion_tokens": 236,
+        "total_tokens": 1087,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 595
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 945,
+        "completion_tokens": 80,
+        "total_tokens": 1025,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 817
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 959,
+        "completion_tokens": 336,
+        "total_tokens": 1295,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 703
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1325,
+        "completion_tokens": 323,
+        "total_tokens": 1648,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 685
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 947,
+        "completion_tokens": 76,
+        "total_tokens": 1023,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 819
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 980,
+        "completion_tokens": 400,
+        "total_tokens": 1380,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 724
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 945,
+        "completion_tokens": 83,
+        "total_tokens": 1028,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 817
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 949,
+        "completion_tokens": 438,
+        "total_tokens": 1387,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 693
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 893,
+        "completion_tokens": 137,
+        "total_tokens": 1030,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 637
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 900,
+        "completion_tokens": 377,
+        "total_tokens": 1277,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 644
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 942,
+        "completion_tokens": 121,
+        "total_tokens": 1063,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 814
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 945,
+        "completion_tokens": 68,
+        "total_tokens": 1013,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 689
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 842,
+        "completion_tokens": 236,
+        "total_tokens": 1078,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 586
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1032,
+        "completion_tokens": 205,
+        "total_tokens": 1237,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 904
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 955,
+        "completion_tokens": 118,
+        "total_tokens": 1073,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 827
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 898,
+        "completion_tokens": 81,
+        "total_tokens": 979,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 642
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 920,
+        "completion_tokens": 62,
+        "total_tokens": 982,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 792
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 915,
+        "completion_tokens": 102,
+        "total_tokens": 1017,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 787
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 909,
+        "completion_tokens": 107,
+        "total_tokens": 1016,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 781
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 903,
+        "completion_tokens": 113,
+        "total_tokens": 1016,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 775
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 903,
+        "completion_tokens": 61,
+        "total_tokens": 964,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 775
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 901,
+        "completion_tokens": 103,
+        "total_tokens": 1004,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 773
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 935,
+        "completion_tokens": 86,
+        "total_tokens": 1021,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 807
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 901,
+        "completion_tokens": 75,
+        "total_tokens": 976,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 773
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 906,
+        "completion_tokens": 77,
+        "total_tokens": 983,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 138
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 950,
+        "completion_tokens": 76,
+        "total_tokens": 1026,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 822
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 945,
+        "completion_tokens": 67,
+        "total_tokens": 1012,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 177
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 841,
+        "completion_tokens": 236,
+        "total_tokens": 1077,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 457
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1067,
+        "completion_tokens": 155,
+        "total_tokens": 1222,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 939
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 910,
+        "completion_tokens": 327,
+        "total_tokens": 1237,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 654
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1311,
+        "completion_tokens": 318,
+        "total_tokens": 1629,
+        "prompt_tokens_details": {
+          "cached_tokens": 512
+        },
+        "prompt_cache_hit_tokens": 512,
+        "prompt_cache_miss_tokens": 799
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 943,
+        "completion_tokens": 98,
+        "total_tokens": 1041,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 815
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 962,
+        "completion_tokens": 343,
+        "total_tokens": 1305,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 706
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1334,
+        "completion_tokens": 345,
+        "total_tokens": 1679,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 694
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1087,
+        "completion_tokens": 189,
+        "total_tokens": 1276,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 959
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1050,
+        "completion_tokens": 463,
+        "total_tokens": 1513,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 794
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1546,
+        "completion_tokens": 436,
+        "total_tokens": 1982,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 906
+      }
+    }
+  ]
+}

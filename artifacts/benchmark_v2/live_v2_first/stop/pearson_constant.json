@@ -1,0 +1,78 @@
+{
+  "id": "pearson_constant",
+  "category": "stop",
+  "question": "Compute Pearson correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": false
+  },
+  "mechanical_pass": false,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "interrupted",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests Pearson correlation between columns x and y. However, column x has only 1 unique value, so correlation is undefined (zero variance).",
+      "clarification": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair."
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair.",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests Pearson correlation between columns x and y. However, column x has only 1 unique value, so correlation is undefined (zero variance).",
+      "clarification": "Column 'x' has only one unique value, so Pearson correlation cannot be computed (it requires variance in both variables). Please confirm the correct column for x, or provide a different variable pair."
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

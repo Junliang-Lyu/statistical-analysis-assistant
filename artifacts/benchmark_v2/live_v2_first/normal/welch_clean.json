@@ -1,0 +1,139 @@
+{
+  "id": "welch_clean",
+  "category": "normal",
+  "question": "Compare mean outcome between treatment and control.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "difference",
+      "outcome": "outcome",
+      "group": "group",
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User asks to compare mean outcome between two groups; confirmed metadata specifies independent design and observational study type. Group column has two labels (control, treatment) and outcome is numeric.",
+      "clarification": null
+    },
+    "method": "welch_t_test",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 50,
+        "usable": 50,
+        "dropped": 0,
+        "groups": {
+          "control": {
+            "n": 25,
+            "constant": false,
+            "skew": -0.3980798074324173,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.5649965950069511
+          },
+          "treatment": {
+            "n": 25,
+            "constant": false,
+            "skew": 0.4979031096419082,
+            "outliers": 1,
+            "extreme": 0,
+            "shapiro_p": 0.16838955838960734
+          }
+        }
+      }
+    },
+    "result": {
+      "method": "welch_t_test",
+      "n": 50,
+      "n_groups": [
+        25,
+        25
+      ],
+      "contrast": "treatment minus control",
+      "effect": 1.2532020361599998,
+      "statistic": 5.7887189264785395,
+      "p": 5.796668338649815e-07,
+      "df": 46.509888447610834,
+      "ci_low": 0.8175583600137628,
+      "ci_high": 1.6888457123062368,
+      "dropped": 0,
+      "confidence_level": 0.95,
+      "warnings": [
+        "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+        "Study design does not establish causality. Report association or group differences only."
+      ]
+    },
+    "interpretation": {
+      "summary": "A Welch independent-samples t-test compared mean outcome between the control and treatment groups, with the contrast expressed as treatment minus control. The estimated mean difference was 1.2532, with a ninety-five percent confidence interval from 0.81756 to 1.6888, based on 50 observations. The test statistic was large relative to its reference distribution and the p-value was 5.7967e-07, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in mean outcome. Because the study is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, and independence of observations was user-confirmed rather than verified from the data. No observations were dropped, so the analysis is based on the full set of 50 cases.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "The Welch test assumes independent observations within and across groups; this was user-confirmed and not verified from the data.",
+        "The Welch test does not assume equal variances, but it does assume approximately normal distributions or sufficiently large samples for the sampling distribution of the mean difference to be well approximated.",
+        "The confidence interval reflects sampling uncertainty only and does not account for measurement error, selection effects, or unmeasured confounding.",
+        "This analysis does not establish causality.",
+        "The result describes a difference in mean outcome between groups and should not be interpreted as a causal effect of group membership.",
+        "No practical or clinical importance can be claimed without additional context such as the scale of the outcome and a meaningful difference threshold.",
+        "The analysis is based on complete cases only; if any observations had missing values they would have been excluded, though none were dropped here."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A Welch independent-samples t-test compared mean outcome between the control and treatment groups, with the contrast expressed as treatment minus control. The estimated mean difference was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, based on {n} observations. The test statistic was large relative to its reference distribution and the p-value was {p}, which is below the five percent threshold, so the evidence is classified as evidence of a group difference in mean outcome. Because the study is observational, this result describes an association or group difference only and does not support a causal interpretation. The Welch procedure does not assume equal variances, and independence of observations was user-confirmed rather than verified from the data. No observations were dropped, so the analysis is based on the full set of {n} cases.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "The Welch test assumes independent observations within and across groups; this was user-confirmed and not verified from the data.",
+      "The Welch test does not assume equal variances, but it does assume approximately normal distributions or sufficiently large samples for the sampling distribution of the mean difference to be well approximated.",
+      "The confidence interval reflects sampling uncertainty only and does not account for measurement error, selection effects, or unmeasured confounding.",
+      "This analysis does not establish causality.",
+      "The result describes a difference in mean outcome between groups and should not be interpreted as a causal effect of group membership.",
+      "No practical or clinical importance can be claimed without additional context such as the scale of the outcome and a meaningful difference threshold.",
+      "The analysis is based on complete cases only; if any observations had missing values they would have been excluded, though none were dropped here."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

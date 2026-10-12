@@ -1,0 +1,68 @@
+{
+  "id": "chi_square_one_category",
+  "category": "stop",
+  "question": "Test chi-square independence between category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "stopped",
+    "plan": {
+      "goal": "categorical",
+      "outcome": null,
+      "group": null,
+      "x": "category_a",
+      "y": "category_b",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "chi_square",
+    "diagnostics": {
+      "errors": [
+        "Chi-square requires two to twenty observed categories per variable."
+      ],
+      "warnings": [],
+      "details": {
+        "rows": 80,
+        "usable": 80,
+        "dropped": 0
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Chi-square requires two to twenty observed categories per variable."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

@@ -22,6 +22,17 @@ def fixtures():
     return trial,corr
 
 
+def extra_fixtures():
+    rng=np.random.default_rng(20261012);x=np.linspace(-3,3,60)
+    regression=pd.DataFrame({'x':x,'y':3+1.5*x+rng.normal(0,.8,len(x)),
+                             'date':['2024-06-01']*30+['2025-06-01']*30})
+    def labels(table):
+        return pd.DataFrame([(f'A{i}',f'B{j}') for i,row in enumerate(table)
+             for j,n in enumerate(row) for _ in range(n)],columns=['category_a','category_b'])
+    return {'chi_square':labels([[30,10],[10,30]]), 'regression':regression,
+            'chi_sparse':labels([[2,0],[0,2]])}
+
+
 def public_result(state):
     return {k:state.get(k) for k in ['mode','status','plan','method','diagnostics','result','interpretation',
                                    'revisions','rewrites','calls','trace','error']}

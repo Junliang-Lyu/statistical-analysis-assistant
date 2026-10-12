@@ -1,0 +1,59 @@
+{
+  "id": "pearson_percent_misinterpretation",
+  "question": "Measure Pearson linear correlation between x and y.",
+  "plan": {
+    "goal": "correlation",
+    "outcome": null,
+    "group": null,
+    "x": "x",
+    "y": "y",
+    "design": "independent",
+    "study_type": "observational",
+    "filter": null,
+    "reason": "Prespecified evaluation plan",
+    "clarification": null
+  },
+  "result": {
+    "method": "pearson",
+    "n": 20,
+    "effect": 0.9929163062333216,
+    "statistic": 0.9929163062333216,
+    "p": 4.157109757767507e-18,
+    "ci_low": 0.9817728824045426,
+    "ci_high": 0.997256460890303,
+    "dropped": 0,
+    "confidence_level": 0.95,
+    "warnings": [
+      "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "draft": {
+    "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions. This means the outcome increases by eighty percent.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "expected_valid": false,
+  "note": "Semantic blind spot: coefficient described as an eighty-percent increase using words, which can evade the current checks.",
+  "source": "Authored test double / planted mutation; not a real model output.",
+  "rendered_text": {
+    "summary": "Pearson linear association: 0.99292; p=4.1571e-18; confidence interval [0.98177, 0.99726]; n=20. Evidence of a difference or association under the stated assumptions. This means the outcome increases by eighty percent.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "code_accepted": true,
+  "code_feedback": [],
+  "detector_matches_label": false
+}

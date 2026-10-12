@@ -1,0 +1,68 @@
+{
+  "id": "regression_perfect",
+  "category": "stop",
+  "question": "Regress y on x.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "stopped": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Near-perfect fit: conservative residual-inference policy.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "stopped",
+    "plan": {
+      "goal": "regression",
+      "outcome": "y",
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests simple OLS regression of y on x, with x as predictor and y as outcome; both columns are numeric and roles are unambiguous.",
+      "clarification": null
+    },
+    "method": "linear_regression",
+    "diagnostics": {
+      "errors": [
+        "Near-perfect fit: residual inference is unstable under MVP policy."
+      ],
+      "warnings": [],
+      "details": {
+        "rows": 10,
+        "usable": 10,
+        "dropped": 0
+      }
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Near-perfect fit: residual inference is unstable under MVP policy."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

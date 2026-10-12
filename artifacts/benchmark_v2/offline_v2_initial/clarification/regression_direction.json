@@ -1,0 +1,77 @@
+{
+  "id": "regression_direction",
+  "category": "clarification",
+  "question": "Run a simple regression between x and y; I have not chosen which is the outcome.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "interrupt",
+  "expected_plan": {
+    "goal": "regression",
+    "reason": "Direction unspecified",
+    "clarification": "Which is the outcome?"
+  },
+  "checks": {
+    "goal": true,
+    "clarification": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Must ask which variable is predictor/outcome.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "interrupted",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Direction unspecified",
+      "clarification": "Which is the outcome?"
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "Which is the outcome?",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Direction unspecified",
+      "clarification": "Which is the outcome?"
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

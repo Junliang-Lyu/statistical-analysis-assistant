@@ -1,0 +1,17 @@
+{
+  "id": "paired_design",
+  "category": "stop",
+  "question": "Compare mean outcome between groups.",
+  "metadata": {
+    "design": "paired"
+  },
+  "plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "stop",
+  "note": "No silent change to independent design.",
+  "expected_method": "welch_t_test"
+}

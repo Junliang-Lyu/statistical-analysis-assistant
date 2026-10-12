@@ -1,0 +1,63 @@
+{
+  "id": "paired_design",
+  "category": "stop",
+  "question": "Compare mean outcome between groups.",
+  "metadata": {
+    "design": "paired"
+  },
+  "expected_behavior": "stop",
+  "expected_plan": {
+    "goal": "difference",
+    "outcome": "outcome",
+    "group": "group",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": false,
+    "stopped": true
+  },
+  "mechanical_pass": false,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "No silent change to independent design.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "stopped",
+    "plan": {
+      "goal": "unsupported",
+      "outcome": "outcome",
+      "group": "group",
+      "x": null,
+      "y": null,
+      "design": "paired",
+      "study_type": "unknown",
+      "filter": null,
+      "reason": "The confirmed metadata specifies a paired design, but the requested comparison is an independent two-group mean difference. Paired mean comparisons are not supported.",
+      "clarification": null
+    },
+    "method": null,
+    "diagnostics": {
+      "errors": [
+        "Only two-group mean comparison and Pearson correlation are supported."
+      ],
+      "warnings": [],
+      "details": {}
+    },
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "report_issue"
+    ],
+    "error": "Only two-group mean comparison and Pearson correlation are supported."
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": null
+}

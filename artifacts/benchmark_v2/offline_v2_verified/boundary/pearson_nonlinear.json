@@ -1,0 +1,127 @@
+{
+  "id": "pearson_nonlinear",
+  "category": "boundary",
+  "question": "Assess the relationship between x and y using Pearson linear correlation.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present.",
+  "output": {
+    "mode": "offline-prespecified-plans",
+    "status": "completed",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "Prespecified evaluation plan",
+      "clarification": null
+    },
+    "method": "pearson",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 40,
+        "usable": 40,
+        "dropped": 0,
+        "variables": {
+          "x": {
+            "n": 40,
+            "constant": false,
+            "skew": 5.562780709034924e-17,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.12413856850214966
+          },
+          "y": {
+            "n": 40,
+            "constant": false,
+            "skew": 0.6584308366966101,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.001206791156779943
+          }
+        }
+      }
+    },
+    "result": {
+      "method": "pearson",
+      "n": 40,
+      "effect": 1.851987637058097e-18,
+      "statistic": 1.851987637058097e-18,
+      "p": 1.0,
+      "ci_low": -0.311509348976699,
+      "ci_high": 0.311509348976699,
+      "dropped": 0,
+      "confidence_level": 0.95,
+      "warnings": [
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ]
+    },
+    "interpretation": {
+      "summary": "Pearson linear association: 1.852e-18; p=1; confidence interval [-0.31151, 0.31151]; n=40. Evidence is inconclusive; this does not establish equivalence.",
+      "causal_claim": false,
+      "strength": "inconclusive",
+      "limitations": [
+        "This analysis does not establish causality.",
+        "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence is inconclusive; this does not establish equivalence.",
+    "causal_claim": false,
+    "strength": "inconclusive",
+    "limitations": [
+      "This analysis does not establish causality.",
+      "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+      "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+      "Study design does not establish causality. Report association or group differences only."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

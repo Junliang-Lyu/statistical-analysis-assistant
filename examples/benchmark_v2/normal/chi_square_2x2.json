@@ -1,0 +1,28 @@
+{
+  "id": "chi_square_2x2",
+  "category": "normal",
+  "question": "Use chi-square independence to test association between category_a and category_b, both categorical labels.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "",
+  "numeric_reference": {
+    "n": 80,
+    "dropped": 0,
+    "statistic": 20.0,
+    "p": 7.744216431044088e-06,
+    "df": 1,
+    "effect": 0.5,
+    "ci_low": null,
+    "ci_high": null
+  },
+  "expected_method": "chi_square"
+}

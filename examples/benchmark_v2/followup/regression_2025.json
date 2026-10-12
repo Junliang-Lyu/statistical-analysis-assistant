@@ -1,0 +1,36 @@
+{
+  "id": "regression_2025",
+  "category": "followup",
+  "question": "Repeat that same analysis only for calendar year 2025.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational",
+    "filter": {
+      "column": "date",
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    }
+  },
+  "plan": {
+    "goal": "regression",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Same session; retain roles but recompute from filtered data.",
+  "warmup": true,
+  "numeric_reference": {
+    "n": 30,
+    "dropped": 0,
+    "effect": 1.442055563953834,
+    "intercept": 3.178607401116308,
+    "r_squared": 0.6835195097268354,
+    "statistic": 7.776443158687233,
+    "p": 1.800892600348315e-08,
+    "df": 28,
+    "ci_low": 1.0622010654651877,
+    "ci_high": 1.8219100624424802
+  },
+  "expected_method": "linear_regression"
+}

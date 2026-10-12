@@ -1,0 +1,78 @@
+{
+  "id": "ambiguous_last_year",
+  "category": "clarification",
+  "question": "Repeat that correlation only for last year.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "interrupt",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "clarification": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Date boundaries not supplied; must ask.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "interrupted",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user asks to repeat the prior Pearson correlation between x and y, restricted to the last year. The prior plan's variable roles (x, y) are reused because the question refers to the prior analysis. The date column exists with values 2024-01-01 and 2025-01-01, but 'last year' is ambiguous relative to the data and current date, so an explicit date window cannot be set without guessing.",
+      "clarification": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column."
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column.",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user asks to repeat the prior Pearson correlation between x and y, restricted to the last year. The prior plan's variable roles (x, y) are reused because the question refers to the prior analysis. The date column exists with values 2024-01-01 and 2025-01-01, but 'last year' is ambiguous relative to the data and current date, so an explicit date window cannot be set without guessing.",
+      "clarification": "What exact date range should be used for 'last year'? Please provide the start and end dates (e.g., 2024-01-01 to 2024-12-31) for the date column."
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

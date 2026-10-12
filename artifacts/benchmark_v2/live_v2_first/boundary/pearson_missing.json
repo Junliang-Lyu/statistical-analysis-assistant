@@ -1,0 +1,131 @@
+{
+  "id": "pearson_missing",
+  "category": "boundary",
+  "question": "Compute Pearson correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "result",
+  "expected_plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "checks": {
+    "goal": true,
+    "execution": true,
+    "method": true,
+    "roles": true,
+    "numbers": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": true,
+  "semantic_review": "not independently reviewed",
+  "note": "Complete-case deletion; report one omitted row.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "completed",
+    "plan": {
+      "goal": "correlation",
+      "outcome": null,
+      "group": null,
+      "x": "x",
+      "y": "y",
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "User explicitly requests Pearson correlation between columns x and y, both numeric float64. Confirmed metadata indicates independent observational design. No date filter requested.",
+      "clarification": null
+    },
+    "method": "pearson",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ],
+      "details": {
+        "rows": 20,
+        "usable": 19,
+        "dropped": 1,
+        "variables": {
+          "x": {
+            "n": 19,
+            "constant": false,
+            "skew": 0.0,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.5896505755975007
+          },
+          "y": {
+            "n": 19,
+            "constant": false,
+            "skew": 0.02192091391138963,
+            "outliers": 0,
+            "extreme": 0,
+            "shapiro_p": 0.22104420234587724
+          }
+        }
+      }
+    },
+    "result": {
+      "method": "pearson",
+      "n": 19,
+      "effect": 0.9917433463252728,
+      "statistic": 0.9917433463252728,
+      "p": 1.3178625615078065e-16,
+      "ci_low": 0.978151032824793,
+      "ci_high": 0.9968931181204066,
+      "dropped": 1,
+      "confidence_level": 0.95,
+      "warnings": [
+        "Complete-case deletion was used; missingness may bias results.",
+        "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+        "Study design does not establish causality. Report association or group differences only."
+      ]
+    },
+    "interpretation": {
+      "summary": "A Pearson correlation was computed to assess the linear association between x and y using 19 complete observations. The estimated correlation was 0.99174, with a ninety-five percent confidence interval from 0.97815 to 0.99689, and the associated p-value was 1.3179e-16. Because the p-value is below the five percent threshold, the result is classified as evidence of a linear association. The positive direction indicates that higher values of x tend to accompany higher values of y, but this reflects association only and not a causal relationship. One observation was excluded through complete-case deletion, so the analysis reflects only records with non-missing values on both variables.",
+      "causal_claim": false,
+      "strength": "evidence",
+      "limitations": [
+        "Pearson correlation captures linear association only; nonlinear relationships may be missed.",
+        "The confidence interval and p-value rely on assumptions such as approximate normality and independent observations that were not fully verified.",
+        "Complete-case deletion was used, and missingness may bias the results.",
+        "The estimate is subject to sampling uncertainty, as reflected in the interval.",
+        "This analysis does not establish causality."
+      ]
+    },
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 2,
+    "trace": [
+      "profile",
+      "planner",
+      "select_method",
+      "check_assumptions",
+      "run_test",
+      "interpret",
+      "critique",
+      "output_memory"
+    ],
+    "error": null
+  },
+  "draft": {
+    "summary": "A Pearson correlation was computed to assess the linear association between x and y using {n} complete observations. The estimated correlation was {effect}, with a ninety-five percent confidence interval from {ci_low} to {ci_high}, and the associated p-value was {p}. Because the p-value is below the five percent threshold, the result is classified as evidence of a linear association. The positive direction indicates that higher values of x tend to accompany higher values of y, but this reflects association only and not a causal relationship. One observation was excluded through complete-case deletion, so the analysis reflects only records with non-missing values on both variables.",
+    "causal_claim": false,
+    "strength": "evidence",
+    "limitations": [
+      "Pearson correlation captures linear association only; nonlinear relationships may be missed.",
+      "The confidence interval and p-value rely on assumptions such as approximate normality and independent observations that were not fully verified.",
+      "Complete-case deletion was used, and missingness may bias the results.",
+      "The estimate is subject to sampling uncertainty, as reflected in the interval.",
+      "This analysis does not establish causality."
+    ]
+  },
+  "text_feedback": [],
+  "pending": null
+}

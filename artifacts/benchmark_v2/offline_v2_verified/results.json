@@ -1,0 +1,3524 @@
+{
+  "mode": "offline",
+  "cases": [
+    {
+      "id": "welch_clean",
+      "category": "normal",
+      "question": "Compare mean outcome between treatment and control.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2532020361599998,
+          "statistic": 5.7887189264785395,
+          "p": 5.796668338649815e-07,
+          "df": 46.509888447610834,
+          "ci_low": 0.8175583600137628,
+          "ci_high": 1.6888457123062368,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "mean difference in the reported contrast: 1.2532; p=5.7967e-07; confidence interval [0.81756, 1.6888]; n=50. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "mean difference in the reported contrast: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_clean",
+      "category": "normal",
+      "question": "Measure Pearson linear correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 20,
+            "usable": 20,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5513717430400781
+              },
+              "y": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.006884347164452994,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.3222096145138782
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 20,
+          "effect": 0.9929163062331869,
+          "statistic": 0.9929163062331869,
+          "p": 4.157109758476191e-18,
+          "ci_low": 0.981772882404198,
+          "ci_high": 0.9972564608902507,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "Pearson linear association: 0.99292; p=4.1571e-18; confidence interval [0.98177, 0.99726]; n=20. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_2x2",
+      "category": "normal",
+      "question": "Use chi-square independence to test association between category_a and category_b, both categorical labels.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "expected": [
+                [
+                  20.0,
+                  20.0
+                ],
+                [
+                  20.0,
+                  20.0
+                ]
+              ]
+            },
+            "min_expected": 20.0,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 80,
+          "effect_name": "Cramer's V",
+          "effect": 0.5,
+          "statistic": 20.0,
+          "p": 7.744216431044088e-06,
+          "df": 1,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1"
+            ],
+            "observed": [
+              [
+                30,
+                10
+              ],
+              [
+                10,
+                30
+              ]
+            ],
+            "expected": [
+              [
+                20.0,
+                20.0
+              ],
+              [
+                20.0,
+                20.0
+              ]
+            ]
+          },
+          "dropped": 0,
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Cramer's V: 0.5; p=7.7442e-06; n=80. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Cramer's V: {effect}; p={p}; n={n}. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_clean",
+      "category": "normal",
+      "question": "Fit a simple linear regression with x as predictor and y as outcome. Report the slope.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.07983699295148747,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.9926849567039351
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.18678499543531865,
+            "influential_count": 5,
+            "breusch_pagan_lm": 1.6844640542845768,
+            "breusch_pagan_p": 0.19433233918946297,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 1.4750285494348285,
+          "intercept": 3.1102806751416665,
+          "r_squared": 0.9009028873345896,
+          "statistic": 22.962675350531885,
+          "p": 8.43318299866451e-31,
+          "df": 58,
+          "ci_low": 1.3464463876464074,
+          "ci_high": 1.6036107112232496,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.06423591880815675,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: 1.475; p=8.4332e-31; confidence interval [1.3464, 1.6036]; n=60. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_unequal_variance",
+      "category": "boundary",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Welch does not require equal variances.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.49790310962480366,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955839126796
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 3.688826133312,
+          "statistic": 8.232343144246911,
+          "p": 2.388356740739323e-09,
+          "df": 31.46869937370178,
+          "ci_low": 2.775493038818582,
+          "ci_high": 4.6021592278054175,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "mean difference in the reported contrast: 3.6888; p=2.3884e-09; confidence interval [2.7755, 4.6022]; n=50. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "mean difference in the reported contrast: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_missing",
+      "category": "boundary",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 49,
+            "dropped": 1,
+            "groups": {
+              "control": {
+                "n": 24,
+                "constant": false,
+                "skew": -0.343667806810772,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5366741919248623
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 49,
+          "n_groups": [
+            25,
+            24
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2673731639676664,
+          "statistic": 5.722355750531992,
+          "p": 8.327953080223787e-07,
+          "df": 44.50282383404053,
+          "ci_low": 0.821156950517342,
+          "ci_high": 1.7135893774179909,
+          "dropped": 1,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "mean difference in the reported contrast: 1.2674; p=8.328e-07; confidence interval [0.82116, 1.7136]; n=49. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "mean difference in the reported contrast: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Complete-case deletion was used; missingness may bias results.",
+          "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_missing",
+      "category": "boundary",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 20,
+            "usable": 19,
+            "dropped": 1,
+            "variables": {
+              "x": {
+                "n": 19,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5896505755975007
+              },
+              "y": {
+                "n": 19,
+                "constant": false,
+                "skew": 0.02192091391138963,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.22104420234587724
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 19,
+          "effect": 0.9917433463252728,
+          "statistic": 0.9917433463252728,
+          "p": 1.3178625615078065e-16,
+          "ci_low": 0.978151032824793,
+          "ci_high": 0.9968931181204066,
+          "dropped": 1,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "Pearson linear association: 0.99174; p=1.3179e-16; confidence interval [0.97815, 0.99689]; n=19. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Complete-case deletion was used; missingness may bias results.",
+          "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_missing",
+      "category": "boundary",
+      "question": "Compute chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 80,
+            "usable": 79,
+            "dropped": 1,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  29,
+                  10
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "expected": [
+                [
+                  19.253164556962027,
+                  19.746835443037973
+                ],
+                [
+                  19.746835443037973,
+                  20.253164556962027
+                ]
+              ]
+            },
+            "min_expected": 19.253164556962027,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 79,
+          "effect_name": "Cramer's V",
+          "effect": 0.49358974358974345,
+          "statistic": 19.246835963182107,
+          "p": 1.1486057946986134e-05,
+          "df": 1,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1"
+            ],
+            "observed": [
+              [
+                29,
+                10
+              ],
+              [
+                10,
+                30
+              ]
+            ],
+            "expected": [
+              [
+                19.253164556962027,
+                19.746835443037973
+              ],
+              [
+                19.746835443037973,
+                20.253164556962027
+              ]
+            ]
+          },
+          "dropped": 1,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Cramer's V: 0.49359; p=1.1486e-05; n=79. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Complete-case deletion was used; missingness may bias results.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Cramer's V: {effect}; p={p}; n={n}. Effect interval not computed. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Complete-case deletion was used; missingness may bias results.",
+          "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_missing",
+      "category": "boundary",
+      "question": "Regress y on x with one predictor.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Complete-case deletion; report one omitted row.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 59,
+            "dropped": 1,
+            "residuals": {
+              "n": 59,
+              "constant": false,
+              "skew": 0.09450413043012428,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.9796382470065456
+            },
+            "max_leverage": 0.06610169491548588,
+            "max_cooks_distance": 0.1852816268434052,
+            "influential_count": 5,
+            "breusch_pagan_lm": 1.8145744069774226,
+            "breusch_pagan_p": 0.1779604595923324,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 59,
+          "effect_name": "Slope",
+          "effect": 1.4901576066290867,
+          "intercept": 3.094638768551063,
+          "r_squared": 0.8998842292839396,
+          "statistic": 22.63494797868948,
+          "p": 3.618349078977401e-30,
+          "df": 57,
+          "ci_low": 1.3583265487895064,
+          "ci_high": 1.621988664468667,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.06583437293657805,
+          "contrast": "y per unit of x",
+          "dropped": 1,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: 1.4902; p=3.6183e-30; confidence interval [1.3583, 1.622]; n=59. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Complete-case deletion was used; missingness may bias results.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Complete-case deletion was used; missingness may bias results.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_2x3",
+      "category": "boundary",
+      "question": "Test chi-square independence of category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Non-square table, degrees of freedom two.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1",
+                "B2"
+              ],
+              "observed": [
+                [
+                  12,
+                  10,
+                  8
+                ],
+                [
+                  8,
+                  10,
+                  12
+                ]
+              ],
+              "expected": [
+                [
+                  10.0,
+                  10.0,
+                  10.0
+                ],
+                [
+                  10.0,
+                  10.0,
+                  10.0
+                ]
+              ]
+            },
+            "min_expected": 10.0,
+            "fraction_expected_below_five": 0.0
+          }
+        },
+        "result": {
+          "method": "chi_square",
+          "n": 60,
+          "effect_name": "Cramer's V",
+          "effect": 0.16329931618554522,
+          "statistic": 1.6,
+          "p": 0.4493289641172217,
+          "df": 2,
+          "ci_low": null,
+          "ci_high": null,
+          "confidence_level": null,
+          "interval_note": "Effect interval not computed.",
+          "contrast": "Categorical association",
+          "correction": false,
+          "contingency": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "column_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "observed": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ],
+            "expected": [
+              [
+                10.0,
+                10.0,
+                10.0
+              ],
+              [
+                10.0,
+                10.0,
+                10.0
+              ]
+            ]
+          },
+          "dropped": 0,
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Cramer's V: 0.1633; p=0.44933; n=60. Effect interval not computed. Evidence is inconclusive; this does not establish equivalence.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Cramer's V: {effect}; p={p}; n={n}. Effect interval not computed. Evidence is inconclusive; this does not establish equivalence.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_nonlinear",
+      "category": "boundary",
+      "question": "Assess the relationship between x and y using Pearson linear correlation.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Near-zero linear correlation does not mean no relationship; U-shaped dependence is present.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 40,
+            "usable": 40,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 40,
+                "constant": false,
+                "skew": 5.562780709034924e-17,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.12413856850214966
+              },
+              "y": {
+                "n": 40,
+                "constant": false,
+                "skew": 0.6584308366966101,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.001206791156779943
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 40,
+          "effect": 1.851987637058097e-18,
+          "statistic": 1.851987637058097e-18,
+          "p": 1.0,
+          "ci_low": -0.311509348976699,
+          "ci_high": 0.311509348976699,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "Pearson linear association: 1.852e-18; p=1; confidence interval [-0.31151, 0.31151]; n=40. Evidence is inconclusive; this does not establish equivalence.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence is inconclusive; this does not establish equivalence.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_influential",
+      "category": "boundary",
+      "question": "Fit simple regression of y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warning": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Influential-point warning; no automatic deletion.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 7.10506934488931,
+              "outliers": 1,
+              "extreme": 1,
+              "shapiro_p": 1.7180616334934702e-15
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 2.006439339825254,
+            "influential_count": 1,
+            "breusch_pagan_lm": 3.1485050150425065,
+            "breusch_pagan_p": 0.07599656016743103,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 2.99151201763258,
+          "intercept": 4.678170362593333,
+          "r_squared": 0.1720217316023331,
+          "statistic": 3.4713322669651117,
+          "p": 0.0009847216015012425,
+          "df": 58,
+          "ci_low": 1.266479249461123,
+          "ci_high": 4.716544785804037,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.8617763404849674,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: 2.9915; p=0.00098472; confidence interval [1.2665, 4.7165]; n=60. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_heteroscedastic",
+      "category": "boundary",
+      "question": "Fit simple regression with predictor x and outcome y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Report residual diagnostics. Ordinary slope inference may be unreliable; no automatic robust estimator.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.3743346136500078,
+              "outliers": 13,
+              "extreme": 10,
+              "shapiro_p": 6.720419534135524e-10
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.5618455370370627,
+            "influential_count": 5,
+            "breusch_pagan_lm": 10.938211230898693,
+            "breusch_pagan_p": 0.000942010721047156,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": 0.6091581900585343,
+          "intercept": 1.5328023674883333,
+          "r_squared": 0.038019215549223245,
+          "statistic": 1.514022656345513,
+          "p": 0.13545086185483296,
+          "df": 58,
+          "ci_low": -0.19622117103615555,
+          "ci_high": 1.414537551153224,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.40234417068030925,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: 0.60916; p=0.13545; confidence interval [-0.19622, 1.4145]; n=60. Evidence is inconclusive; this does not establish equivalence.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence is inconclusive; this does not establish equivalence.",
+        "causal_claim": false,
+        "strength": "inconclusive",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+          "Residual normality diagnostic warning; ordinary slope inference requires judgement.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_negative_slope",
+      "category": "boundary",
+      "question": "Regress outcome y on predictor x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Negative slope; not a causal effect.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 60,
+            "usable": 60,
+            "dropped": 0,
+            "residuals": {
+              "n": 60,
+              "constant": false,
+              "skew": 0.018772803883692495,
+              "outliers": 0,
+              "extreme": 0,
+              "shapiro_p": 0.4929329334438918
+            },
+            "max_leverage": 0.06502732240458828,
+            "max_cooks_distance": 0.09854785507646914,
+            "influential_count": 2,
+            "breusch_pagan_lm": 0.2135022222611758,
+            "breusch_pagan_p": 0.64403613772067,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 60,
+          "effect_name": "Slope",
+          "effect": -2.061082398494773,
+          "intercept": 4.946083817145,
+          "r_squared": 0.956919925779196,
+          "statistic": -35.893315328764594,
+          "p": 2.6400245513580276e-41,
+          "df": 58,
+          "ci_low": -2.1760259370211426,
+          "ci_high": -1.9461388599684035,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.05742245818243041,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: -2.0611; p=2.64e-41; confidence interval [-2.176, -1.9461]; n=60. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "unknown_design",
+      "category": "clarification",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {},
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Must pause; synthetic evaluator confirms independent observations.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "After user clarification: goal=difference; design=independent; study_type=observational; variable roles: outcome=outcome, group=group, x=None, y=None. Current user confirmations supersede the earlier missing-information assessment; method rules still require checks.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2532020361599998,
+          "statistic": 5.7887189264785395,
+          "p": 5.796668338649815e-07,
+          "df": 46.509888447610834,
+          "ci_low": 0.8175583600137628,
+          "ci_high": 1.6888457123062368,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "mean difference in the reported contrast: 1.2532; p=5.7967e-07; confidence interval [0.81756, 1.6888]; n=50. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "ask_user",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "mean difference in the reported contrast: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "ambiguous_outcome",
+      "category": "clarification",
+      "question": "Compare groups; I have not decided whether before or after is the outcome.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "difference",
+        "group": "group",
+        "reason": "Unspecified outcome",
+        "clarification": "Choose before or after."
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "No arbitrary outcome choice.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "interrupted",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Unspecified outcome",
+          "clarification": "Choose before or after."
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Choose before or after.",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Unspecified outcome",
+          "clarification": "Choose before or after."
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "ambiguous_last_year",
+      "category": "clarification",
+      "question": "Repeat that correlation only for last year.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Date boundaries not supplied; must ask.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "interrupted",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": "Provide exact date boundaries."
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Provide exact date boundaries.",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": "Provide exact date boundaries."
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "regression_direction",
+      "category": "clarification",
+      "question": "Run a simple regression between x and y; I have not chosen which is the outcome.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "interrupt",
+      "expected_plan": {
+        "goal": "regression",
+        "reason": "Direction unspecified",
+        "clarification": "Which is the outcome?"
+      },
+      "checks": {
+        "goal": true,
+        "clarification": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Must ask which variable is predictor/outcome.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "interrupted",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Direction unspecified",
+          "clarification": "Which is the outcome?"
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": {
+        "question": "Which is the outcome?",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Direction unspecified",
+          "clarification": "Which is the outcome?"
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "paired_design",
+      "category": "stop",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "paired"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "No silent change to independent design.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "paired",
+          "study_type": "unknown",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [
+            "Independent observations must be confirmed; paired/clustered designs are not supported."
+          ],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.3980798074324173,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965950069511
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Independent observations must be confirmed; paired/clustered designs are not supported."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_sparse",
+      "category": "stop",
+      "question": "Test chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Expected frequencies violate approximation policy.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [
+            "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+          ],
+          "warnings": [
+            "Pearson chi-square without Yates correction. Cramer's V is unsigned association strength; no effect interval is computed.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 4,
+            "usable": 4,
+            "dropped": 0,
+            "contingency": {
+              "row_labels": [
+                "A0",
+                "A1"
+              ],
+              "column_labels": [
+                "B0",
+                "B1"
+              ],
+              "observed": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ]
+              ],
+              "expected": [
+                [
+                  1.0,
+                  1.0
+                ],
+                [
+                  1.0,
+                  1.0
+                ]
+              ]
+            },
+            "min_expected": 1.0,
+            "fraction_expected_below_five": 1.0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Chi-square approximation policy failed: expected count below one or more than twenty percent below five. Stop; no automatic Fisher fallback."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_one_category",
+      "category": "stop",
+      "question": "Test chi-square independence between category_a and category_b.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [
+            "Chi-square requires two to twenty observed categories per variable."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Chi-square requires two to twenty observed categories per variable."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "chi_square_numeric_codes",
+      "category": "stop",
+      "question": "Test chi-square independence; these numeric columns are category codes.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "categorical",
+        "x": "category_a",
+        "y": "category_b",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Ask for text-label preprocessing or stop; do not silently recode.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "categorical",
+          "outcome": null,
+          "group": null,
+          "x": "category_a",
+          "y": "category_b",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "chi_square",
+        "diagnostics": {
+          "errors": [
+            "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Categorical meaning must be explicit: convert numeric category codes to named text labels before this analysis."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_constant",
+      "category": "stop",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [
+            "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+          ],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 10,
+                "constant": true,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": null
+              },
+              "y": {
+                "n": 10,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.8923673075239196
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "pearson_too_few",
+      "category": "stop",
+      "question": "Compute Pearson correlation between x and y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [
+            "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+          ],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 3,
+            "usable": 3,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 3,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 1.0
+              },
+              "y": {
+                "n": 3,
+                "constant": false,
+                "skew": -0.9352195295828235,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.6368868450289701
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_constant",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_too_few",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 4,
+            "usable": 4,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Regression requires at least five complete pairs and nonconstant predictor/outcome under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_perfect",
+      "category": "stop",
+      "question": "Regress y on x.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Near-perfect fit: conservative residual-inference policy.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [
+            "Near-perfect fit: residual inference is unstable under MVP policy."
+          ],
+          "warnings": [],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Near-perfect fit: residual inference is unstable under MVP policy."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "welch_extreme_small_group",
+      "category": "stop",
+      "question": "Compare mean outcome between groups.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "difference",
+        "outcome": "outcome",
+        "group": "group",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "Severe small-sample/extreme-value policy; no method switch.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [
+            "Group control: conservative MVP policy stops small samples with severe skew/extreme outliers; no automatic method switch."
+          ],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Non-normality diagnostic: not an automatic reason to change the estimand or test.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": 4.986044676564002,
+                "outliers": 1,
+                "extreme": 1,
+                "shapiro_p": 2.1541308636592063e-10
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.4979031096419082,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.16838955838960734
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Group control: conservative MVP policy stops small samples with severe skew/extreme outliers; no automatic method switch."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "unsupported_multivariable",
+      "category": "stop",
+      "question": "Fit a multiple regression using x and date together to predict y.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational"
+      },
+      "expected_behavior": "stop",
+      "expected_plan": {
+        "goal": "unsupported",
+        "reason": "Multiple regression is unsupported."
+      },
+      "checks": {
+        "goal": true,
+        "stopped": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": false,
+      "semantic_review": "not independently reviewed",
+      "note": "",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "stopped",
+        "plan": {
+          "goal": "unsupported",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Multiple regression is unsupported.",
+          "clarification": null
+        },
+        "method": null,
+        "diagnostics": {
+          "errors": [
+            "Unsupported analysis: use independent Welch, Pearson, categorical chi-square or simple one-predictor regression."
+          ],
+          "warnings": [],
+          "details": {}
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Unsupported analysis: use independent Welch, Pearson, categorical chi-square or simple one-predictor regression."
+      },
+      "draft": null,
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "correlation_2025",
+      "category": "followup",
+      "question": "Repeat that same analysis only for calendar year 2025.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational",
+        "filter": {
+          "column": "date",
+          "start": "2025-01-01",
+          "end": "2025-12-31"
+        }
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "correlation",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warmup": true,
+        "memory_roles": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Same session; retain roles but recompute from filtered data.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": {
+            "column": "date",
+            "start": "2025-01-01",
+            "end": "2025-12-31"
+          },
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 10,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.8923673075239196
+              },
+              "y": {
+                "n": 10,
+                "constant": false,
+                "skew": -0.3041818019059342,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.60223354961363
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 10,
+          "effect": 0.9754851371396016,
+          "statistic": 0.9754851371396016,
+          "p": 1.5341301348147687e-06,
+          "ci_low": 0.8964511574029159,
+          "ci_high": 0.9943751018919413,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "Pearson linear association: 0.97549; p=1.5341e-06; confidence interval [0.89645, 0.99438]; n=10. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Pearson linear association: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+          "Study design does not establish causality. Report association or group differences only."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    },
+    {
+      "id": "regression_2025",
+      "category": "followup",
+      "question": "Repeat that same analysis only for calendar year 2025.",
+      "metadata": {
+        "design": "independent",
+        "study_type": "observational",
+        "filter": {
+          "column": "date",
+          "start": "2025-01-01",
+          "end": "2025-12-31"
+        }
+      },
+      "expected_behavior": "result",
+      "expected_plan": {
+        "goal": "regression",
+        "x": "x",
+        "y": "y",
+        "reason": "Prespecified evaluation plan"
+      },
+      "checks": {
+        "goal": true,
+        "execution": true,
+        "method": true,
+        "roles": true,
+        "numbers": true,
+        "warmup": true,
+        "memory_roles": true
+      },
+      "mechanical_pass": true,
+      "interpretation_accepted": true,
+      "semantic_review": "not independently reviewed",
+      "note": "Same session; retain roles but recompute from filtered data.",
+      "output": {
+        "mode": "offline-prespecified-plans",
+        "status": "completed",
+        "plan": {
+          "goal": "regression",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": {
+            "column": "date",
+            "start": "2025-01-01",
+            "end": "2025-12-31"
+          },
+          "reason": "Prespecified evaluation plan",
+          "clarification": null
+        },
+        "method": "linear_regression",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ],
+          "details": {
+            "rows": 30,
+            "usable": 30,
+            "dropped": 0,
+            "residuals": {
+              "n": 30,
+              "constant": false,
+              "skew": 0.41590166852889493,
+              "outliers": 1,
+              "extreme": 0,
+              "shapiro_p": 0.6849807747364375
+            },
+            "max_leverage": 0.12688172043346374,
+            "max_cooks_distance": 0.354196053125532,
+            "influential_count": 2,
+            "breusch_pagan_lm": 4.442066023222077,
+            "breusch_pagan_p": 0.0350637908876167,
+            "diagnostic_note": "Asymptotic LM from squared residuals regressed on intercept and x; small samples limit reliability."
+          }
+        },
+        "result": {
+          "method": "linear_regression",
+          "n": 30,
+          "effect_name": "Slope",
+          "effect": 1.4420555639581867,
+          "intercept": 3.1786074011156957,
+          "r_squared": 0.6835195097300795,
+          "statistic": 7.7764431587455425,
+          "p": 1.800892600085994e-08,
+          "df": 28,
+          "ci_low": 1.062201065471242,
+          "ci_high": 1.8219100624451314,
+          "confidence_level": 0.95,
+          "slope_stderr": 0.18543896412801814,
+          "contrast": "y per unit of x",
+          "dropped": 0,
+          "warnings": [
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "interpretation": {
+          "summary": "Slope of outcome y on predictor x: 1.4421; p=1.8009e-08; confidence interval [1.0622, 1.8219]; n=30. Evidence of a difference or association under the stated assumptions.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "This analysis does not establish causality.",
+            "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+            "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+            "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+            "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+            "This analysis does not establish causality, including when randomization is user-reported."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "draft": {
+        "summary": "Slope of outcome y on predictor x: {effect}; p={p}; confidence interval [{ci_low}, {ci_high}]; n={n}. Evidence of a difference or association under the stated assumptions.",
+        "causal_claim": false,
+        "strength": "evidence",
+        "limitations": [
+          "This analysis does not establish causality.",
+          "Design and inference assumptions require user judgement; diagnostics are incomplete.",
+          "Potential influential observations (Cook distance threshold four divided by n); none removed automatically.",
+          "Heteroscedasticity diagnostic warning: ordinary slope p-value/interval may be unreliable. No automatic estimator change.",
+          "OLS with intercept: x is predictor, y is outcome. Linear mean model, independence and constant error variance are not established by diagnostics. No extrapolation or causal claims.",
+          "This analysis does not establish causality, including when randomization is user-reported."
+        ]
+      },
+      "text_feedback": [],
+      "pending": null
+    }
+  ],
+  "usage": []
+}

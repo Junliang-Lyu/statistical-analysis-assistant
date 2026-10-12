@@ -72,7 +72,7 @@ def build_graph(agents, checkpointer=None):
             return 'revise' if s['revisions'] < 1 else 'report_issue'
         p = s['plan']
         missing = (p['goal']=='difference' and (not p['outcome'] or not p['group'])) or (
-            p['goal']=='correlation' and (not p['x'] or not p['y']))
+            p['goal'] in ('correlation','categorical','regression') and (not p['x'] or not p['y']))
         return 'ask_user' if p.get('clarification') or (p['goal']!='unsupported' and (p['design']=='unknown' or missing)) else 'select_method'
 
     def ask_user(s):
@@ -98,7 +98,8 @@ def build_graph(agents, checkpointer=None):
 
     def select(s):
         p=s['plan']
-        return traced(s,'select_method', method={'difference':'welch_t_test','correlation':'pearson'}.get(p['goal']))
+        return traced(s,'select_method', method={'difference':'welch_t_test','correlation':'pearson',
+            'categorical':'chi_square','regression':'linear_regression'}.get(p['goal']))
 
     def checks(s):
         d=diagnose(pd.DataFrame(s['data']),s['plan'])

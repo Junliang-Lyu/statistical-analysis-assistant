@@ -1,0 +1,18 @@
+{
+  "id": "pearson_constant",
+  "category": "stop",
+  "question": "Compute Pearson correlation between x and y.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "correlation",
+    "x": "x",
+    "y": "y",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "stop",
+  "note": "",
+  "expected_method": "pearson"
+}

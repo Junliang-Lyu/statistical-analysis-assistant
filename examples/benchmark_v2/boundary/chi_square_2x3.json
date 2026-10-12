@@ -1,0 +1,28 @@
+{
+  "id": "chi_square_2x3",
+  "category": "boundary",
+  "question": "Test chi-square independence of category_a and category_b.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "categorical",
+    "x": "category_a",
+    "y": "category_b",
+    "reason": "Prespecified evaluation plan"
+  },
+  "expected_behavior": "result",
+  "note": "Non-square table, degrees of freedom two.",
+  "numeric_reference": {
+    "n": 60,
+    "dropped": 0,
+    "statistic": 1.6,
+    "p": 0.4493289641172217,
+    "df": 2,
+    "effect": 0.16329931618554522,
+    "ci_low": null,
+    "ci_high": null
+  },
+  "expected_method": "chi_square"
+}

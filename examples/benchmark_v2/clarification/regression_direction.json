@@ -1,0 +1,17 @@
+{
+  "id": "regression_direction",
+  "category": "clarification",
+  "question": "Run a simple regression between x and y; I have not chosen which is the outcome.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "plan": {
+    "goal": "regression",
+    "reason": "Direction unspecified",
+    "clarification": "Which is the outcome?"
+  },
+  "expected_behavior": "interrupt",
+  "note": "Must ask which variable is predictor/outcome.",
+  "expected_method": "linear_regression"
+}

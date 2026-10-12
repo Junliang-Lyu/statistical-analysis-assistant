@@ -1,0 +1,77 @@
+{
+  "id": "regression_direction",
+  "category": "clarification",
+  "question": "Run a simple regression between x and y; I have not chosen which is the outcome.",
+  "metadata": {
+    "design": "independent",
+    "study_type": "observational"
+  },
+  "expected_behavior": "interrupt",
+  "expected_plan": {
+    "goal": "regression",
+    "reason": "Direction unspecified",
+    "clarification": "Which is the outcome?"
+  },
+  "checks": {
+    "goal": true,
+    "clarification": true
+  },
+  "mechanical_pass": true,
+  "interpretation_accepted": false,
+  "semantic_review": "not independently reviewed",
+  "note": "Must ask which variable is predictor/outcome.",
+  "output": {
+    "mode": "deepseek-live",
+    "status": "interrupted",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user requests a simple OLS regression between x and y but has not specified which variable is the outcome, so the predictor/outcome roles are ambiguous and must be clarified before proceeding.",
+      "clarification": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?"
+    },
+    "method": null,
+    "diagnostics": {},
+    "result": null,
+    "interpretation": null,
+    "revisions": 0,
+    "rewrites": 0,
+    "calls": 1,
+    "trace": [
+      "profile",
+      "planner"
+    ],
+    "error": null
+  },
+  "draft": null,
+  "text_feedback": [],
+  "pending": {
+    "question": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?",
+    "plan": {
+      "goal": "regression",
+      "outcome": null,
+      "group": null,
+      "x": null,
+      "y": null,
+      "design": "independent",
+      "study_type": "observational",
+      "filter": null,
+      "reason": "The user requests a simple OLS regression between x and y but has not specified which variable is the outcome, so the predictor/outcome roles are ambiguous and must be clarified before proceeding.",
+      "clarification": "Which variable should be the outcome (y) and which should be the predictor (x) in the simple regression?"
+    },
+    "accepted_keys": [
+      "design",
+      "study_type",
+      "outcome",
+      "group",
+      "x",
+      "y",
+      "filter"
+    ]
+  }
+}

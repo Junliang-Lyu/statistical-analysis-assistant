@@ -1,0 +1,33 @@
+name: stats
+services:
+  stats-api:
+    image: ${STATS_API_IMAGE:?Set the verified release image}
+    restart: unless-stopped
+    env_file:
+      - /opt/stats/.env.production
+    environment:
+      PORT: '8082'
+      STATS_BUDGET_DB: /data/budget.sqlite3
+      STATS_RELEASE: ${STATS_RELEASE:?Set the release id}
+    volumes:
+      - stats_budget:/data
+    networks:
+      - stats
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    cpus: 0.5
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request,os; r=urllib.request.Request('http://127.0.0.1:8082/api/health',headers={'Host':os.environ['STATS_PUBLIC_ORIGIN'].split('://')[1]}); urllib.request.urlopen(r,timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+networks:
+  stats:
+    name: stats_edge
+volumes:
+  stats_budget:
+    name: stats_budget

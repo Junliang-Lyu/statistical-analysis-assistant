@@ -30,7 +30,8 @@ def extra_fixtures():
         return pd.DataFrame([(f'A{i}',f'B{j}') for i,row in enumerate(table)
              for j,n in enumerate(row) for _ in range(n)],columns=['category_a','category_b'])
     return {'chi_square':labels([[30,10],[10,30]]), 'regression':regression,
-            'chi_sparse':labels([[2,0],[0,2]])}
+            'chi_sparse':labels([[2,0],[0,2]]),
+            'nonlinear':pd.DataFrame({'x':np.linspace(-3,3,40),'y':np.linspace(-3,3,40)**2})}
 
 
 def public_result(state):

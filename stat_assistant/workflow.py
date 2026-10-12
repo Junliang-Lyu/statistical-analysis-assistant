@@ -34,6 +34,7 @@ class State(TypedDict, total=False):
     error: str | None
     method: str | None
     mode: str
+    request_kind: str
 
 
 def build_graph(agents, checkpointer=None):
@@ -44,6 +45,12 @@ def build_graph(agents, checkpointer=None):
         try:
             overview = profile(pd.DataFrame(s['data'])); identity = fingerprint(pd.DataFrame(s['data']))
             prior = s.get('plan') if identity == s.get('dataset_id') else None
+            if s.get('request_kind')=='explain':
+                if not prior or not s.get('result'):
+                    raise ValueError('A completed statistical result is required before explanation.')
+                return {'prior_plan':prior,'feedback':[], 'text_feedback':[], 'revisions':0,
+                        'rewrites':0,'calls':0,'draft':None,'interpretation':None,
+                        'status':'explaining','trace':['reuse_result'],'error':None}
             return {'overview': overview, 'dataset_id': identity, 'prior_plan': prior, 'plan': None,
                     'result': None, 'interpretation': None, 'draft': None, 'diagnostics': {},
                     'feedback': [], 'text_feedback': [], 'revisions':0, 'rewrites':0, 'calls':0,
@@ -127,7 +134,10 @@ def build_graph(agents, checkpointer=None):
         try:
             if s['calls']>=5:
                 raise ValueError('Model request limit reached.')
-            draft=agents.interpret(s['plan'],s['result'],s['text_feedback'])
+            context={**s['plan'], 'user_question':s['question'],
+                     'explanation_only':s.get('request_kind')=='explain',
+                     'actual_diagnostics':s.get('diagnostics',{})}
+            draft=agents.interpret(context,s['result'],s['text_feedback'])
             return traced(s,'interpret',draft=draft,calls=s['calls']+1,error=None)
         except Exception as exc:
             return traced(s,'interpret',draft={},calls=s['calls']+1,error='Interpreter failed: '+str(exc))
@@ -149,7 +159,7 @@ def build_graph(agents, checkpointer=None):
         text=render_interpretation(s['draft'],s['result']) if valid else None
         record={'dataset_id':s['dataset_id'],'question':s['question'],'plan':s['plan'],
                 'result':s['result'],'interpretation':text,'mode':agents.mode}
-        return traced(s,'output_memory',status='completed' if valid else 'results_only',interpretation=text,
+        return traced(s,'output_memory',request_kind='analyze',status='completed' if valid else 'results_only',interpretation=text,
                       history=[*s.get('history',[]),record][-10:],
                       error=None if valid else 'Interpretation withheld after one rewrite: '+'; '.join(s['text_feedback']))
 
@@ -159,7 +169,7 @@ def build_graph(agents, checkpointer=None):
                     ('critique',critique),('rewrite',rewrite),('report_issue',report),('output_memory',finish)]:
         g.add_node(name,fn)
     g.add_edge(START,'profile')
-    g.add_conditional_edges('profile',lambda s:'planner' if s['status']=='running' else 'report_issue', ['planner','report_issue'])
+    g.add_conditional_edges('profile',lambda s:'interpret' if s['status']=='explaining' else ('planner' if s['status']=='running' else 'report_issue'), ['interpret','planner','report_issue'])
     g.add_conditional_edges('planner',after_planner,['ask_user','select_method','revise','report_issue'])
     g.add_conditional_edges('ask_user',lambda s:'report_issue' if s.get('error') else ('planner' if s['plan']['goal']=='unsupported' else 'select_method'),['report_issue','planner','select_method'])
     g.add_edge('select_method','check_assumptions')

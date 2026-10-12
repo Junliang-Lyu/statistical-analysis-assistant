@@ -1,0 +1,10 @@
+[Unit]
+Description=Verify the newest stats release (deployment disabled by default)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/python3 /opt/stats/bin/auto_deploy.py
+TimeoutStartSec=1200

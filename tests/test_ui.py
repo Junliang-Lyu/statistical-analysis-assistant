@@ -39,3 +39,53 @@ def test_ui_new_methods(case,question,method,n):
     w=Workspace();r=w.handle({'action':'analyze','mode':'offline','case':case,'question':question,
         'metadata':{'design':'independent','study_type':'observational'}})
     assert r['status']=='completed' and r['result']['method']==method and r['result']['n']==n
+
+
+def test_explanation_reuses_result_and_passes_question():
+    w=Workspace()
+    a=w.handle({'action':'analyze','case':'trial','question':'Compare mean outcome','metadata':{'design':'independent','study_type':'observational'}})
+    graph,config,_=w.sessions[a['session']]
+    b=w.handle({'action':'followup','session':a['session'],'intent':'explain','question':'Can I conclude that treatment caused the difference?'})
+    assert b['pending'] is None and b['status']=='completed'
+    assert b['result']==a['result'] and b['diagnostics']==a['diagnostics']
+    assert 'run_test' not in b['trace'] and 'planner' not in b['trace']
+    assert b['calls']==1
+    assert 'cannot conclude' in b['interpretation']['summary'].lower()
+
+
+def test_explanation_without_result_is_rejected():
+    w=Workspace()
+    a=w.handle({'action':'analyze','case':'paired','question':'Compare mean outcome'})
+    with pytest.raises(ValueError,match='completed'):
+        w.handle({'action':'followup','session':a['session'],'intent':'explain','question':'Explain this'})
+
+
+def test_builtin_csv_matches_analysis_data():
+    w=Workspace()
+    material=w.example_material('trial')
+    import pandas as pd
+    import io
+    frame=pd.read_csv(io.StringIO(material['csv']))
+    assert len(frame)==50 and list(frame)==['group','outcome']
+    assert material['filename']=='trial.csv'
+    with pytest.raises(ValueError):
+        w.example_material('../.env')
+
+
+def test_analysis_after_explanation_recomputes_subset():
+    w=Workspace()
+    a=w.handle({'action':'analyze','case':'correlation','question':'Correlation x and y','metadata':{'design':'independent'}})
+    b=w.handle({'action':'followup','session':a['session'],'intent':'explain','question':'Explain the result'})
+    c=w.handle({'action':'followup','session':a['session'],'intent':'analyze','question':'Repeat only for 2025',
+                'metadata':{'design':'independent','filter':{'column':'date','start':'2025-01-01','end':'2025-12-31'}}})
+    assert b['result']['n']==20 and c['result']['n']==10
+    assert 'run_test' in c['trace']
+
+
+def test_builtin_nonlinear_case_does_not_imply_no_relationship():
+    w=Workspace()
+    r=w.handle({'action':'analyze','case':'nonlinear','question':'Pearson correlation between x and y',
+                'metadata':{'design':'independent','study_type':'observational'}})
+    assert r['status']=='completed' and r['result']['n']==40
+    assert abs(r['result']['effect'])<1e-12
+    assert any('linear' in warning.lower() for warning in r['result']['warnings'])

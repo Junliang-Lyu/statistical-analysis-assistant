@@ -17,9 +17,21 @@ ROOT = Path(__file__).resolve().parent
 
 
 class Workspace:
-    def __init__(self):
+    def __init__(self, agents_factory=None):
         self.sessions = {}
         self.lock = threading.Lock()
+        self.agents_factory = agents_factory
+
+    @staticmethod
+    def example_material(case):
+        trial,corr=fixtures()
+        examples={'trial':trial,'correlation':corr,'paired':trial,**extra_fixtures()}
+        if case not in examples:
+            raise ValueError('Unknown example.')
+        data=examples[case]
+        return {'filename':case+'.csv','csv':data.to_csv(index=False),
+                'columns':list(data.columns),'rows':len(data),
+                'preview':json.loads(data.head(6).to_json(orient='records'))}
 
     def handle(self, payload):
         action = payload.get('action')
@@ -47,7 +59,7 @@ class Workspace:
                     data = pd.read_csv(io.StringIO(csv))
                 if len(data)>100000 or len(data.columns)>100:
                     raise ValueError('Maximum 100,000 rows and 100 columns.')
-                agents = DeepSeekAgents() if mode == 'live' else OfflineAgents()
+                agents = self.agents_factory(mode) if self.agents_factory else (DeepSeekAgents() if mode == 'live' else OfflineAgents())
                 graph = build_graph(agents)
                 sid = secrets.token_urlsafe(24)
                 config = {'configurable':{'thread_id':sid}}
@@ -73,7 +85,13 @@ class Workspace:
                     question = str(payload.get('question','')).strip()
                     if not question:
                         raise ValueError('Enter a follow-up question.')
-                    state = graph.invoke({'question':question, 'metadata':payload.get('metadata') or {}}, config)
+                    intent=payload.get('intent','analyze')
+                    if intent not in ('explain','analyze'):
+                        raise ValueError('Unknown follow-up intent.')
+                    if intent=='explain' and not graph.get_state(config).values.get('result'):
+                        raise ValueError('A completed statistical result is required before explanation.')
+                    state = graph.invoke({'question':question,'request_kind':intent,
+                                          'metadata':payload.get('metadata') or {}}, config)
                 else:
                     raise ValueError('Unknown action.')
             result = public_result(state)
@@ -103,6 +121,12 @@ def make_handler(workspace):
         def do_GET(self):
             if not self.valid_host():
                 return self.send(403,b'Invalid host','text/plain')
+            if self.path.startswith('/examples/'):
+                case=self.path.removeprefix('/examples/').removesuffix('.json')
+                try:
+                    return self.send(200,json.dumps(workspace.example_material(case)).encode())
+                except ValueError:
+                    return self.send(404,b'Unknown example','text/plain')
             assets={'/':'index.html','/app.js':'app.js','/style.css':'style.css'}
             if self.path not in assets:
                 return self.send(404,b'Not found','text/plain')

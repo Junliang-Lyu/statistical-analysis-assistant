@@ -1,0 +1,13 @@
+**
+!deploy/
+!deploy/api.Dockerfile
+!deploy/requirements-api.txt
+!public_server.py
+!ui_server.py
+!demo.py
+!stat_assistant/
+!stat_assistant/*.py
+!ui/
+!ui/*.html
+!ui/*.js
+!ui/*.css

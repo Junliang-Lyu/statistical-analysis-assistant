@@ -4,7 +4,7 @@ Local course MVP: CSV + natural-language question → DeepSeek Planner → deter
 
 **Quick start (Python 3.12):** create a virtual environment, install `requirements-lock.txt`, then run `python ui_server.py --port 8766` and open http://127.0.0.1:8766/ . The UI is English-only. Default offline mode uses fixed test doubles; select DeepSeek for real model calls. Configure `DEEPSEEK_API_KEY` in a local `.env` using the blank `.env.example`, never in committed files.
 
-**Examples and tests:** [test case guide](docs/TEST_CASES.md), [student live walkthrough](docs/STUDENT_DEMO.md), [evaluation and limitations](docs/EVALUATION.md). Run `python -m pytest -q` for automated tests. [Submission notebook](submission/LangGraph_Submission.ipynb) contains saved live outputs and the [actual graph image](submission/graph.png); supporting modules/data are included for rerunning.
+**Examples and tests:** [test case guide](docs/TEST_CASES.md), [student live walkthrough](docs/STUDENT_DEMO.md), [evaluation and limitations](docs/EVALUATION.md). Run `python -m pytest -q` for automated tests. The current [self-contained submission notebook](deliverables/LangGraph_Submission.ipynb) contains saved live outputs and the [actual graph image](deliverables/graph.png). It embeds the implementation and synthetic data; no supporting project files are needed.
 
 Model outputs are not guaranteed statistically or semantically correct. Code supplies numerical values; partial text checks may withhold explanations. Memory is in-process only. This repository is a local application, not a hosted web service.
 
@@ -70,7 +70,7 @@ Welch 输出第二个排序组减第一个排序组的原始均值差及区间�
 
 ## 老师要求映射
 
-plan 输出与方法理由在 notebook 中展示；diagnostics 展示实际检查；revisions/rewrites 各上限一；追问实例复用计划而重新计算；tests 覆盖边界和解释拒绝。测试用例不是真实 LLM benchmark；已有真实调用与实际错误记录；独立人工语义审核仍未完成。PPT/writeup 与个人网站 lab/writing 尚未制作；GitHub 已建立。
+plan 输出与方法理由在 notebook 中展示；diagnostics 展示实际检查；revisions/rewrites 各上限一；追问实例复用计划而重新计算；tests 覆盖边界和解释拒绝。测试用例不是真实 LLM benchmark；已有真实调用与实际错误记录；独立人工语义审核仍未完成。五页英文 PPT 和两页英文 writeup 已制作，位于 `deliverables/`；个人网站 lab/writing 尚未发布，GitHub 已建立。
 
 
 ## 真实案例评估
@@ -94,3 +94,11 @@ Run `python benchmark_suite.py --mode offline --output my_offline_run` for gold-
 Chi-square uses named categorical labels, Pearson statistic without Yates correction, and an explicit expected-count approximation policy. It reports Cramer's V without an effect interval. Simple OLS reports slope, intercept, R-squared, slope interval and residual diagnostics. Heteroscedasticity/influence warnings do not trigger silent estimator changes. [SciPy chi-square](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html) and [linregress](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html) describe the underlying calculations.
 
 `submission/` remains the historical executed two-method package; `demo.ipynb` is the current four-method teaching notebook with explicitly offline default.
+
+## Current visualization package
+
+Use `assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb` and `assignments/2026-10-12/langgraph/graph.png` for the current graph submission. `LangGraph_Visualization_Current.zip` now contains exactly those two files; the short node/edge/handoff explanation is below the image inside the notebook. The self-contained notebook was executed with real DeepSeek calls from an empty working directory. `submission/` and `submission_current/` retain older packages. Midterm deliverables are `assignments/2026-10-12/midterm/Midterm_Presentation_Final.pptx` (five slides with five-minute speaker notes) and `assignments/2026-10-12/midterm/Midterm_Writeup.docx` / `.pdf` (two pages). Built-in cases include selection guidance, expected behavior, suggested follow-ups and a U-shaped Pearson boundary example.
+
+## Public deployment preparation
+
+[Public service status](docs/PUBLIC_SERVICE_STATUS.md) describes the isolated Docker release, privacy limits, persistent quotas and cost ceilings. Run `deploy/build-release.ps1` to test and package a local release. CI checks every push; release publication is manual. No server deployment or website Lab link is active yet. Shared Caddy integration requires a separate review before installation.

@@ -1,0 +1,36 @@
+name: Build stats release (no deployment)
+on: workflow_dispatch
+permissions:
+  contents: write
+concurrency:
+  group: stats-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: pip install -r deploy/requirements-api.txt pytest
+      - run: python -m pytest -q
+      - name: Build and verify
+        id: version
+        run: |
+          ID=$(date -u +%Y%m%dT%H%M%SZ)
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          docker build -f deploy/api.Dockerfile -t "stats-api:$ID" .
+          docker run --rm --entrypoint python -v "$PWD/deploy/smoke_public.py:/smoke.py:ro" -e PYTHONPATH=/app "stats-api:$ID" /smoke.py
+          mkdir -p "out/$ID"
+          cp deploy/compose.stats.yaml deploy/stats.caddy deploy/check-release.sh "out/$ID/"
+          echo "release-$ID" > "out/$ID/release.txt"
+          docker save "stats-api:$ID" -o "out/$ID/stats-api-$ID.tar"
+          tar czf "stats-release-$ID.tar.gz" -C out "$ID"
+          sha256sum "stats-release-$ID.tar.gz" > "stats-release-$ID.tar.gz.sha256"
+      - name: Publish verified archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ID: ${{ steps.version.outputs.id }}
+        run: |
+          gh release create "release-$ID" "stats-release-$ID.tar.gz" "stats-release-$ID.tar.gz.sha256" --target "$GITHUB_SHA" --title "Stats release $ID" --notes "Tested image built from $GITHUB_SHA. Server installation is not enabled by this workflow."

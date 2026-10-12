@@ -1,0 +1,16 @@
+name: Stats tests and image
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: pip install -r deploy/requirements-api.txt pytest
+      - run: python -m pytest -q
+      - run: docker build -f deploy/api.Dockerfile -t stats-api:ci .
+      - run: docker run --rm --entrypoint python -v "$PWD/deploy/smoke_public.py:/smoke.py:ro" -e PYTHONPATH=/app stats-api:ci /smoke.py

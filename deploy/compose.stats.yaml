@@ -28,6 +28,8 @@ services:
 networks:
   stats:
     name: stats_edge
+    # Provision once before either stack starts. Neither stack owns its lifecycle.
+    external: true
 volumes:
   stats_budget:
     name: stats_budget

@@ -1,0 +1,40 @@
+--- a/deploy/Caddyfile
++++ b/deploy/Caddyfile
+@@ -31,3 +31,6 @@
+ # Extra sites mounted by compose overrides (e.g. the Investment Lab:
+ # investment-lab/deploy/compose.invest.yaml). No match only logs a warning.
+ import /etc/caddy/sites/*.caddy
++
++# Stable stats-only site directory; independent of release symlinks.
++import /etc/caddy/stats/*.caddy
+--- a/deploy/compose.yaml
++++ b/deploy/compose.yaml
+@@ -10,12 +10,18 @@
+       - "443:443"
+     volumes:
+       - ./Caddyfile:/etc/caddy/Caddyfile:ro
++      # Provision /opt/stats/gateway first; never mount the private .env.
++      - type: bind
++        source: /opt/stats/gateway
++        target: /etc/caddy/stats
++        read_only: true
+       - ./site:/srv/site:ro
+       - caddy_data:/data
+       - caddy_config:/config
+     networks:
+       - edge
+       - backend
++      - stats_edge
+     depends_on:
+       registry:
+         condition: service_started
+@@ -76,6 +82,9 @@
+   edge: {}
+   backend:
+     internal: true
++  stats_edge:
++    name: stats_edge
++    external: true
+ 
+ volumes:
+   caddy_data: {}

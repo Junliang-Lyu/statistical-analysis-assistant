@@ -14,7 +14,7 @@ The public adapter and release tooling are local preparation only. No Lightsail 
 
 ## Deployment gates
 
-The shared Caddy integration is unresolved under the constraint not to change Investment Lab. `stats.caddy` is a proposed isolated site, not an instruction to change/recreate existing Caddy. Do not enable server auto-deployment before this is reviewed and confirmed.
+An unapplied shared-Caddy proposal is now prepared in [the integration review](CADDY_INTEGRATION_REVIEW.md): add a stable directory mount/import and external stats network to the main site's base configuration. It requires no Investment Lab changes, but does require approval to change the main site's two configuration files and maintain them in future releases/rollbacks. `stats.caddy` remains a proposal, not an instruction to change/recreate existing Caddy. Do not enable server auto-deployment before this is reviewed and confirmed.
 
 The server should only receive verified release archives. `deploy/build-release.ps1` tests, builds, runs an offline HTTP image smoke test, saves the image and packages checksums. GitHub CI performs the same tests and image check without secrets. A stats-only puller and systemd templates are prepared: the service defaults to verification-only. Applying a release additionally requires `--apply` and `STATS_GATEWAY_READY=1`; do not enable those before shared ingress is resolved. The site Lab entry is deferred; no unverified live link is published.
 

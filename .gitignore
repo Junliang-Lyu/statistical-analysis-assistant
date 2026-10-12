@@ -1,0 +1,10 @@
+.venv/
+.env
+.env.*
+!.env.example
+*.zip
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+artifacts/private/
+.jupyter/

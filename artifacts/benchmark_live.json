@@ -1,0 +1,1442 @@
+{
+  "model": "deepseek-chat",
+  "cases": [
+    {
+      "id": "welch_clean",
+      "question": "Compare mean outcome between treatment and control.",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "difference"
+        ],
+        "roles": {
+          "outcome": "outcome",
+          "group": "group"
+        },
+        "n": 50
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Two-group mean comparison of numeric outcome by group; confirmed independent design and observational study type.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.39807980739938575,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965949945506
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.49790310962820655,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.1683895583937307
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.253202036170138,
+          "statistic": 5.788718926593826,
+          "p": 5.796668336306442e-07,
+          "df": 46.509888447698344,
+          "ci_low": 0.8175583600290748,
+          "ci_high": 1.688845712311201,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "The analysis compared the mean of outcome between the two levels of group using an independent two-group Welch t-test, with the contrast defined as treatment minus control. The estimated mean difference was 1.2532 (ninety-five percent confidence interval 0.81756 to 1.6888), based on a total sample size of 50. The p-value was 5.7967e-07, which is below the five percent threshold, so the result is classified as evidence of a difference in means. This is a Pearson-type linear association between group membership and the outcome, not a causal effect. The analysis plan specified a difference in means for a numeric outcome across two independent groups in an observational study, and the method matches that plan. No data were dropped. The confidence interval describes the range of plausible values for the mean difference under the model assumptions. Because the study is observational, the difference may reflect confounding or selection effects rather than a direct influence of group on outcome.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The Welch t-test assumes independent observations within and between groups, approximately normal distributions or sufficiently large samples, and no unmodeled confounding; these assumptions were not verified from the data.",
+            "Independence was user-confirmed rather than verified from the CSV, so any clustering or repeated measures would violate the test assumptions.",
+            "The confidence interval and p-value depend on the specified model and do not account for multiple comparisons or model uncertainty.",
+            "This analysis does not establish causality.",
+            "The result describes a group difference or linear association only and should not be interpreted as a causal effect.",
+            "No practical or clinical importance can be judged without context on the scale of the outcome and the minimum meaningful difference.",
+            "The analysis is limited to the available variables and does not adjust for covariates or design features such as sampling weights."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "pending_question": null
+    },
+    {
+      "id": "welch_unequal_variances",
+      "question": "Is the mean score different between arm A and arm B?",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "difference"
+        ],
+        "roles": {
+          "outcome": "score",
+          "group": "arm"
+        },
+        "n": 80
+      },
+      "checks": {
+        "outcome": false,
+        "goal": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": false,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "results_only",
+        "plan": {
+          "goal": "difference",
+          "outcome": "score",
+          "group": "arm",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Two-group mean comparison of score across arm levels A and B; design confirmed as independent by user metadata.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 80,
+            "usable": 80,
+            "dropped": 0,
+            "groups": {
+              "A": {
+                "n": 40,
+                "constant": false,
+                "skew": -0.02147998870222028,
+                "outliers": 2,
+                "extreme": 0,
+                "shapiro_p": 0.657747348476503
+              },
+              "B": {
+                "n": 40,
+                "constant": false,
+                "skew": -0.42760086878069503,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.08259592284813838
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 80,
+          "n_groups": [
+            40,
+            40
+          ],
+          "contrast": "B minus A",
+          "effect": 1.983661413098252,
+          "statistic": 4.268380818113627,
+          "p": 0.00010808957951786534,
+          "df": 42.49765676392344,
+          "ci_low": 1.0461156298700258,
+          "ci_high": 2.921207196326478,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 1,
+        "calls": 3,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "rewrite",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": "Interpretation withheld after one rewrite: Unknown numeric placeholder.; Malformed placeholder."
+      },
+      "pending_question": null
+    },
+    {
+      "id": "missing_complete_cases",
+      "question": "Compare the mean outcome between the two groups.",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "difference"
+        ],
+        "roles": {
+          "outcome": "outcome",
+          "group": "group"
+        },
+        "n": 48
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Two-group mean comparison of numeric outcome by binary group; confirmed independent design and observational study type.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 48,
+            "dropped": 2,
+            "groups": {
+              "control": {
+                "n": 24,
+                "constant": false,
+                "skew": -0.3436678067815426,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5366741918967267
+              },
+              "treatment": {
+                "n": 24,
+                "constant": false,
+                "skew": 0.552423925083251,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.2039074088443798
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 48,
+          "n_groups": [
+            24,
+            24
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.2542691166022721,
+          "statistic": 5.579289952554779,
+          "p": 1.3465018940714655e-06,
+          "df": 44.55945659921499,
+          "ci_low": 0.8013589377188746,
+          "ci_high": 1.7071792954856697,
+          "dropped": 2,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Complete-case deletion was used; missingness may bias results.",
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "The analysis compared the mean outcome between two independent groups using a Welch t-test, with the contrast defined as treatment minus control. The estimated mean difference was 1.2543 (ninety-five percent confidence interval 0.80136 to 1.7072), based on 48 complete observations across the two groups. The test statistic was large relative to its reference distribution, and the p-value was 1.3465e-06, which is below the conventional five percent threshold. Because the p-value is below this threshold, the result is classified as evidence of a difference in means under the assumed model. The confidence interval describes a range of plausible values for the mean difference, and its lower bound is above zero, consistent with the direction of the contrast. This is an observational study, so the finding describes an association or group difference rather than a causal effect. Two observations were dropped due to missing data, and complete-case deletion was used, which may introduce bias if missingness is related to the outcome or group. The Welch procedure does not assume equal variances, but it does assume independent observations and approximately normal sampling behavior, which were not verified from the data file. No practical or clinical importance is claimed because no context or minimally important difference was provided.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "The analysis assumes independent observations within and between groups; this was user-confirmed and not verified from the data.",
+            "The Welch procedure assumes approximately normal sampling distributions; this was not checked and may be questionable with small groups.",
+            "Complete-case deletion was used, and missingness may bias results if it is related to the outcome or group.",
+            "The confidence interval and p-value depend on the assumed model and do not account for multiple comparisons or design complexities.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance can be judged without external context such as a minimally important difference."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "pending_question": null
+    },
+    {
+      "id": "pearson_clean",
+      "question": "Measure the linear association between x and y using Pearson correlation.",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "correlation"
+        ],
+        "roles": {
+          "x": "x",
+          "y": "y"
+        },
+        "n": 20
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User requests Pearson correlation between numeric variables x and y; both columns exist with no missing values. No date filter specified, so all rows are used.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 20,
+            "usable": 20,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5513717430400781
+              },
+              "y": {
+                "n": 20,
+                "constant": false,
+                "skew": 0.006884347158899689,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.3222096145126412
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 20,
+          "effect": 0.9929163062333216,
+          "statistic": 0.9929163062333216,
+          "p": 4.157109757767507e-18,
+          "ci_low": 0.9817728824045426,
+          "ci_high": 0.997256460890303,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "A Pearson correlation was computed to assess the linear association between x and y across 20 observations. The estimated correlation is 0.99292, with a ninety-five percent confidence interval from 0.98177 to 0.99726. The associated p-value is 4.1571e-18, which is below the five percent threshold, so the evidence is classified as evidence of a linear association. This means the data are consistent with a positive linear relationship between the two variables, though the estimate is based on the assumption of linearity and independent observations. No causal conclusion is drawn, and the result describes association only.",
+          "causal_claim": false,
+          "strength": "evidence",
+          "limitations": [
+            "Pearson correlation assumes a linear relationship and roughly normal distributions without extreme outliers; these assumptions were not verified here.",
+            "The analysis assumes independent observations, which may not hold if the data have clustering or repeated measures.",
+            "The confidence interval and p-value depend on the stated confidence level and on the default inference assumptions, which are not guaranteed by the diagnostics.",
+            "This analysis does not establish causality.",
+            "The result describes a linear association only and does not imply that changes in one variable produce changes in the other.",
+            "No practical or clinical importance can be judged without additional context about the variables and their measurement scale."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "pending_question": null
+    },
+    {
+      "id": "unknown_design",
+      "question": "Compare mean outcome between groups.",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "difference"
+        ],
+        "roles": {
+          "outcome": "outcome",
+          "group": "group"
+        },
+        "n": 50
+      },
+      "checks": {
+        "outcome": false,
+        "goal": true,
+        "clarification": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": false,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "results_only",
+        "plan": {
+          "goal": "difference",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Two-group mean comparison maps to outcome by group; design and study type are not confirmed by metadata, so they remain unknown.",
+          "clarification": null
+        },
+        "method": "welch_t_test",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 50,
+            "usable": 50,
+            "dropped": 0,
+            "groups": {
+              "control": {
+                "n": 25,
+                "constant": false,
+                "skew": -0.39807980739938575,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.5649965949945506
+              },
+              "treatment": {
+                "n": 25,
+                "constant": false,
+                "skew": 0.49790310962820655,
+                "outliers": 1,
+                "extreme": 0,
+                "shapiro_p": 0.1683895583937307
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "welch_t_test",
+          "n": 50,
+          "n_groups": [
+            25,
+            25
+          ],
+          "contrast": "treatment minus control",
+          "effect": 1.253202036170138,
+          "statistic": 5.788718926593826,
+          "p": 5.796668336306442e-07,
+          "df": 46.509888447698344,
+          "ci_low": 0.8175583600290748,
+          "ci_high": 1.688845712311201,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Welch does not require equal variances; independence is user-confirmed, not verified from CSV.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 1,
+        "calls": 3,
+        "trace": [
+          "profile",
+          "planner",
+          "ask_user",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "rewrite",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": "Interpretation withheld after one rewrite: Potential overstatement: no difference"
+      },
+      "pending_question": null
+    },
+    {
+      "id": "ambiguous_outcome",
+      "question": "Compare the outcome between groups; I have not decided which score to use.",
+      "expected": {
+        "status": [
+          "interrupted"
+        ],
+        "goal": [
+          "difference",
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "clarification": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User wants to compare an outcome between two independent groups but has not specified which score to use; group column is identified, outcome is ambiguous between score_before and score_after.",
+          "clarification": "Which outcome variable should be compared between groups: score_before or score_after?"
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "pending_question": {
+        "question": "Which outcome variable should be compared between groups: score_before or score_after?",
+        "plan": {
+          "goal": "difference",
+          "outcome": null,
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User wants to compare an outcome between two independent groups but has not specified which score to use; group column is identified, outcome is ambiguous between score_before and score_after.",
+          "clarification": "Which outcome variable should be compared between groups: score_before or score_after?"
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "unsupported_regression",
+      "question": "Fit a simple linear regression of y on x and report its slope.",
+      "expected": {
+        "status": [
+          "stopped"
+        ],
+        "goal": [
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "unsupported",
+          "outcome": null,
+          "group": null,
+          "x": null,
+          "y": null,
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Simple linear regression is not among the supported methods (two-independent-group mean comparisons and Pearson correlation).",
+          "clarification": null
+        },
+        "method": null,
+        "diagnostics": {
+          "errors": [
+            "Only two-group mean comparison and Pearson correlation are supported."
+          ],
+          "warnings": [],
+          "details": {}
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Only two-group mean comparison and Pearson correlation are supported."
+      },
+      "pending_question": null
+    },
+    {
+      "id": "paired_design",
+      "question": "Compare mean outcome between groups.",
+      "expected": {
+        "status": [
+          "stopped"
+        ],
+        "goal": [
+          "difference",
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "unsupported",
+          "outcome": "outcome",
+          "group": "group",
+          "x": null,
+          "y": null,
+          "design": "paired",
+          "study_type": "unknown",
+          "filter": null,
+          "reason": "The confirmed metadata specifies a paired design, but the requested analysis is a two-independent-group mean comparison. Paired designs are not supported by this assistant.",
+          "clarification": null
+        },
+        "method": null,
+        "diagnostics": {
+          "errors": [
+            "Only two-group mean comparison and Pearson correlation are supported."
+          ],
+          "warnings": [],
+          "details": {}
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Only two-group mean comparison and Pearson correlation are supported."
+      },
+      "pending_question": null
+    },
+    {
+      "id": "constant_variable",
+      "question": "Compute Pearson correlation between x and y.",
+      "expected": {
+        "status": [
+          "stopped"
+        ],
+        "goal": [
+          "correlation",
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User requests Pearson correlation between numeric columns x and y; both roles are explicit and supported.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [
+            "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+          ],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 10,
+            "usable": 10,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 10,
+                "constant": true,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": null
+              },
+              "y": {
+                "n": 10,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.8923673075239196
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      },
+      "pending_question": null
+    },
+    {
+      "id": "too_few_pairs",
+      "question": "Compute Pearson correlation between x and y.",
+      "expected": {
+        "status": [
+          "stopped"
+        ],
+        "goal": [
+          "correlation",
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "stopped",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User requests Pearson correlation between numeric columns x and y; both roles are explicit and supported.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [
+            "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+          ],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 3,
+            "usable": 3,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 3,
+                "constant": false,
+                "skew": 0.0,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 1.0
+              },
+              "y": {
+                "n": 3,
+                "constant": false,
+                "skew": -0.9352195295828235,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.6368868450289701
+              }
+            }
+          }
+        },
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "report_issue"
+        ],
+        "error": "Pearson needs at least four usable pairs under MVP policy and nonconstant variables."
+      },
+      "pending_question": null
+    },
+    {
+      "id": "ambiguous_last_year",
+      "question": "Only look at the last year of that correlation.",
+      "expected": {
+        "status": [
+          "interrupted"
+        ],
+        "goal": [
+          "correlation",
+          "unsupported"
+        ]
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "clarification": true
+      },
+      "passed": true,
+      "note": null,
+      "output": {
+        "mode": "deepseek-live",
+        "status": "interrupted",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User wants to restrict the prior Pearson correlation between x and y to the last year. The date column has only two distinct values (2024-01-01 and 2025-01-01), so the intended window is ambiguous and cannot be inferred without guessing. Retaining the correlation goal and prior roles, but clarification is required to specify the exact start and end dates for the filter.",
+          "clarification": "What exact start and end dates should define the 'last year' window for the date column (e.g., 2024-01-01 to 2025-01-01)?"
+        },
+        "method": null,
+        "diagnostics": {},
+        "result": null,
+        "interpretation": null,
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 1,
+        "trace": [
+          "profile",
+          "planner"
+        ],
+        "error": null
+      },
+      "pending_question": {
+        "question": "What exact start and end dates should define the 'last year' window for the date column (e.g., 2024-01-01 to 2025-01-01)?",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "User wants to restrict the prior Pearson correlation between x and y to the last year. The date column has only two distinct values (2024-01-01 and 2025-01-01), so the intended window is ambiguous and cannot be inferred without guessing. Retaining the correlation goal and prior roles, but clarification is required to specify the exact start and end dates for the filter.",
+          "clarification": "What exact start and end dates should define the 'last year' window for the date column (e.g., 2024-01-01 to 2025-01-01)?"
+        },
+        "accepted_keys": [
+          "design",
+          "study_type",
+          "outcome",
+          "group",
+          "x",
+          "y",
+          "filter"
+        ]
+      }
+    },
+    {
+      "id": "nonlinear_boundary",
+      "question": "Does x have a relationship with y? Assess using Pearson linear correlation.",
+      "expected": {
+        "status": [
+          "completed"
+        ],
+        "goal": [
+          "correlation"
+        ],
+        "roles": {
+          "x": "x",
+          "y": "y"
+        },
+        "n": 40
+      },
+      "checks": {
+        "outcome": true,
+        "goal": true,
+        "roles": true,
+        "sample_count": true,
+        "numeric_reference": true
+      },
+      "passed": true,
+      "note": "Pearson tests linear association only. U-shaped dependence is present. Interpretation needs manual review; absence of linear evidence does not mean no relationship.",
+      "output": {
+        "mode": "deepseek-live",
+        "status": "completed",
+        "plan": {
+          "goal": "correlation",
+          "outcome": null,
+          "group": null,
+          "x": "x",
+          "y": "y",
+          "design": "independent",
+          "study_type": "observational",
+          "filter": null,
+          "reason": "Question asks for Pearson correlation between two numeric variables x and y; both columns are float64 with no missing values, and confirmed metadata indicates independent observational design.",
+          "clarification": null
+        },
+        "method": "pearson",
+        "diagnostics": {
+          "errors": [],
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ],
+          "details": {
+            "rows": 40,
+            "usable": 40,
+            "dropped": 0,
+            "variables": {
+              "x": {
+                "n": 40,
+                "constant": false,
+                "skew": -1.112556141805357e-16,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.12413856851225175
+              },
+              "y": {
+                "n": 40,
+                "constant": false,
+                "skew": 0.6584308366812671,
+                "outliers": 0,
+                "extreme": 0,
+                "shapiro_p": 0.001206791157071284
+              }
+            }
+          }
+        },
+        "result": {
+          "method": "pearson",
+          "n": 40,
+          "effect": -1.3148746927150712e-16,
+          "statistic": -1.3148746927150712e-16,
+          "p": 0.9999999999999989,
+          "ci_low": -0.31150934897669913,
+          "ci_high": 0.3115093489766989,
+          "dropped": 0,
+          "confidence_level": 0.95,
+          "warnings": [
+            "Pearson measures linear association; design, linearity and default inference assumptions are not guaranteed by these diagnostics.",
+            "Study design does not establish causality. Report association or group differences only."
+          ]
+        },
+        "interpretation": {
+          "summary": "The analysis estimated the Pearson linear association between x and y using 40 observations. The estimated correlation was -1.3149e-16, with a ninety-five percent confidence interval from -0.31151 to 0.31151, and a p-value of 1. Because the p-value is not below the five percent threshold, the result is inconclusive: the data do not provide evidence of a linear association, but this does not mean there is no association. The interval includes values on both sides of zero, so the direction of any possible linear relationship remains uncertain. This is an observational, independent-groups design, so the estimate describes association only and cannot support causal conclusions.",
+          "causal_claim": false,
+          "strength": "inconclusive",
+          "limitations": [
+            "Pearson correlation captures only linear association; non-linear relationships would not be detected.",
+            "The estimate assumes independent observations and approximately normal bivariate behavior for the default inference; these assumptions were not verified by the diagnostics.",
+            "The confidence interval is wide and includes zero, so the magnitude and direction of any association are uncertain.",
+            "This analysis does not establish causality.",
+            "No practical or clinical importance can be judged without additional context about the variables and their measurement scale."
+          ]
+        },
+        "revisions": 0,
+        "rewrites": 0,
+        "calls": 2,
+        "trace": [
+          "profile",
+          "planner",
+          "select_method",
+          "check_assumptions",
+          "run_test",
+          "interpret",
+          "critique",
+          "output_memory"
+        ],
+        "error": null
+      },
+      "pending_question": null
+    }
+  ],
+  "usage": [
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 782,
+        "completion_tokens": 57,
+        "total_tokens": 839,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 654
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 664,
+        "completion_tokens": 389,
+        "total_tokens": 1053,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 536
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 785,
+        "completion_tokens": 64,
+        "total_tokens": 849,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 785
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 665,
+        "completion_tokens": 309,
+        "total_tokens": 974,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 537
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 984,
+        "completion_tokens": 309,
+        "total_tokens": 1293,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 728
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 783,
+        "completion_tokens": 63,
+        "total_tokens": 846,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 783
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 681,
+        "completion_tokens": 387,
+        "total_tokens": 1068,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 553
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 823,
+        "completion_tokens": 73,
+        "total_tokens": 896,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 823
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 646,
+        "completion_tokens": 264,
+        "total_tokens": 910,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 518
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 767,
+        "completion_tokens": 91,
+        "total_tokens": 858,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 639
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 671,
+        "completion_tokens": 315,
+        "total_tokens": 986,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 543
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 1012,
+        "completion_tokens": 310,
+        "total_tokens": 1322,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 756
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 820,
+        "completion_tokens": 95,
+        "total_tokens": 915,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 820
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 825,
+        "completion_tokens": 45,
+        "total_tokens": 870,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 825
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 772,
+        "completion_tokens": 74,
+        "total_tokens": 846,
+        "prompt_tokens_details": {
+          "cached_tokens": 638
+        },
+        "prompt_cache_hit_tokens": 638,
+        "prompt_cache_miss_tokens": 134
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 777,
+        "completion_tokens": 56,
+        "total_tokens": 833,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 777
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 777,
+        "completion_tokens": 56,
+        "total_tokens": 833,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 777
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 819,
+        "completion_tokens": 79,
+        "total_tokens": 898,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 819
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 260,
+        "total_tokens": 912,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 524
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 914,
+        "completion_tokens": 166,
+        "total_tokens": 1080,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 914
+      }
+    },
+    {
+      "role": "planner",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 783,
+        "completion_tokens": 74,
+        "total_tokens": 857,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 783
+      }
+    },
+    {
+      "role": "interpreter",
+      "model": "deepseek-chat",
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 251,
+        "total_tokens": 903,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 524
+      }
+    }
+  ]
+}

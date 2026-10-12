@@ -1,0 +1,100 @@
+[
+  {
+    "role": "planner",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 769,
+      "completion_tokens": 106,
+      "total_tokens": 875,
+      "prompt_tokens_details": {
+        "cached_tokens": 635
+      },
+      "prompt_cache_hit_tokens": 635,
+      "prompt_cache_miss_tokens": 134
+    }
+  },
+  {
+    "role": "interpreter",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 679,
+      "completion_tokens": 285,
+      "total_tokens": 964,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 679
+    }
+  },
+  {
+    "role": "planner",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 821,
+      "completion_tokens": 64,
+      "total_tokens": 885,
+      "prompt_tokens_details": {
+        "cached_tokens": 640
+      },
+      "prompt_cache_hit_tokens": 640,
+      "prompt_cache_miss_tokens": 181
+    }
+  },
+  {
+    "role": "interpreter",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 642,
+      "completion_tokens": 236,
+      "total_tokens": 878,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 642
+    }
+  },
+  {
+    "role": "planner",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 937,
+      "completion_tokens": 122,
+      "total_tokens": 1059,
+      "prompt_tokens_details": {
+        "cached_tokens": 768
+      },
+      "prompt_cache_hit_tokens": 768,
+      "prompt_cache_miss_tokens": 169
+    }
+  },
+  {
+    "role": "interpreter",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 679,
+      "completion_tokens": 268,
+      "total_tokens": 947,
+      "prompt_tokens_details": {
+        "cached_tokens": 128
+      },
+      "prompt_cache_hit_tokens": 128,
+      "prompt_cache_miss_tokens": 551
+    }
+  },
+  {
+    "role": "planner",
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 772,
+      "completion_tokens": 76,
+      "total_tokens": 848,
+      "prompt_tokens_details": {
+        "cached_tokens": 638
+      },
+      "prompt_cache_hit_tokens": 638,
+      "prompt_cache_miss_tokens": 134
+    }
+  }
+]
